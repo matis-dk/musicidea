@@ -1,35 +1,18 @@
 import React from 'react';
-import ComponentTodo from './components/component_todo'
-import ComponentControl from './components/component_control'
-
-
-import mapDispatchToProps from './actions/actions_dispatcher'
-
 import { connect } from 'react-redux';
 
-
-
+import { addNote, removeNote, getNote } from './store/actions/action_notes';
 
 class App extends React.Component {
-  render () {
-      console.log(this.props)
+    render () {
 
     return (
         <div>
-            <h1> APP - LOADED </h1>
-            <ComponentTodo setName={this.props.actions.profile.setName} />
-            <ComponentControl  />
+            <h1 onClick={() => { this.props.getNote() }}> APP </h1>
         </div>
     );
   }
 }
 
 
-//==================================================================
-// first parameter is mapStateToProps
-// second parameter is mapDispatchToProps
-function mapStateToProps (store) {
-    return { store }
-    }
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect( store => store , { addNote, removeNote, getNote } ) (App)

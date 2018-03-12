@@ -16,6 +16,7 @@ function reducer_notes (state = stateInit, action) {
 
         case "REMOVE_NOTE":
             console.log("CASE = REMOVE_NOTE")
+            console.log(action)
             state = {
                 ...state
             }
