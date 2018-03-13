@@ -6,7 +6,7 @@
     import ReactDOM from 'react-dom';
 
         // REACT ROUTER
-        import { BrowserRouter } from 'react-router-dom';
+        import { BrowserRouter, Route } from 'react-router-dom';
 
         // REACT HOT
         import { hot } from 'react-hot-loader'
@@ -20,7 +20,6 @@
         import ReduxThunk from 'redux-thunk'
 
 
-
 // IMPORT MODULES
 
     // MODULES
@@ -30,16 +29,14 @@
     import './style/style.scss';
 
     // REDUCERS
-    import reducer_notes from './js/store/reducers/reducer_notes';
-    import reducer_profile from './js/store/reducers/reducer_profile';
+    import reducer_spotifyWebAPI from './js/store/reducers/reducer_spotifyWebAPI';
 
 
 //==================================================================
 // REDUX STORE
 
     const reducers = combineReducers({
-            notes: reducer_notes,
-            profile: reducer_profile
+            spotify: reducer_spotifyWebAPI
     });
 
     const middleware = applyMiddleware(createLogger(), ReduxThunk);
@@ -47,6 +44,7 @@
     const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
     const store = createStore( reducers, composeEnhancers(middleware) );
+    window.s = store;
 
 //==================================================================
 // REACT RENDER
@@ -54,7 +52,7 @@
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <App/>
+            <Route path="/" component={App} />
         </BrowserRouter>
     </Provider>,
     document.getElementById('root')
