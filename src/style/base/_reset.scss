@@ -2,6 +2,8 @@
 
 html, head, body, li, ul, figure, p {
     box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
 }
 
 ol, ul {
@@ -18,8 +20,10 @@ li {
 
 a:link, a:visited {
     text-decoration: none;
+    color: inherit;
 }
 
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, html {
+    margin: 0px;
 }

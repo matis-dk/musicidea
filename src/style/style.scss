@@ -7,6 +7,7 @@
 
 // ==================== BASE FOLDER ==================== \\
 @import 'base/colors';
+@import 'base/global';
 @import 'base/typography';
 @import 'base/reset';
 
@@ -25,6 +26,7 @@
 
 // =================== PAGES FOLDER =================== \\
 @import 'pages/home';
+@import 'pages/signin';
 
 // =================== LAYOUT FOLDER =================== \\
 @import 'layout/header';

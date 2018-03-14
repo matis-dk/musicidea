@@ -6,8 +6,13 @@ import * as spotifyWebAPI from './store/actions/action_spotifyWebAPI'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 import  { Route, Redirect, Switch } from 'react-router-dom'
 
-import Home from './pages/home.js'
-import Signin from './pages/signin.js'
+import Home from './pages/home'
+import Signin from './pages/signin'
+import Profile from './pages/profile'
+import Header from './components/layout/header'
+
+
+//==================================================================
 
 class App extends React.Component {
 
@@ -18,6 +23,8 @@ class App extends React.Component {
         // Extracting token from URL if it exist
         if ( this.props.location.hash ) {
             this.props.spotifyGetToken(this.props.location.hash);
+            this.props.history.replace('/')
+            console.log("calllled")
         }
     }
 
@@ -40,10 +47,18 @@ class App extends React.Component {
             this.props.spotifyValidateToken(store.spotify.token)
         }
 
+
         return (
             <div>
-                { this.props.store.spotify.token ?
-                    <Home /> :
+                { true ? //this.props.store.spotify.token
+                    <div>
+                        <Header />
+                        <Switch>
+                            <Route exact path='/' component={Home}/>
+                            <Route path='/profile' component={Profile}/>
+                        </Switch>
+                    </div>
+                    :
                     <Signin loginUri={this.getLoginUri()} />
                 }
             </div>

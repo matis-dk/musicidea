@@ -1,25 +1,25 @@
 import React from 'react';
-import { Switch, withRouter, Route } from 'react-router'
+import { withRouter, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class Home extends React.Component {
-    componentWillMount () {
-        this.props.history.replace('/')
-    }
 
     render () {
         console.log(this.props)
 
         return (
             <div>
-                <Switch>
-                    <Route path='/' render={() => (<h2>Allo</h2>)}/>
-                    <Route path='/about' component={<h2>Hello</h2>}/>
-                </Switch>
+                <nav>
+                    <Link className="signin-spotify-button" to="/">Home</Link>
+                    <Link className="signin-spotify-button" to="/profile">Profile</Link>
+                </nav>
+                <div>
+                    HOME
+                </div>
             </div>
         )
     }
 }
 
 
-export default connect() (withRouter(Home))
+export default connect(store => {return {store: store }}) (withRouter(Home))
