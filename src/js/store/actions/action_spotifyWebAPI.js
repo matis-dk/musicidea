@@ -23,7 +23,9 @@ export function spotifyGetToken(url) {
 
 export function spotifyValidateToken(token) {
     const spotifyValidationUrl = "https://api.spotify.com/v1/me";
+
     return dispatch => {
+
         axios({
             method: 'get',
             url: spotifyValidationUrl,
@@ -36,6 +38,7 @@ export function spotifyValidateToken(token) {
                 type: 'SPOTIFY_TOKEN_SUCCESS',
                 payload: res.data
             })
+
 
             dispatch({
                 type: "SPOTIFY_SET_TOKEN"

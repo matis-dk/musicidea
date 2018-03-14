@@ -1,6 +1,7 @@
 // Webpack
 var path                    = require('path');
 var webpack                 = require('webpack');
+var fs  = require('fs');
 
 // Plugins
 var HtmlWebpackPlugin       = require('html-webpack-plugin');
@@ -14,6 +15,9 @@ require('./postcss.config.js');
 const VENDOR_LIBS = ["lodash"];
 const envBoolean = process.env.NODE_ENV == 'development' ? true : false;
 
+// Ant design
+const lessToJs = require('less-vars-to-js');
+const themeVariables = lessToJs(fs.readFileSync(path.join(__dirname, './ant-theme-vars.less'), 'utf8'));
 
 // Webpacks core concepts
 const config = {
@@ -32,8 +36,13 @@ const config = {
         rules: [
             {
                 test: /\.js$/,
-                use: 'babel-loader',
-                exclude: /node_modules/
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    plugins: [
+                        ['import', { libraryName: "antd", style: true }]
+                    ]
+                }
             },
             {
                 test: /\.(scss|sass|css)$/,
@@ -41,6 +50,19 @@ const config = {
                     fallback: 'style-loader',
                     use: ['css-loader', 'postcss-loader', 'sass-loader']
                 })
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {loader: "style-loader"},
+                    {loader: "css-loader"},
+                    {loader: "less-loader",
+                      options: {
+                        javascriptEnabled: true,
+                        modifyVars: themeVariables
+                    }
+                }
+                ]
             },
             {
                 test: /\.html$/,
