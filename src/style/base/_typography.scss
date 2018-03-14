@@ -1,18 +1,48 @@
 /* ==================== TYPOGRAPHY ==================== */
-
-// FONT SIZES
-$font-size-small	       :12px;
-$font-size-regular         :16px;
-$font-size-large	       :24px;
-$font-size-x-large         :32px;
-$font-size-xx-large	       :48px;
-$font-size-xxx-large	   :64px;
-$font-size-xxxx-large	   :96px;
-
+// IMPORTS
 
 @font-face {
-  font-family: 'MyFont';
-  src:  url('../fonts/Roboto-Bold.ttf') format('truetype');
-  font-weight: 600;
-  font-style: normal;
+    font-family: 'LarsseitLight';
+    src:  url('../fonts/Larsseit_light.woff2') format('woff2');
 }
+
+@font-face {
+    font-family: 'Larsseit';
+    src:  url('../fonts/Larsseit_medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'LarsseitBold';
+    src:  url('../fonts/Larsseit_bold.woff2') format('woff2');
+}
+
+
+
+//==================================================================
+// CLASSES
+
+
+    //==================================================================
+    // SPECIFIC
+    .text-nav {
+        font-family: Larsseit;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        color: $c-g-1;
+        text-transform: uppercase;
+    }
+
+        .text-nav:hover {
+            color: $c-t-3;
+        }
+
+
+    .text-h1 {
+        font-size: 140px;       
+    }
+
+
+
+    //==================================================================
+    // GENERAL

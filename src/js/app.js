@@ -9,6 +9,8 @@ import  { Route, Redirect, Switch } from 'react-router-dom'
 import Home from './pages/home'
 import Signin from './pages/signin'
 import Profile from './pages/profile'
+import Template from './pages/template'
+
 import Header from './components/layout/header'
 
 
@@ -54,6 +56,7 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route path='/profile' component={Profile}/>
+                        <Route path='/template' component={Template}/>
                     </Switch>
                 </main>
             )

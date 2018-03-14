@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { Carousel } from 'antd';
+import bc from '../../img/background.jpg'
 
 class Home extends React.Component {
 
@@ -10,17 +10,24 @@ class Home extends React.Component {
 
         return (
             <div id="home">
-                <div id="home-hero">
-                    <Carousel >
-                      <div className="home-hero-slider" id="hero-slide1"></div>
-                      <div className="home-hero-slider" id="hero-slide2"></div>
-                      <div className="home-hero-slider" id="hero-slide3"></div>
-                      <div className="home-hero-slider" id="hero-slide4"></div>
-                    </Carousel>
+                <div className="home-hero">
+                    <div className="home-des">
+                        <div className="home-h1-wrapper">
+                            <h1 className="text-h1">MusicIdea</h1>
+                        </div>
+                    </div>
+                    <div id="home-hero-img" style={{backgroundImage: `url(${bc})`}}></div>
+
                 </div>
-                <div>
-                    HOME
-                </div>
+                <section className="home-section">
+                    News1
+                </section>
+                <section className="home-section">
+                    News1
+                </section>
+                <section className="home-section">
+                    News1
+                </section>
             </div>
         )
     }
