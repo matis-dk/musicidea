@@ -49,7 +49,7 @@ class App extends React.Component {
         // If token is validate, then render routes
         if ( true  ) { //this.props.store.spotify.token_validated
             return (
-                <main>
+                <main id="main">
                     <Header />
                     <Switch>
                         <Route exact path='/' component={Home}/>

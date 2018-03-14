@@ -1,3 +1,18 @@
-html {
-    background-color: $c-b-5;
+#home-hero {
+    border: 1px solid blue;
 }
+
+.ant-carousel .slick-slide {
+  height: 450px;
+  background: $c-g-1;
+  overflow: hidden;
+}
+
+.home-hero-slider {
+    display: flex;
+}
+
+#hero-slide1 { background-color: $c-g-5 }
+#hero-slide2 { background-color: $c-g-4 }
+#hero-slide3 { background-color: $c-g-3 }
+#hero-slide4 { background-color: $c-g-2 }

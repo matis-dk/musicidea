@@ -2,16 +2,22 @@ import React from 'react';
 import { withRouter, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
+import { Carousel } from 'antd';
+
 class Home extends React.Component {
 
     render () {
 
         return (
-            <div>
-                <nav>
-                    <Link className="signin-spotify-button" to="/">Home</Link>
-                    <Link className="signin-spotify-button" to="/profile">Profile</Link>
-                </nav>
+            <div id="home">
+                <div id="home-hero">
+                    <Carousel >
+                      <div className="home-hero-slider" id="hero-slide1"></div>
+                      <div className="home-hero-slider" id="hero-slide2"></div>
+                      <div className="home-hero-slider" id="hero-slide3"></div>
+                      <div className="home-hero-slider" id="hero-slide4"></div>
+                    </Carousel>
+                </div>
                 <div>
                     HOME
                 </div>
