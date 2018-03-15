@@ -1,0 +1,90 @@
+
+#player-wrapper {
+    border: 1px solid red;
+    max-width: 500px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .player-item  {
+        //padding-top: 35px;
+    }
+
+//==================================================================
+// CONTROL
+.player-control {
+    padding-top: 35px;
+    border: 1px solid red;
+}
+    .player-current-song {
+        padding-bottom: 10px;
+    }
+
+    .player-navigation {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .player-nav {
+            border: 1px solid red;
+            font-size: 26px;
+            cursor: pointer;
+            color: rgba($c-b-5, 0.9);
+
+            > i {
+                padding: 10px;
+            }
+        }
+
+//==================================================================
+// SETTINGS
+
+.player-settings {
+    display: flex;
+    border: 1px solid blue;
+
+}
+
+    .player-settings-switch {
+        height: 125px;
+        padding: 0px 12px;
+
+        > * {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+        .player-settings-icon {
+            padding: 8px;
+            font-size: 18px;
+        }
+
+//==================================================================
+.player-playlist {
+    height: 100%;
+
+}
+
+    .player-playlist-wrapper {
+
+    }
+
+//==================================================================
+.player-cover {
+    border: 1px solid red;
+    align-items: flex-end;
+}
+
+    .player-cover-img {
+        background-color: $c-b-5;
+        height: 400px;
+        opacity: 0.4;
+    }

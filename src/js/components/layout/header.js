@@ -48,7 +48,7 @@ class Header extends React.Component {
                         </li>
                     </ul>
                 </nav>
-                <div>Player</div>
+                <div></div>
             </div>
         )
     }

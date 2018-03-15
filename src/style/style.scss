@@ -17,6 +17,8 @@
 @import 'components/button';
 @import 'components/input';
 @import 'components/media';
+@import 'components/dnd';
+@import 'components/player';
 
 // =================== HELPERS FOLDER =================== \\
 @import 'helpers/placeholders';
@@ -28,6 +30,7 @@
 @import 'pages/home';
 @import 'pages/signin';
 @import 'pages/template';
+@import 'pages/explore';
 
 // =================== LAYOUT FOLDER =================== \\
 @import 'layout/header';
