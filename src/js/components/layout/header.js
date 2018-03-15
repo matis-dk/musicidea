@@ -10,8 +10,17 @@ import { Link, withRouter } from 'react-router-dom'
 class Header extends React.Component {
 
     state = {
-        menuActive: true,
+        menuActive: false,
         menuPage: true
+    }
+
+    componentDidMount () {
+
+        setTimeout(function() {
+            this.setState({
+                menuActive: true
+            })
+        }.bind(this), 350)
     }
 
     toggleMenu () {

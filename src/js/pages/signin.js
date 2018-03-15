@@ -6,7 +6,9 @@ import { Button, Link, Icon, notification } from 'antd';
 
 import * as spotifyWebAPI from '../store/actions/action_spotifyWebAPI'
 
+import logo from '../../img/Musicidea-logo-min.svg'
 
+//==================================================================
 
 class Signin extends React.Component {
 
@@ -24,6 +26,7 @@ class Signin extends React.Component {
     isTokenAvailabel = () => {
         // Enabling / disabling signin button based on hash fragment
         if (!this.props.location.hash) {
+            this.props.history.replace('/');
             return true
         };
 
@@ -63,14 +66,14 @@ class Signin extends React.Component {
                 <div className="signin-box">
                     <div className="signin-img-wrapper"></div>
                     <div className="signin-form">
-                        <h1 className="signin-header">Sign-in </h1>
-                        <p className="signin-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt veniam, vel numquam repellat possimus nobis itaque laudantium neque quo, iusto, dolorem? Dolor quibusdam itaque deserunt sapiente aliquid autem qui tenetur.</p>
+                        <img className="signin-logo" src={logo} alt=""/>
+                        <p className="signin-description">Velkommen til MusicIdea! Denne side anvender Spotify's åbne web api, og kræver derfor at du har en konto hos Spotify før du kan drage nytte af denne applikation. Du skal give os dit samtykke før vi kan anvende, og se dine bruger oplysninger.</p>
                         <div className="signin-spotify">
-                            <Button type="primary" size="large" className="signin-buttons">
-                                <a className="signin-spotify-button" href={this.getLoginUri()}>Sign into Spotify</a>
+                            <Button type="primary" icon="form" size="large" className="signin-buttons">
+                                <a className="signin-spotify-button" href={this.getLoginUri()}>Giv samtykke</a>
                             </Button>
                             <Button type="primary" icon="poweroff" size="large" className="signin-buttons" loading={this.props.store.spotify.isLoading} onClick={this.handleLogin} disabled={this.isTokenAvailabel()}>
-                                Sign into MusicIdea
+                                Log in på MusicIdea
                             </Button>
                         </div>
                     </div>

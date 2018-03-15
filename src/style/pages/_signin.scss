@@ -9,15 +9,14 @@
 }
 
     .signin-box {
-        max-width: 550px;
+        max-width: 650px;
         height: auto;
         width: 100%;
-        padding: 30px;
+        padding: 50px;
         position: relative;
         overflow: hidden;
         box-shadow: 0px 8px 70px -2px rgba(0,0,0,0.51);
         color: white;
-        border: 1px solid blue;
     }
 
         .signin-img-wrapper {
@@ -37,22 +36,32 @@
         .signin-form {
             position: relative;
             z-index: 5;
-            border: 1px solid red;
         }
+
+            .signin-logo {
+                width: 200px;
+                margin-bottom: 50px;
+            }
+
             .signin-header {
                 margin-bottom: 15px;
             }
 
             .signin-description {
                 margin-bottom: 40px;
-            }
+                color: rgba($c-g-1, 0.8);
+                }
 
-            .signin-spotify {
-                margin-top: 10px;
-                border: 1px solid green;
-            }
+                .signin-spotify {
+                    margin-top: 10px;
+                }
+
+                .signin-spotify-button {
+                    margin-left: 10px;
+                    color: white !important;
+                }
 
 
-            .signin-buttons {
-                margin-right: 20px;
-            }
+                .signin-buttons {
+                    margin-right: 20px;
+                }
