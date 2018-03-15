@@ -18,9 +18,32 @@ class Signin extends React.Component {
         const client_id         = "90dfc7083d684563888561ce310f940a";
         const redirect_uri      = "http://localhost:3000/";
         const response_type     = "token";
-        const scope             =  encodeURIComponent("user-read-private user-read-email playlist-modify-private playlist-read-private user-library-modify");
+        const scope             =  [
+            "playlist-read-private",
+            "playlist-read-collaborative",
+            "playlist-modify-public",
+            "playlist-modify-private",
+            "streaming",
+            "ugc-image-upload",
+            "user-follow-modify",
+            "user-follow-read",
+            "user-library-read",
+            "user-library-modify",
+            "user-read-private",
+            "user-read-birthdate",
+            "user-read-email",
+            "user-top-read",
+            "user-read-playback-state",
+            "user-modify-playback-state",
+            "user-read-currently-playing",
+            "user-read-recently-played"
+        ].join(" ");
 
-        return `${spotifyBase}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}`;
+        return [ spotifyBase,
+                    `?client_id=${client_id}`,
+                    `&redirect_uri=${redirect_uri}`,
+                    `&response_type=${response_type}`,
+                    `&scope=${encodeURIComponent(scope)}`].join('');
     }
 
 
