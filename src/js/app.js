@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as spotifyWebAPI from './store/actions/action_spotifyWebAPI'
+import * as spotifyOAuth from './store/actions/action_spotifyOAuth'
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 import  { Route, Redirect, Switch } from 'react-router-dom'
+
+import * as Application from './data/applicationLogic'
 
 import Home from './pages/home'
 import Signin from './pages/signin'
@@ -20,10 +22,13 @@ import Player from './components/ui/player'
 //==================================================================
 
 class App extends React.Component {
+
+
     render () {
 
         // Rendering routes if token is valid
-        if ( this.props.spotify.token_validated  ) {
+        if ( this.props.store.spotify.loginAllowed  ) {
+
             return (
                 <main id="main">
                     <Header />
@@ -45,4 +50,4 @@ class App extends React.Component {
 
 //==================================================================
 
-export default connect( (store => store) , { ...spotifyWebAPI } ) (App)
+export default connect( store => {return {store: store }} ) (App)

@@ -2,11 +2,11 @@ let stateInit = {
     init: null,
     token: null,
     token_validated: false,
-    attempt: false,
-    isLoading: false
+    isLoading: false,
+    loginAllowed: false
 }
 
-function reducer_spotifyWebAPI (state = stateInit, action) {
+function reducer_spotifyOAuth (state = stateInit, action) {
     switch (action.type) {
         case "SPOTIFY_INIT":
             state = {
@@ -20,11 +20,16 @@ function reducer_spotifyWebAPI (state = stateInit, action) {
                 token: action.payload
             }
             return state;
+        case "SPOTIFY_SET_TOKEN":
+            state = {
+                ...state
+            }
+            state.init.setAccessToken(state.token);
+            return state;
         case "SPOTIFY_TOKEN_SUCCESS":
             state = {
                 ...state,
                 token_validated: true,
-                attempt: true,
                 isLoading: false
             }
             return state;
@@ -32,7 +37,6 @@ function reducer_spotifyWebAPI (state = stateInit, action) {
             state = {
                 ...state,
                 token_validated: false,
-                attempt: true,
                 isLoading: false
             }
             return state;
@@ -40,6 +44,12 @@ function reducer_spotifyWebAPI (state = stateInit, action) {
             state = {
                 ...state,
                 isLoading: action.payload
+            }
+            return state;
+        case "MUSICIDEA_LOGIN":
+            state = {
+                ...state,
+                loginAllowed: action.payload
             }
             return state;
         default:
@@ -54,4 +64,4 @@ function reducer_spotifyWebAPI (state = stateInit, action) {
 
 
 
-export default reducer_spotifyWebAPI;
+export default reducer_spotifyOAuth;

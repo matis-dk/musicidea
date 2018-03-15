@@ -33,13 +33,21 @@ export function spotifyValidateToken(token, openNotification) {
             openNotification("Login succesfuld", "Du har nu logget ind med din spotify account", "smile")
 
             dispatch({
-                type: 'SPOTIFY_TOKEN_SUCCESS',
-                payload: res.data,
+                type: 'SPOTIFY_TOKEN_SUCCESS'
             });
 
             dispatch({
                 type: "SPOTIFY_INIT",
                 payload: new Spotify()
+            })
+
+            dispatch({
+                type: "SPOTIFY_SET_TOKEN"
+            })
+
+            dispatch({
+                type: "MUSICIDEA_LOGIN",
+                payload: true
             })
         })
         .catch((err) => {

@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 
 import bc from '../../img/background.jpg'
 
+import * as actionUsers from '../store/actions/action_user'
+
 class Home extends React.Component {
+
+    componentDidMount() {
+        this.props.getDataInit(this.props.store.spotify.init)
+    }
 
     render () {
 
@@ -34,4 +40,4 @@ class Home extends React.Component {
 }
 
 
-export default connect(store => {return {store: store }}) (withRouter(Home))
+export default connect(store => {return {store: store }},  { ...actionUsers }) (withRouter(Home))

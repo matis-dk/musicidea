@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { Button, Link, Icon, notification } from 'antd';
 
-import * as spotifyWebAPI from '../store/actions/action_spotifyWebAPI'
+import * as spotifyOAuth from '../store/actions/action_spotifyOAuth'
 
 import logo from '../../img/Musicidea-logo-min.svg'
 
@@ -18,8 +18,9 @@ class Signin extends React.Component {
         const client_id         = "90dfc7083d684563888561ce310f940a";
         const redirect_uri      = "http://localhost:3000/";
         const response_type     = "token";
+        const scope             =  encodeURIComponent("user-read-private user-read-email playlist-modify-private playlist-read-private user-library-modify");
 
-        return `${spotifyBase}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}`;
+        return `${spotifyBase}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}`;
     }
 
 
@@ -67,7 +68,7 @@ class Signin extends React.Component {
                     <div className="signin-img-wrapper"></div>
                     <div className="signin-form">
                         <img className="signin-logo" src={logo} alt=""/>
-                        <p className="signin-description">Velkommen til MusicIdea! Denne side anvender Spotify's åbne web api, og kræver derfor at du har en konto hos Spotify før du kan drage nytte af denne applikation. Du skal give os dit samtykke før vi kan anvende, og se dine bruger oplysninger.</p>
+                        <p className="signin-description">Velkommen til MusicIdea! Denne side anvender Spotify's åbne web api, og kræver derfor at du har en konto hos Spotify før du kan drage nytte af denne applikation. Du skal derfor give os dit samtykke, før vi kan se dine bruger oplysninger.</p>
                         <div className="signin-spotify">
                             <Button type="primary" icon="form" size="large" className="signin-buttons">
                                 <a className="signin-spotify-button" href={this.getLoginUri()}>Giv samtykke</a>
@@ -90,4 +91,4 @@ function mapStateToProps (store) {
     };
 }
 
-export default connect(mapStateToProps, { ...spotifyWebAPI })(withRouter(Signin))
+export default connect(mapStateToProps, { ...spotifyOAuth })(withRouter(Signin))
