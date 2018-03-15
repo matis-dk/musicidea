@@ -5,4 +5,9 @@
 
     .item-draggable {
         user-select: none;
+        border-bottom: 1px solid rgba($c-t-3, 0.2);
+    }
+
+    .item-draggable-inner {
+        padding: 12px 2px;
     }

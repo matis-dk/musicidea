@@ -39,10 +39,30 @@
 
 
     .text-h1 {
-        font-size: 140px;       
+        font-size: 140px;
     }
 
+    //==================================================================
+    // PLAYER
+    .text-player-playerlist {
+        font-family: Larsseit;
+        font-size: 16px;
+        letter-spacing: 2px;
+        color: $c-t-5;
+        text-transform: uppercase;
+    }
 
+        .text-player-playerlist-cat {
+            font-family: LarsseitBold;
+            text-transform: uppercase;
+            color: $c-t-5;
+        }
+
+        .item-draggable {         //.text-player-playerlist-item
+            font-family: Larsseit;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
 
     //==================================================================
     // GENERAL

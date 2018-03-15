@@ -1,7 +1,6 @@
 
 #player-wrapper {
-    border: 1px solid red;
-    max-width: 500px;
+    max-width: 450px;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -15,13 +14,13 @@
 
     .player-item  {
         //padding-top: 35px;
+        padding-right: 15px;
     }
 
 //==================================================================
 // CONTROL
 .player-control {
     padding-top: 35px;
-    border: 1px solid red;
 }
     .player-current-song {
         padding-bottom: 10px;
@@ -33,7 +32,6 @@
     }
 
         .player-nav {
-            border: 1px solid red;
             font-size: 26px;
             cursor: pointer;
             color: rgba($c-b-5, 0.9);
@@ -48,13 +46,11 @@
 
 .player-settings {
     display: flex;
-    border: 1px solid blue;
-
 }
 
     .player-settings-switch {
-        height: 125px;
         padding: 0px 12px;
+        padding-bottom: 150px;
 
         > * {
             display: flex;
@@ -72,15 +68,35 @@
     height: 100%;
 
 }
+    .player-playlist-header {
+        height: 50px;
+        display: flex;
+    }
 
     .player-playlist-wrapper {
 
     }
 
+        .player-playlist-cat {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba($c-t-3, 0.2);
+        }
+
+        .player-playlist-cat  > h5 {
+            padding-right: 15px;
+        }
+
+        .player-playlist-cat  > h5 > i {
+            font-weight: 700;
+            padding-right: 5px;
+        }
+
 //==================================================================
 .player-cover {
-    border: 1px solid red;
     align-items: flex-end;
+    padding-right: 0px;
 }
 
     .player-cover-img {

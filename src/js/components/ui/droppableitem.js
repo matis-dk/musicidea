@@ -5,7 +5,7 @@ import DraggableComp from './draggableitem'
 
 // fake data generator
 const getItems = () => (
-    [{ id: "item-1", content: <h1>Test</h1>},
+    [{ id: "item-1", content: "item 1"},
     { id: "item-2", content: "item 2"},
     { id: "item-3", content: "item 3"},
     { id: "item-4", content: "item 4"},
