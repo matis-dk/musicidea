@@ -27,7 +27,9 @@ class Header extends React.Component {
         return (
             <div id="header">
                 <div>
-                    <Button type="primary" shape="circle" icon="user" size="large" />
+                    <Link to="/profile">
+                        <Button type="primary" shape="circle" icon="user" size="large" />
+                    </Link>
                 </div>
                 <nav>
                     <ul className="nav-menu" data-active={this.state.menuActive} data-current="Home">

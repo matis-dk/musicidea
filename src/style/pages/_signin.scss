@@ -9,7 +9,7 @@
 }
 
     .signin-box {
-        max-width: 250px;
+        max-width: 550px;
         height: auto;
         width: 100%;
         padding: 30px;
@@ -17,34 +17,42 @@
         overflow: hidden;
         box-shadow: 0px 8px 70px -2px rgba(0,0,0,0.51);
         color: white;
+        border: 1px solid blue;
     }
 
-    .signin-img-wrapper {
-        position: absolute;
-        display: block;
-        width: 100vw;
-        height: 100vh;
-        content: " ";
-        top: 50%;
-        right: 50%;
-        transform: translateX(50vw) translateY(-50vh);
-        background-image: url('https://images.unsplash.com/photo-1491243658503-56c102aab1a9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=11784e19eb7e8c74aaa5684ca400e1ac&auto=format&fit=crop&w=2700&q=80');
-        background-size: cover;
-        filter: blur(25px);
-    }
+        .signin-img-wrapper {
+            position: absolute;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            content: " ";
+            top: 50%;
+            right: 50%;
+            transform: translateX(50vw) translateY(-50vh);
+            background-image: url('https://images.unsplash.com/photo-1491243658503-56c102aab1a9?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=11784e19eb7e8c74aaa5684ca400e1ac&auto=format&fit=crop&w=2700&q=80');
+            background-size: cover;
+            filter: blur(25px);
+        }
 
-    .signin-form {
-        position: relative;
-        z-index: 5;
-    }
+        .signin-form {
+            position: relative;
+            z-index: 5;
+            border: 1px solid red;
+        }
+            .signin-header {
+                margin-bottom: 15px;
+            }
 
-    .signin-spotify {
-        margin-top: 10px;
-    }
+            .signin-description {
+                margin-bottom: 40px;
+            }
 
-    .signin-spotify-button {
-        background-color: $c-turquise;
-        border-radius: 3px;
-        padding: 5px 10px;
-        font-size: 10px;
-    }
+            .signin-spotify {
+                margin-top: 10px;
+                border: 1px solid green;
+            }
+
+
+            .signin-buttons {
+                margin-right: 20px;
+            }

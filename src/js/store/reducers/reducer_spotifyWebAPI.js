@@ -2,8 +2,8 @@ let stateInit = {
     init: null,
     token: null,
     token_validated: false,
-    token_checking: false,
-    attempt: false
+    attempt: false,
+    isLoading: false
 }
 
 function reducer_spotifyWebAPI (state = stateInit, action) {
@@ -24,20 +24,22 @@ function reducer_spotifyWebAPI (state = stateInit, action) {
             state = {
                 ...state,
                 token_validated: true,
-                attempt: true
+                attempt: true,
+                isLoading: false
             }
             return state;
         case "SPOTIFY_TOKEN_FAILED":
             state = {
                 ...state,
                 token_validated: false,
-                attempt: true
+                attempt: true,
+                isLoading: false
             }
             return state;
-        case "SPOTIFY_TOKEN_CHECKING":
+        case "SPOTIFY_IS_LOADING":
             state = {
                 ...state,
-                token_checking: action.payload,
+                isLoading: action.payload
             }
             return state;
         default:
