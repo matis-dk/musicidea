@@ -1,0 +1,89 @@
+
+
+.wrapper-musiclist  td, .wrapper-musiclist  th {
+    padding: 10px 12px;
+}
+
+.wrapper-musiclist {
+    width: 800px;            // <-- CHECK
+    border: 1px solid blue;
+}
+
+    .musiclist-name {
+        margin: 20px 0px;
+    }
+
+    .musiclist-tabel {
+        width: 100%;
+        display: table;
+        @include text-musiclist-default;
+    }
+
+//==================================================================
+
+        .musiclist-thead {
+            display: table-header-group;
+        }
+
+            .musiclist-tr-panel {
+            }
+
+                .musiclist-th {
+                    text-transform: uppercase;
+                    border-bottom: 1px solid rgba($c-g-1, 0.1);
+                }
+
+                .musiclist-th:hover {
+                    color: $c-t-3;
+                    cursor: pointer;
+                }
+
+//==================================================================
+
+        .musiclist-tbody {
+        }
+
+            .musiclist-tr {
+                cursor: pointer;
+            }
+
+            .musiclist-tr[data-current="true"] {
+                .m-nr {
+                    background-color: red;
+                    content: " ";
+                }
+            }
+
+            .musiclist-tr:hover {
+                background-color: rgba($c-b-4, 0.3);
+
+                .m-nr, .m-duration {
+                    color: $c-t-3;
+                }
+            }
+
+                .musiclist-td {
+
+                }
+
+//==================================================================
+
+    .m-nr {
+
+    }
+
+    .m-song {
+        color: $c-g-3;
+    }
+
+    .m-artist {
+        color: $c-g-5;
+    }
+
+    .m-duration {
+
+    }
+
+    .m-settings {
+
+    }

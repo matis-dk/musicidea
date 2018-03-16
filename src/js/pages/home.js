@@ -9,7 +9,10 @@ import * as actionUsers from '../store/actions/action_user'
 class Home extends React.Component {
 
     componentDidMount() {
-        this.props.getDataInit(this.props.store.spotify.init)
+        const store = this.props.store;
+        if ( store.spotify.loginAllowed &&  (store.user.userId == "")) {
+            this.props.getDataInit(store.spotify.init)
+        }
     }
 
     render () {

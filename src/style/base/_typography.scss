@@ -17,6 +17,23 @@
 }
 
 
+h1 {
+
+}
+
+h2 {
+    font-family: LarsseitLight;
+    color: $c-w-5;
+}
+
+h3 {
+
+}
+
+h4 {
+
+}
+
 
 //==================================================================
 // CLASSES
@@ -63,6 +80,18 @@
             font-size: 11px;
             letter-spacing: 1px;
         }
+
+    //==================================================================
+    // MUSICLIST
+
+    @mixin text-musiclist-default {
+        font-family: Larsseit;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        color: $c-b-6;
+    }
+
 
     //==================================================================
     // GENERAL

@@ -1,12 +1,8 @@
 
 #explore {
+    flex-grow: 1;
     border: 1px solid red;
-    height: 700px;
-    margin-top: 150px;
     display: flex;
     padding: 50px;
-}
-
-#secondbox {
-    border: 1px solid red
+    margin-top: 150px;
 }

@@ -2,8 +2,10 @@ import React from 'react';
 
 import logo from '../../../img/Musicidea-logo-min.svg'
 
-import { Button } from 'antd'
+import { Avatar } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
+import Immutable from 'immutable';
+
 
 //==================================================================
 
@@ -33,11 +35,13 @@ class Header extends React.Component {
     }
 
     render() {
+        const userProfileImg = this.props.store.user.userImages[0];
+
         return (
             <div id="header">
                 <div>
                     <Link to="/profile">
-                        <Button type="primary" shape="circle" icon="user" size="large" />
+                        <Avatar className="nav-user" shape="circle" icon={userProfileImg ? false : 'user'} src={userProfileImg ? userProfileImg.url : false} size="large" />
                     </Link>
                 </div>
                 <nav>

@@ -31,7 +31,7 @@ class App extends React.Component {
 
             return (
                 <main id="main">
-                    <Header />
+                    <Header store={this.props.store} />
                     <Switch>
                         <Route exact path='/' component={Home}/>
                         <Route path='/profile' component={Profile}/>

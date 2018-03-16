@@ -8,7 +8,8 @@ let stateInit = {
     userImages: [],
     userPlaylists: [],
     userFollowers: [],
-    userTopArtists: []
+    userTopArtists: [],
+    playlist: []
 }
 
 function reducer_user (state = stateInit, action) {
@@ -31,6 +32,12 @@ function reducer_user (state = stateInit, action) {
                 ...state,
                 userPlaylists: [...state.userPlaylists],
                 userPlaylists: action.payload
+            }
+            return state;
+        case "GET_PLAYLIST":
+            state = {
+                ...state,
+                playlist: action.payload,
             }
             return state;
         default:

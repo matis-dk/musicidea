@@ -19,6 +19,7 @@
 @import 'components/media';
 @import 'components/dnd';
 @import 'components/player';
+@import 'components/musiclist';
 
 // =================== HELPERS FOLDER =================== \\
 @import 'helpers/placeholders';
@@ -35,7 +36,7 @@
 // =================== LAYOUT FOLDER =================== \\
 @import 'layout/header';
 @import 'layout/footer';
-@import 'layout/section-main';
+@import 'layout/container';
 
 
 

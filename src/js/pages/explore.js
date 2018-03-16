@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
+import Musiclist from '../components/ui/musiclist'
 
 class Explore extends Component {
 
 
     render() {
         return (
-            <div id="explore">
+            <div className="container">
+                <div id="explore">
+                    <Musiclist />
+                </div>
             </div>
         )
     }

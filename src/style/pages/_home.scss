@@ -21,7 +21,7 @@
     #home-hero-img {
         height: 100vh;
         width: 100%;
-        mix-blend-mode: luminosity;
+        //mix-blend-mode: luminosity;        <- lag
         opacity: 0;
         animation-name: imgFadein;
         animation-duration: 6s;
