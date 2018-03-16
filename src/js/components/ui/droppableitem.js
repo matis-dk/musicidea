@@ -5,12 +5,27 @@ import DraggableComp from './draggableitem'
 
 // fake data generator
 const getItems = () => (
-    [{ id: "item-1", content: "item 1"},
-    { id: "item-2", content: "item 2"},
-    { id: "item-3", content: "item 3"},
-    { id: "item-4", content: "item 4"},
-    { id: "item-5", content: "item 5"},
-    { id: "item-6", content: "item 6"}])
+    [{ id: "item-1", content: "Heartbreaker"},
+    { id: "item-2", content: "Bring it all to me"},
+    { id: "item-3", content: "Tonite"},
+    { id: "item-4", content: "Love me (feat. Mase)"},
+    { id: "item-5", content: "If It Isn't Love"},
+    { id: "item-6", content: "Bring it all to me"},
+    { id: "item-7", content: "Tonite"},
+    { id: "item-8", content: "Love me (feat. Mase)"},
+    { id: "item-9", content: "If It Isn't Love"},
+    // { id: "item-10", content: "Bring it all to me"},
+    // { id: "item-11", content: "Tonite"},
+    // { id: "item-12", content: "Love me (feat. Mase)"},
+    // { id: "item-13", content: "If It Isn't Love"},
+    // { id: "item-14", content: "Tonite"},
+    // { id: "item-15", content: "Love me (feat. Mase)"},
+    // { id: "item-16", content: "If It Isn't Love"},
+    // { id: "item-17", content: "Bring it all to me"},
+    // { id: "item-18", content: "Tonite"},
+    // { id: "item-19", content: "Love me (feat. Mase)"},
+    // { id: "item-20", content: "If It Isn't Love"},
+    { id: "item-21", content: "Adorn"}])
 
 
 // a little function to help us with reordering the result
@@ -50,7 +65,6 @@ class Droppableitem extends Component {
 
   render() {
     return (
-        <div className="item-droppable-container">
 
           <DragDropContext onDragEnd={(result) => this.onDragEnd(result)}>
             <Droppable droppableId="droppable">
@@ -67,7 +81,6 @@ class Droppableitem extends Component {
             </Droppable>
           </DragDropContext>
 
-      </div>
     );
   }
 }

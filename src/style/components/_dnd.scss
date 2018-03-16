@@ -1,13 +1,19 @@
 
-.item-droppable-container {
-    height: auto;
-}
-
-    .item-draggable {
-        user-select: none;
-        border-bottom: 1px solid rgba($c-t-3, 0.2);
+    .item-droppable {
+        max-height: 600px;
+        height: 100%;
     }
 
-    .item-draggable-inner {
-        padding: 12px 2px;
-    }
+
+        .item-draggable {
+            user-select: none;
+            //border-bottom: 1px solid rgba($c-g-1, 0.1);
+
+        }
+
+            .item-draggable-inner {
+                cursor: default;
+                padding: 16px 25px;
+                border-bottom: 1px solid rgba($c-g-1, 0.1);
+                background-color: rgba($c-b-4, 0.5);
+            }

@@ -6,7 +6,6 @@
 
 .wrapper-musiclist {
     width: 800px;            // <-- CHECK
-    border: 1px solid blue;
 }
 
     .musiclist-name {
@@ -49,7 +48,7 @@
 
             .musiclist-tr[data-current="true"] {
                 .m-nr {
-                    background-color: red;
+                    background-color: rgba($c-t-3, 0.2);
                     content: " ";
                 }
             }

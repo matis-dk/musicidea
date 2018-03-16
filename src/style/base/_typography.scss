@@ -18,7 +18,9 @@
 
 
 h1 {
-
+    font-family: LarsseitBold;
+    color: $c-w-5;
+    font-size: 40px;
 }
 
 h2 {
@@ -32,6 +34,13 @@ h3 {
 
 h4 {
 
+}
+
+p {
+    color: $c-g-3;
+}
+
+span {
 }
 
 
@@ -61,24 +70,22 @@ h4 {
 
     //==================================================================
     // PLAYER
-    .text-player-playerlist {
-        font-family: Larsseit;
-        font-size: 16px;
-        letter-spacing: 2px;
-        color: $c-t-5;
-        text-transform: uppercase;
-    }
+
 
         .text-player-playerlist-cat {
             font-family: LarsseitBold;
             text-transform: uppercase;
-            color: $c-t-5;
+            color: $c-t-1;
         }
 
         .item-draggable {         //.text-player-playerlist-item
             font-family: Larsseit;
             font-size: 11px;
             letter-spacing: 1px;
+        }
+
+        .ant-tooltip-open {
+            border: 1px solid red;
         }
 
     //==================================================================

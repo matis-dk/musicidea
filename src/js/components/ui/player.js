@@ -1,32 +1,42 @@
 import React from 'react';
 
-import { Switch, Icon, Slider } from 'antd';
+import { Switch, Icon, Slider, Button } from 'antd';
 import DroppableItem from './droppableitem'
 
 
+function formatter(value) {
+  return `${value}%`;
+}
+
 
 class Player extends React.Component {
-
 
 
     render () {
         return (
 
             <div id="player-wrapper">
+                <div className="player-toggle">
+                    <div className="player-toggle-menu">
+                        <span><Icon type="arrows-alt" /></span>
+                    </div>
+                    <div className="player-toggle-music">
+                        <span className="player-music-button">
+                            <div className="player-music-slider">
+                                <Slider vertical tipFormatter={formatter} defaultValue={30} onChange={(e) => {console.log(e)}} />
+                            </div>
+                            <Button type="primary" shape="circle" icon="sound" size="large" />
+                        </span>
+                    </div>
+                </div>
                 <div className="player-item player-control">
-                    <h3 className="player-current-song">50 Cent - In Da Club</h3>
+                    <h2 className="player-current-song">50 Cent - In Da Club</h2>
                     <div className="player-navigation">
                         <div>
                             <span className="player-nav"><Icon type="step-backward" /></span>
                             <span className="player-nav"><Icon type="play-circle" /></span>
                             <span className="player-nav"><Icon type="step-forward" /></span>
                         </div>
-                        <span className="player-nav"><Icon type="arrows-alt" /></span>
-                    </div>
-                </div>
-                <div className="player-item">
-                    <div>
-                        <Slider defaultValue={30} disabled={false} />
                     </div>
                 </div>
                 <div className="player-item player-settings">
@@ -40,7 +50,6 @@ class Player extends React.Component {
                     </div>
                 </div>
                 <div className="player-item player-playlist">
-                    <h3 className="player-playlist-header text-player-playerlist">80 R&B Perfection</h3>
                     <div className="player-playlist-wrapper">
                         <div className="player-playlist-cat">
                             <h5 className="text-player-playerlist-cat">#</h5>
@@ -57,5 +66,6 @@ class Player extends React.Component {
         )
     }
 }
+
 
 export default Player;

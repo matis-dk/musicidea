@@ -1,0 +1,66 @@
+
+.wrapper-playlist {
+    display: flex;
+
+}
+
+    .playlist-image {
+        background-color: rgba($c-b-4, 0.5);
+        width: 200px;
+        height: 250px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .playlist-des {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 800px;                // Avoiding to long text lines
+        padding-left: 30px;
+
+    }
+
+        .playlist-name {
+            line-height: 44px;
+        }
+
+        .playlist-tags-container {
+        }
+
+            .playlist-tags {
+                padding: 3px 6px;
+                color: $c-b-6;
+                font-size: 12px;
+                font-family: 'Larsseit';
+                cursor: pointer;
+                transition: color 0.3s;
+            }
+
+            .playlist-tags:hover {
+                color: $c-t-3;
+            }
+
+            .playlist-tags:first-child {
+                padding-left: 0px;
+            }
+
+        .playlist-des-text {
+            margin: 20px 0px;
+        }
+
+        .playlist-buttons {
+            > * {
+                text-transform: uppercase;
+                font-family: 'Larsseit';
+                padding-right: 20px;
+                font-size: 12px;
+                margin-right: 15px;
+            //    box-shadow: 0 10px 20px rgba(#193D71,0.19), 0 6px 6px rgba(#193D71,0.23);
+            }
+        }
+
+            .playlist-buttons-default {
+                background-color: transparent;
+                border-width: 2px;
+            }

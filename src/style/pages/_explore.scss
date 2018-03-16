@@ -1,8 +1,9 @@
 
 #explore {
     flex-grow: 1;
-    border: 1px solid red;
     display: flex;
     padding: 50px;
     margin-top: 150px;
+    display: flex;
+    flex-direction: column;
 }
