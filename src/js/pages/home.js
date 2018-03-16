@@ -17,13 +17,12 @@ class Home extends React.Component {
         return (
             <div id="home">
                 <div className="home-hero">
+                    <img src={bc} alt="" id="home-hero-img"/>
                     <div className="home-des">
                         <div className="home-h1-wrapper">
                             <h1 className="text-h1">MusicIdea</h1>
                         </div>
                     </div>
-                    <div id="home-hero-img" style={{backgroundImage: `url(${bc})`}}></div>
-
                 </div>
                 <section className="home-section">
                     News1
