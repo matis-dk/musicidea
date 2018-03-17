@@ -34,12 +34,6 @@ function reducer_user (state = stateInit, action) {
                 userPlaylists: action.payload
             }
             return state;
-        case "GET_PLAYLIST":
-            state = {
-                ...state,
-                playlist: action.payload,
-            }
-            return state;
         default:
             state = {
                 ...state

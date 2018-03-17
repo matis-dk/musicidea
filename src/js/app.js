@@ -12,6 +12,8 @@ import Home from './pages/home'
 import Signin from './pages/signin'
 import Profile from './pages/profile'
 import Explore from './pages/explore'
+import Playlist from './pages/playlist'
+import Artist from './pages/artist'
 
 import Template from './pages/template'
 
@@ -22,6 +24,7 @@ import Player from './components/ui/player'
 //==================================================================
 
 class App extends React.Component {
+
 
 
     render () {
@@ -36,6 +39,8 @@ class App extends React.Component {
                         <Route exact path='/' component={Home}/>
                         <Route path='/profile' component={Profile}/>
                         <Route path='/explore' component={Explore}/>
+                        <Route path='/playlist/:id' component={Playlist}/>
+                        <Route path='/artist/:id' component={Artist}/>
                         <Route path='/template' component={Template}/>
                     </Switch>
                     <Player />

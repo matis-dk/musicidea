@@ -57,15 +57,3 @@ export function getUserPlaylists (spotifyAPI) {
             })
     }
 }
-
-
-            // spotifyAPI.getPlaylist('mathiasp50', '527RFKyofBVBbbRWwAhyid')
-            //     .then(res => {
-            //         dispatch({
-            //             type: "GET_PLAYLIST",
-            //             payload: res
-            //         })
-            //     })
-            //     .catch (err => {
-            //         console.log("FAILED - getUserPlaylists")
-            //     })

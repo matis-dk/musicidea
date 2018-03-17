@@ -27,9 +27,6 @@
 
         .profile-playlist-item {
             display: flex;
-            align-items: flex-end;
-            width: 300px;
-            height: 300px;
 
             margin-right: 40px;
             margin-bottom: 40px;
@@ -58,11 +55,20 @@
         }
 
 
-            .profile-item-header {
-                background-color: rgba($c-b-4, 0.5);
-                width: 100%;
-                padding: 15px;
+            .profile-playlist-link {
+                display: flex;
+                align-items: flex-end;
+
+                width: 300px;
+                height: 300px;
+                z-index: 1;
             }
+
+                .profile-item-header {
+                    background-color: rgba($c-b-4, 0.5);
+                    width: 100%;
+                    padding: 15px;
+                }
 
     //==================================================================
     // ARTISTS

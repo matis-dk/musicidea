@@ -19,7 +19,7 @@
 @import 'components/media';
 @import 'components/dnd';
 @import 'components/player';
-@import 'components/playlist';
+@import 'components/playlistdescription';
 @import 'components/musiclist';
 
 
@@ -35,6 +35,8 @@
 @import 'pages/template';
 @import 'pages/explore';
 @import 'pages/profile';
+@import 'pages/playlist';
+@import 'pages/artist';
 
 // =================== LAYOUT FOLDER =================== \\
 @import 'layout/header';

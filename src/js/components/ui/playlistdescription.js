@@ -3,7 +3,7 @@ import React from 'react';
 import { Button, Radio, Icon } from 'antd';
 
 
-const Playlist = () => {
+const PlaylistDescription = () => {
 
     return (
         <div className="wrapper-playlist">
@@ -26,4 +26,4 @@ const Playlist = () => {
 
 }
 
-export default Playlist;
+export default PlaylistDescription;
