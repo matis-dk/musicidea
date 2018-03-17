@@ -63,7 +63,7 @@ class Header extends React.Component {
                         </li>
                     </ul>
                 </nav>
-                <div><a href="">TEST</a></div>
+                <div></div>
             </div>
         )
     }

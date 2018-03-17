@@ -70,19 +70,23 @@ class Player extends React.Component {
                     </div>
                 </div>
                 <div className="player-item player-settings">
-                    <div className="player-settings-switch">
-                        <span className="player-settings-icon"><Icon type="retweet" /></span>
-                        <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />} defaultChecked />
+                    <div className="player-switch-wrapper">
+                        <div className="player-settings-switch">
+                            <span className="player-settings-icon"><Icon type="retweet" /></span>
+                            <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />} />
+                        </div>
+                        <div className="player-settings-switch">
+                            <span className="player-settings-icon"><Icon type="swap" /></span>
+                            <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />}  />
+                        </div>
                     </div>
-                    <div className="player-settings-switch">
-                        <span className="player-settings-icon"><Icon type="swap" /></span>
-                        <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />} defaultChecked />
+                    <div className="player-settings-tools">
+                        <Button className="player-save-playlist" shape="circle" icon="save" />
                     </div>
                 </div>
                 <div className="player-item player-playlist">
                     <div className="player-playlist-wrapper">
                         <div className="player-playlist-cat">
-                            <h5 className="text-player-playerlist-cat">#</h5>
                             <h5 className="text-player-playerlist-cat">Song</h5>
                             <h5 className="text-player-playerlist-cat"><Icon type="clock-circle-o" /> Time</h5>
                         </div>
