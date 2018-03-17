@@ -10,7 +10,7 @@ class Explore extends Component {
     render() {
         return (
             <div className="container">
-                <div id="explore">
+                <div className="container-item" id="explore">
                     <Playlist />
                     <Musiclist />
                 </div>

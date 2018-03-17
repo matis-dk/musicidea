@@ -1,3 +1,9 @@
 .container {
     display: flex;
 }
+
+    .container-item {
+        flex-grow: 1;
+        padding: 57px;
+        margin-top: 150px;
+    }

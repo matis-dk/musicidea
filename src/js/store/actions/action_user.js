@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import { sortArrayOfObjects } from '../../utility/utility';
 
 export function getDataInit (spotifyAPI) {
         return dispatch => {
@@ -23,38 +24,48 @@ export function getDataInit (spotifyAPI) {
                 .catch (err => {
                     console.log("FAILED - getMe")
                 })
-
-            spotifyAPI.getMyTopArtists()
-                .then(res => {
-                    dispatch({
-                        type: "ADD_USER_TOP_ARTISTS",
-                        payload: res.items
-                    })
-                })
-                .catch (err => {
-                    console.log("FAILED - getMyTopArtists")
-                })
-
-            spotifyAPI.getUserPlaylists()
-                .then(res => {
-                    dispatch({
-                        type: "ADD_USER_PLAYLISTS",
-                        payload: res.items
-                    })
-                })
-                .catch (err => {
-                    console.log("FAILED - getUserPlaylists")
-                })
-
-            spotifyAPI.getPlaylist('mathiasp50', '527RFKyofBVBbbRWwAhyid')
-                .then(res => {
-                    dispatch({
-                        type: "GET_PLAYLIST",
-                        payload: res
-                    })
-                })
-                .catch (err => {
-                    console.log("FAILED - getUserPlaylists")
-                })
         }
 };
+
+export function getMyTopArtists (spotifyAPI) {
+    return dispatch => {
+        spotifyAPI.getMyTopArtists()
+            .then(res => {
+                console.log(sortArrayOfObjects)
+                dispatch({
+                    type: "ADD_USER_TOP_ARTISTS",
+                    payload: res.items
+                })
+            })
+            .catch (err => {
+                console.log("FAILED - getMyTopArtists")
+            })
+    }
+}
+
+export function getUserPlaylists (spotifyAPI) {
+    return dispatch => {
+        spotifyAPI.getUserPlaylists()
+            .then(res => {
+                dispatch({
+                    type: "ADD_USER_PLAYLISTS",
+                    payload: res.items
+                })
+            })
+            .catch (err => {
+                console.log("FAILED - getUserPlaylists")
+            })
+    }
+}
+
+
+            // spotifyAPI.getPlaylist('mathiasp50', '527RFKyofBVBbbRWwAhyid')
+            //     .then(res => {
+            //         dispatch({
+            //             type: "GET_PLAYLIST",
+            //             payload: res
+            //         })
+            //     })
+            //     .catch (err => {
+            //         console.log("FAILED - getUserPlaylists")
+            //     })

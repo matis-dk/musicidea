@@ -41,7 +41,7 @@ class Player extends React.Component {
 
     render () {
         return (
-            <div className={this.state.menuActive ? "player-wrapper" : "player-wrapper hide-player-menu"}>
+            <div className={this.state.menuActive ? "player-wrapper show-player-menu" : "player-wrapper" }>
                 <div className="player-toggle">
                     <div className="player-toggle-menu" onClick={ () => {this.toggleMenu()}}>
                         <span><Icon type="arrows-alt" /></span>
@@ -81,7 +81,7 @@ class Player extends React.Component {
                         </div>
                     </div>
                     <div className="player-settings-tools">
-                        <Button className="player-save-playlist" shape="circle" icon="save" />
+                        <Button className="player-save-playlist" shape="circle" icon="save" ghost  />
                     </div>
                 </div>
                 <div className="player-item player-playlist">

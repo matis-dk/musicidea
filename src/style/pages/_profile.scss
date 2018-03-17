@@ -1,0 +1,93 @@
+
+#profile {
+    display: flex;
+    padding-top: 200px;
+}
+
+    .profile-header {
+        margin-bottom: 30px;
+    }
+
+    //==================================================================
+    // PLAYLIST
+
+    .profile-playlist-header {
+        margin-bottom: 20px;
+    }
+
+    .profile-playlists {
+        flex-grow: 1;
+        min-width: 60%;
+    }
+
+        .profile-playlist-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .profile-playlist-item {
+            display: flex;
+            align-items: flex-end;
+            width: 300px;
+            height: 300px;
+
+            margin-right: 40px;
+            margin-bottom: 40px;
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            @include shadow4;
+
+        }
+
+        .profile-playlist-item:hover {
+            &::before {
+                opacity: 1;
+            }
+        }
+
+        .profile-playlist-item::before {
+            content: " ";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            @include shadow5;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+
+            .profile-item-header {
+                background-color: rgba($c-b-4, 0.5);
+                width: 100%;
+                padding: 15px;
+            }
+
+    //==================================================================
+    // ARTISTS
+    .profile-top-artists {
+        flex-grow: 1;
+        min-width: 40%;
+    }
+
+        .profile-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+            .profile-list-item {
+                width: 50%;
+                flex-grow: 1;
+
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+                .profile-list-img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    margin-right: 20px;
+                }
