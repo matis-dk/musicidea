@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 
 import Musiclist from '../components/ui/musiclist';
 import PlaylistDescription from '../components/ui/playlistdescription';
 
-import { notification } from 'antd';
+import { openNotification } from '../utility/utility'
 
 import * as actionPlaylist from '../store/actions/action_playlist'
 
@@ -20,42 +20,41 @@ import * as actionPlaylist from '../store/actions/action_playlist'
 // //playlist = findPlaylistInStore ( this.props.store.user.userPlaylists, playlistID);
 
 
-let playlistID;
-
 class Playlist extends React.Component {
 
+    state = {
+        playlistID: this.props.match.params.id,
+        playlistOwner: this.props.match.params.owner
+    }
+
     componentWillMount() {
-        if (!this.props.match.params.id) {
-            this.props.history.replace('/');
+        this.props.getPlaylist(
+            this.props.store.spotify.init,
+            this.props.history,
+            this.state.playlistID,
+            this.state.playlistOwner,
+            openNotification
+        );
 
-            notification.config({
-                placement: 'bottomLeft'
-            });
-            notification.open({
-                message: "Fejl",
-                description: "Vi kan ikke tilgå denne side uden et kunster ID",
-                icon: <Icon type="meh" style={{ color: '#108ee9' }} />,
-            });
-        }
-
-        // Getting playlist by id
-        playlistID = this.props.match.params.id;
-
-        this.props.getPlaylist(this.props.store.spotify.init, playlistID);
-
-
-        // if ( playlist.length == 0 ) {
-        //     this.props.history.replace('/');
-        // }
     }
 
     render () {
 
+        let playlists = this.props.store.playlist;
+
         return (
             <div className="container">
                 <div className="container-item" id="playlist">
-                    <PlaylistDescription playlistDes={playlist} />
-                    <Musiclist playlistID={playlistID} />
+
+                    {
+                        playlists[this.state.playlistID] ?
+                        <Fragment>
+                            <PlaylistDescription playlist={playlists} />
+                            <Musiclist playlist={playlists} />
+                        </Fragment> :
+                        <div></div>
+                    }
+
                 </div>
             </div>
         )

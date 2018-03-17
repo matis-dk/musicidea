@@ -3,8 +3,10 @@ import React from 'react';
 import { Button, Radio, Icon } from 'antd';
 
 
-const PlaylistDescription = () => {
+const PlaylistDescription = ({ playlist }) => {
 
+
+    console.log(playlist)
     return (
         <div className="wrapper-playlist">
             <div className="playlist-image"></div>

@@ -25,7 +25,7 @@ class Profile extends React.Component {
                                 <li className="profile-playlist-item"
                                     style={{backgroundImage: `url(${item.images[0].url})`}}
                                     key={item.id}>
-                                    <Link to={"/playlist/" + item.id} className="profile-playlist-link">
+                                    <Link to={"/playlist/" + item.owner.id + "/" + item.id} className="profile-playlist-link">
                                         <h3 className="profile-item-header">{item.name}</h3>
                                     </Link>
                                 </li>

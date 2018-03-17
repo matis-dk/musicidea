@@ -30,8 +30,7 @@ class App extends React.Component {
     render () {
 
         // Rendering routes if token is valid
-        if ( this.props.store.spotify.loginAllowed  ) {
-
+        if ( this.props.store.spotify.loginAllowed ) {
             return (
                 <main id="main">
                     <Header store={this.props.store} />
@@ -39,9 +38,10 @@ class App extends React.Component {
                         <Route exact path='/' component={Home}/>
                         <Route path='/profile' component={Profile}/>
                         <Route path='/explore' component={Explore}/>
-                        <Route path='/playlist/:id' component={Playlist}/>
+                        <Route path='/playlist/:owner/:id' component={Playlist}/>
                         <Route path='/artist/:id' component={Artist}/>
                         <Route path='/template' component={Template}/>
+                        <Route path='/' component={Home}/>
                     </Switch>
                     <Player />
                 </main>

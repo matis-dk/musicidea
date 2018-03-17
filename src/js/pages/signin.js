@@ -2,7 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { Button, Link, Icon, notification } from 'antd';
+import { Button, Link, Icon } from 'antd';
+
+import { openNotification } from '../utility/utility'
 
 import * as spotifyOAuth from '../store/actions/action_spotifyOAuth'
 
@@ -62,23 +64,12 @@ class Signin extends React.Component {
         return false;
     }
 
-    openNotification = (message="Ukendt fejl", description="Noget gik helt galt", smiley="meh") => {
-        notification.config({
-            placement: 'bottomLeft'
-        });
-        notification.open({
-            message: message,
-            description: description,
-            icon: <Icon type={smiley} style={{ color: '#108ee9' }} />,
-        });
-    };
-
 
     // Trying to login
     handleLogin = () => {
         this.props.spotifyValidateToken(
             this.props.store.spotify.token,
-            this.openNotification);
+            openNotification);
 
         // Adjusting URL
         this.props.history.replace('/');

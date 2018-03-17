@@ -1,16 +1,16 @@
 
-export function getPlaylist (spotifyAPI, playlistID) {
+export function getPlaylist (spotifyAPI, history, playlistID, playlistOwner, openNotification ) {
         return dispatch => {
-            spotifyAPI.getPlaylist('mathiasp50', playlistID)
+            spotifyAPI.getPlaylist(playlistOwner, playlistID)
                 .then(res => {
-                    console.log(res)
                     dispatch({
                         type: "GET_PLAYLIST",
                         payload: res
                     })
                 })
                 .catch (err => {
-                    console.log("FAILED - getPlaylist")
+                    openNotification("Fejl", "Vi kunne ikke finde en kunster med følgende ID");
+                    history.replace('/');
                 })
 
         }
