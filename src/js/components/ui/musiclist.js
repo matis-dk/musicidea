@@ -7,7 +7,7 @@ class Musiclist extends React.Component {
         return (
             <div className="wrapper-musiclist" >
                 <h2 className="musiclist-name">80' R&B Perfection</h2>
-                <tabel className="musiclist-tabel">
+                <table className="musiclist-table">
                     <thead className="musiclist-thead">
                         <tr className="musiclist-tr-panel">
                             <th className="musiclist-th">#</th>
@@ -40,7 +40,7 @@ class Musiclist extends React.Component {
                             <td className="musiclist-td m-settings">I</td>
                         </tr>
                     </tbody>
-                </tabel>
+                </table>
             </div>
         )
     }

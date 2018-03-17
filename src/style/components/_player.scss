@@ -1,5 +1,5 @@
 
-#player-wrapper {
+.player-wrapper {
     display: flex; // flex
 
     max-width: 400px;
@@ -13,8 +13,8 @@
     z-index: 3;
     flex-direction: column;
     justify-content: space-between;
-    background-color: rgba($c-b-4, 0.9);
-    @include shadow3;
+    //background-color: rgba($c-b-4, 0.9);
+    //@include shadow3;
     color: white;
 }
 
@@ -27,6 +27,7 @@
 //==================================================================
 // TOGGLE
 
+
 .player-toggle {
     font-size: 24px;
     color: $c-g-3;
@@ -36,12 +37,26 @@
     position: absolute;
     top: 15px;
     right: 15px;
+    cursor: pointer;
+    transition: color 0.3s;
 }
+
+    .player-toggle-menu:hover {
+        color: $c-t-3;
+    }
 
 .player-toggle-music {
     position: fixed;
-    left: 35px;
-    bottom: 35px;
+    left: 40px;
+    bottom: 40px;
+}
+
+.player-toggle-music:hover {
+    .player-music-slider {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
 }
 
     .player-music-button {
@@ -51,19 +66,115 @@
             position: absolute;
             height: 100px;
             top: -100px;
-            left: -2px;
+            opacity: 0;
+            transform: scaleY(0.01);
+            transform-origin: bottom;
+            transition: 0.3s;
+
+            > div {                // Disabling padding in Ant design component
+                padding: 0px;
+            }
         }
+
+            .player-music-volume {
+                position: absolute;
+                bottom: 0px;
+                left: 150px;
+                font-size: 450px;
+                line-height: 300px;
+                color: rgba($c-g-3, 0.15);
+                pointer-events: none;
+            }
 
         .player-music-slider {
             .ant-slider, .ant-slider-rail, .ant-slider-track, .ant-slider-step {
                 width: 20px;
             }
 
+            .ant-slider-track {
+                border-top-left-radius: 2px;
+                border-top-right-radius: 2px;
+            }
+
             .ant-slider-rail {
-                background-color: transparent;
+                //background-color: transparent;
+            }
+
+            .ant-slider-handle {
+                display: none;
+            }
+
+            .ant-slider-mark {
+                left: 1px;
             }
         }
 
+
+            // MUSIC VOLUME BAR
+            .hide-volumebar {
+                animation-name: hideVolumebar;
+                animation-duration: 1s;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes hideVolumebar {
+                0% {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+
+                20% {
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateY(800px);
+                    opacity: 0;
+                }
+            }
+
+            // OPEN / CLOSE PLAYER MENU
+            .hide-player-menu {
+                height: auto;
+
+                .player-control {
+                    position: absolute;
+                    top: 0px;
+                    //left: 25%;
+                }
+
+                .player-settings, .player-playlist, .player-cover {
+                    //display: none;
+                    position: relative;
+                    animation-name: hidePlayerMenu;
+                    animation-duration: 1s;
+                    animation-fill-mode: forwards;
+                }
+
+            }
+
+
+            @keyframes hidePlayerMenu {
+                0% {
+                    opacity: 1;
+                    right: 0px;
+                    display: none;
+
+                }
+
+                99% {
+                    opacity: 0;
+                    right: -400px;
+                    display: none;
+
+                }
+
+                100% {
+                    opacity: 0;
+                    right: -400px;
+                    display: none;
+                }
+            }
 
 //==================================================================
 // CONTROL

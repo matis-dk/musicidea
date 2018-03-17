@@ -11,22 +11,52 @@ function formatter(value) {
 
 class Player extends React.Component {
 
+    state = {
+        volumeValue: 30,
+        volumeHide: true,
+        menuActive: false
+    }
+
+    volumeControl (e) {
+        console.log(e)
+        let volume = Number(e)
+        if (volume < 10) {
+            volume = "0" + volume;
+        }
+        this.setState({
+            volumeValue: volume,
+            volumeHide: false
+        })
+    }
+
+    toggleMenu() {
+        let newState = {
+            ...this.state
+        }
+        this.setState({
+            ...newState,
+            menuActive: !newState.menuActive
+        })
+    }
 
     render () {
         return (
-
-            <div id="player-wrapper">
+            <div className={this.state.menuActive ? "player-wrapper" : "player-wrapper hide-player-menu"}>
                 <div className="player-toggle">
-                    <div className="player-toggle-menu">
+                    <div className="player-toggle-menu" onClick={ () => {this.toggleMenu()}}>
                         <span><Icon type="arrows-alt" /></span>
                     </div>
                     <div className="player-toggle-music">
-                        <span className="player-music-button">
-                            <div className="player-music-slider">
-                                <Slider vertical tipFormatter={formatter} defaultValue={30} onChange={(e) => {console.log(e)}} />
-                            </div>
-                            <Button type="primary" shape="circle" icon="sound" size="large" />
-                        </span>
+                        <div className="player-music-slider">
+                            <Slider
+                                vertical
+                                tipFormatter={null}
+                                defaultValue={this.state.volumeValue}
+                                onChange={ (e) => {this.volumeControl(e)} }
+                                onAfterChange={ () => {this.setState({ volumeHide: true })} }/>
+                            <h1 className={this.state.volumeHide ? "player-music-volume hide-volumebar" : "player-music-volume" } >{this.state.volumeValue}</h1>
+                        </div>
+                        <Button type="primary" shape="circle" icon="sound" size="large" />
                     </div>
                 </div>
                 <div className="player-item player-control">

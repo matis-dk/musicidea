@@ -39,7 +39,7 @@ class Header extends React.Component {
 
         return (
             <div id="header">
-                <div>
+                <div className="header-profile">
                     <Link to="/profile">
                         <Avatar className="nav-user" shape="circle" icon={userProfileImg ? false : 'user'} src={userProfileImg ? userProfileImg.url : false} size="large" />
                     </Link>
@@ -63,7 +63,7 @@ class Header extends React.Component {
                         </li>
                     </ul>
                 </nav>
-                <div></div>
+                <div><a href="">TEST</a></div>
             </div>
         )
     }
