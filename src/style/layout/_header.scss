@@ -36,6 +36,7 @@
             transition: 0.45s;
             transition-delay: 0s;
             opacity: 0;
+            height: 100px;
         }
 
             .nav-menu-a {
@@ -46,14 +47,15 @@
             }
 
             .nav-menu-logo {
-                width: 200px;
-                height: 100px;
-                padding: 0px 30px;
+                height: 50px;
+                opacity: 0.8;
             }
 
             #nav-menu-button {
+                padding: 0px 20px;
                 opacity: 1;
                 transform: scale(0.8);
+                align-items: center;
             }
 
 

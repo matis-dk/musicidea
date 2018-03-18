@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../../../img/Musicidea-logo-min.svg'
+import logo from '../../../img/musicidea-logo3-white.svg'
 
 import { Avatar } from 'antd'
 import { Link, withRouter } from 'react-router-dom'

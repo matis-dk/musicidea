@@ -2,17 +2,23 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { Button, Link, Icon } from 'antd';
+import { Button, Link, Icon, Modal } from 'antd';
 
 import { openNotification } from '../utility/utility'
 
 import * as spotifyOAuth from '../store/actions/action_spotifyOAuth'
 
-import logo from '../../img/Musicidea-logo-min.svg'
+import logo from '../../img/musicidea-logo.svg';
+import microphone from '../../img/musicidea-logo-microphone.svg'
+import landingpage from '../../img/landingpage.jpg';
 
 //==================================================================
 
 class Signin extends React.Component {
+
+    state = {
+        modalVisible: false
+    }
 
     // Creating login URI
     getLoginUri = () => {
@@ -75,14 +81,18 @@ class Signin extends React.Component {
         this.props.history.replace('/');
     }
 
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
+    }
+
     render () {
         return (
-            <div className="signin-wrapper">
+            <div className="signin-wrapper" style={{backgroundImage: `url(${landingpage})`}}>
+                <img className="signin-logo" src={logo} alt=""/>
                 <div className="signin-box">
-                    <div className="signin-img-wrapper"></div>
+                    <h1 className="signin-header">Logon</h1>
+                    <div className="signin-img-wrapper" style={{backgroundImage: `url(${landingpage})`}}></div>
                     <div className="signin-form">
-                        <img className="signin-logo" src={logo} alt=""/>
-                        <p className="signin-description">Velkommen til MusicIdea! Denne side anvender Spotify's åbne web api, og kræver derfor at du har en konto hos Spotify før du kan drage nytte af denne applikation. Du skal derfor give os dit samtykke, før vi kan se dine bruger oplysninger.</p>
                         <div className="signin-spotify">
                             <Button type="primary" icon="form" size="large" className="signin-buttons">
                                 <a className="signin-spotify-button" href={this.getLoginUri()}>Giv samtykke</a>
@@ -92,7 +102,23 @@ class Signin extends React.Component {
                             </Button>
                         </div>
                     </div>
+                    <Icon className="signin-modal" type="question-circle-o" onClick={() => this.setModalVisible(true)} />
                 </div>
+                <a className="signin-github" href="https://www.github.com/matis-dk/musicidea" target="_blank">
+                    <Icon type="github" />
+                </a>
+                <Modal
+                   title="Velkommen til MusicIdea!"
+                   wrapClassName="vertical-center-modal"
+                   visible={this.state.modalVisible}
+                   onOk={() => this.setModalVisible(false)}
+                   onCancel={() => this.setModalVisible(false)}
+                 >
+                    <p>Denne side anvender Spotify's åbne web api, og kræver derfor at du har en konto hos Spotify før du kan drage nytte af denne applikation. </p>
+                    <p>Du skal derfor give os dit samtykke, før vi kan se dine bruger oplysninger.</p>
+                    <br/>
+                    <p>Bare rolig, fortrolige informationer såsom password har vi naturligvis ikke adgang til!</p>
+                 </Modal>
             </div>
         )
     }
