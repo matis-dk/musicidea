@@ -40,17 +40,18 @@ class Playlist extends React.Component {
 
     render () {
 
-        let playlists = this.props.store.playlist;
+        let playlists     = this.props.store.playlist;            // current playlists in the store
+        let playlist      = playlists[this.state.playlistID];     // the actually playlist
 
         return (
             <div className="container">
                 <div className="container-item" id="playlist">
 
                     {
-                        playlists[this.state.playlistID] ?
+                        playlist ?
                         <Fragment>
-                            <PlaylistDescription playlist={playlists} />
-                            <Musiclist playlist={playlists} />
+                            <PlaylistDescription playlist={playlist} />
+                            <Musiclist playlist={playlist} />
                         </Fragment> :
                         <div></div>
                     }
