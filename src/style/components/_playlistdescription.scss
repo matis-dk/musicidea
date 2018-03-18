@@ -10,6 +10,7 @@
         height: 250px;
         background-size: cover;
         background-position: center;
+        @include shadow4;
     }
 
     .playlist-des {

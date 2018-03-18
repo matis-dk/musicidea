@@ -4,21 +4,10 @@ import { connect } from 'react-redux'
 import Musiclist from '../components/ui/musiclist';
 import PlaylistDescription from '../components/ui/playlistdescription';
 
-import { openNotification } from '../utility/utility'
 
-import * as actionPlaylist from '../store/actions/action_playlist'
+import * as actionContent from '../store/actions/action_content'
 
 //==================================================================
-
-// let playlist = [];
-// function findPlaylistInStore (playlists, id) {
-//     return playlists.filter((item) => {
-//         if (item.id == id) { return item };
-//         return false;
-//     })
-// }
-// //playlist = findPlaylistInStore ( this.props.store.user.userPlaylists, playlistID);
-
 
 class Playlist extends React.Component {
 
@@ -32,16 +21,15 @@ class Playlist extends React.Component {
             this.props.store.spotify.init,
             this.props.history,
             this.state.playlistID,
-            this.state.playlistOwner,
-            openNotification
+            this.state.playlistOwner
         );
-
     }
 
     render () {
 
-        let playlists     = this.props.store.playlist;            // current playlists in the store
-        let playlist      = playlists[this.state.playlistID];     // the actually playlist
+        let playlists     = this.props.store.content.playlists;            // current playlists in the store
+        let playlist      = playlists[this.state.playlistID];              // the actually playlist
+
 
         return (
             <div className="container">
@@ -63,4 +51,4 @@ class Playlist extends React.Component {
 }
 
 
-export default connect(store => {return {store: store }}, { ...actionPlaylist }) (Playlist)
+export default connect(store => {return {store: store }}, { ...actionContent }) (Playlist)

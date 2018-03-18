@@ -31,7 +31,7 @@
     // REDUCERS
     import reducer_spotifyOAuth from './js/store/reducers/reducer_spotifyOAuth';
     import reducer_user from './js/store/reducers/reducer_user';
-    import reducer_playlist from './js/store/reducers/reducer_playlist';
+    import reducer_content from './js/store/reducers/reducer_content';
 
 
 //==================================================================
@@ -40,7 +40,7 @@
     const reducers = combineReducers({
             spotify: reducer_spotifyOAuth,
             user: reducer_user,
-            playlist: reducer_playlist
+            content: reducer_content
     });
 
     const middleware = applyMiddleware(createLogger(), ReduxThunk);

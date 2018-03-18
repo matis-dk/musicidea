@@ -1,4 +1,7 @@
 import React from 'react';
+import { Icon } from 'antd'
+
+import { Link } from 'react-router-dom'
 
 function convertMsToMin (ms) {
     let minutes = Math.floor(ms / 60000).toString();
@@ -9,56 +12,63 @@ function convertMsToMin (ms) {
     return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
+function getMusicNr (index) {
+    index = index + 1;
+    if ( index < 10 ) {
+        return "0" + index
+    }
+    return index
+}
+
 class Musiclist extends React.Component {
 
     render () {
 
         const playlistTracks = this.props.playlist.tracks.items;
-        console.log(this.props)
 
         return (
             <div className="wrapper-musiclist" >
-                <h2 className="musiclist-name">80' R&B Perfection</h2>
                 <table className="musiclist-table">
                     <thead className="musiclist-thead">
                         <tr className="musiclist-tr-panel">
-                            <th className="musiclist-th">#</th>
+                            <th className="musiclist-th m-th-nr">#</th>
                             <th className="musiclist-th">song</th>
                             <th className="musiclist-th">artist</th>
-                            <th className="musiclist-th">time</th>
-                            <th className="musiclist-th">settings</th>
+                            <th className="musiclist-th m-th-duration">time</th>
+                            <th className="musiclist-th m-th-settings">settings</th>
                         </tr>
                     </thead>
                     <tbody className="musiclist-tbody">
 
                         {
                             playlistTracks.map((item, index) => {
+
                                 return (
                                     <tr key={item.track.id} className="musiclist-tr" data-current="false">
-                                        <td className="musiclist-td m-nr">{ index }</td>
+                                        <td className="musiclist-td m-nr-wrap">
+                                            <span className="m-nr"> { getMusicNr(index) } </span>
+                                            <Icon className="musiclist-buttons" type="play-circle-o" />
+                                        </td>
                                         <td className="musiclist-td m-song">{ item.track.name }</td>
-                                        <td className="musiclist-td m-artist">{ item.track.artists[0].name }</td>
+                                        <td className="musiclist-td m-artist-wrapper">
+                                            { item.track.artists.map((artist) => (
+                                                <Link key={artist.id} className="m-artist" to={"/artist/" + artist.id}>
+                                                    { artist.name }
+                                                </Link>
+                                            ))
+                                            }
+                                        </td>
                                         <td className="musiclist-td m-duration">{convertMsToMin(item.track.duration_ms)  }</td>
-                                        <td className="musiclist-td m-settings">I</td>
+                                        <td className="musiclist-td m-settings">
+                                            <Icon className="musiclist-buttons"  type="share-alt" />
+                                            <Icon className="musiclist-buttons"  type="plus-circle-o" />
+                                        </td>
                                     </tr>
                                 )
                             })
                         }
 
-                        <tr className="musiclist-tr" data-current="false">
-                            <td className="musiclist-td m-nr">02</td>
-                            <td className="musiclist-td m-song">So Good</td>
-                            <td className="musiclist-td m-artist">Davina</td>
-                            <td className="musiclist-td m-duration">03:21</td>
-                            <td className="musiclist-td m-settings">I</td>
-                        </tr>
-                        <tr className="musiclist-tr" data-current="true">
-                            <td className="musiclist-td m-nr">03</td>
-                            <td className="musiclist-td m-song">Can't Let You Go (feat. Mike Shorey & Lil' Mo)</td>
-                            <td className="musiclist-td m-artist">Fabolous</td>
-                            <td className="musiclist-td m-duration">05:01</td>
-                            <td className="musiclist-td m-settings">I</td>
-                        </tr>
+
                     </tbody>
                 </table>
             </div>

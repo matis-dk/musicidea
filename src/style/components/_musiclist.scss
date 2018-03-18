@@ -5,12 +5,8 @@
 }
 
 .wrapper-musiclist {
-    width: 800px;            // <-- CHECK
+    //width: 800px;            // <-- CHECK
 }
-
-    .musiclist-name {
-        margin: 20px 0px;
-    }
 
     .musiclist-table {
         width: 100%;
@@ -37,6 +33,11 @@
                     cursor: pointer;
                 }
 
+
+        .m-th-nr, .m-th-settings {
+            width: 10%;
+        }
+
 //==================================================================
 
         .musiclist-tbody {
@@ -46,43 +47,75 @@
                 cursor: pointer;
             }
 
-            .musiclist-tr[data-current="true"] {
-                .m-nr {
-                    background-color: rgba($c-t-3, 0.2);
-                    content: " ";
-                }
-            }
+            // .musiclist-tr[data-current="true"] {
+            //     .m-nr {
+            //         background-color: rgba($c-t-3, 0.2);
+            //         content: " ";
+            //     }
+            // }
 
             .musiclist-tr:hover {
                 background-color: rgba($c-b-4, 0.3);
 
-                .m-nr, .m-duration {
+                .musiclist-buttons {
+                    display: block;
+                    opacity: 1;
+                }
+
+                .m-nr {
+                    opacity: 0;
+                }
+
+                .m-duration, .musiclist-buttons {
                     color: $c-t-3;
                 }
             }
 
-                .musiclist-td {
+            .musiclist-buttons {
+                font-size: 15px;
+                opacity: 0;
+                transform: translateX(-15px);
+            }
 
-                }
 
 //==================================================================
 
-    .m-nr {
-
+    .m-nr-wrap {
+        display: flex;
+        align-items: center;
     }
 
     .m-song {
         color: $c-g-3;
     }
 
-    .m-artist {
-        color: $c-g-5;
+    .m-artist-wrapper {
+
+        > a {
+            color: $c-g-5;
+            margin-right: 8px;
+        }
+
+        > a::after {
+            content: ",";
+        }
+
+        > a:last-child::after {
+            content: "";
+        }
     }
+        .m-artist:hover {
+            text-decoration: underline;
+        }
 
     .m-duration {
 
     }
 
     .m-settings {
+        display: flex;
 
+        > .musiclist-buttons {
+            margin-right: 15px;
+        }
     }
