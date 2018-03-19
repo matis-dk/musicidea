@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default () => (
-    <div id="container">
+    <div id="template">
         <div className="item">
             <h1 className="item-header">Colors</h1>
             <div className="box-wrap">

@@ -9,7 +9,7 @@ import * as actionUsers from '../store/actions/action_user'
 
 class Profile extends React.Component {
 
-    componentWillMount () {
+    componentDidMount () {
         this.props.getUserPlaylists(this.props.store.spotify.init);
         this.props.getMyTopArtists(this.props.store.spotify.init);
     }

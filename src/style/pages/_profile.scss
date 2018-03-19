@@ -1,7 +1,7 @@
 
 #profile {
     display: flex;
-    padding-top: 200px;
+    padding-top: 150px;
 }
 
     .profile-header {
@@ -16,8 +16,8 @@
     }
 
     .profile-playlists {
-        flex-grow: 1;
-        min-width: 60%;
+        flex: 1.5;
+        margin: 0px 100px;
     }
 
         .profile-playlist-list {
@@ -28,14 +28,13 @@
         .profile-playlist-item {
             display: flex;
 
-            margin-right: 40px;
-            margin-bottom: 40px;
+            margin-right: 60px;
+            margin-bottom: 60px;
 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             @include shadow4;
-
         }
 
         .profile-playlist-item:hover {
@@ -47,8 +46,8 @@
         .profile-playlist-item::before {
             content: " ";
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 270px;
+            height: 270px;
             @include shadow5;
             opacity: 0;
             transition: 0.3s;
@@ -59,8 +58,8 @@
                 display: flex;
                 align-items: flex-end;
 
-                width: 300px;
-                height: 300px;
+                width: 270px;
+                height: 270px;
                 z-index: 1;
             }
 
@@ -73,8 +72,7 @@
     //==================================================================
     // ARTISTS
     .profile-top-artists {
-        flex-grow: 1;
-        min-width: 40%;
+        flex: 1;
     }
 
         .profile-list {

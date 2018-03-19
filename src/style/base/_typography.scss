@@ -34,7 +34,11 @@ h3 {
 }
 
 h4 {
+    color: $c-w-5;
+}
 
+h5 {
+    color: $c-w-5;
 }
 
 p {
@@ -61,7 +65,7 @@ span {
     }
 
         .text-nav:hover {
-            color: $c-t-3;
+            color: $c-t-1;
         }
 
 
@@ -76,7 +80,6 @@ span {
         .text-player-playerlist-cat {
             font-family: LarsseitBold;
             text-transform: uppercase;
-            color: $c-t-1;
         }
 
         .item-draggable {         //.text-player-playerlist-item

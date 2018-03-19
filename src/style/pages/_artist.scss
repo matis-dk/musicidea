@@ -1,17 +1,111 @@
 
 #artist {
-    margin-top: 0px;
+    margin-top: 150px;
     padding: 0px;
+    display: flex;
+    justify-content: center;
 }
 
-    .artist-backdrop {
-        height: 600px;
-        max-width: 2560px;
-        width: 100%;
-        background-position: center;
-        mix-blend-mode: soft-light;
-    }
 
     .artist-content {
-        border: 1px solid tomato;
+        max-width: 1500px;
+        width: 100%;
+        flex: 1;
+
+        display: flex;
+
     }
+
+//==================================================================
+// LEFT SECTION
+        .artist-left {
+            flex: 1.8
+        }
+
+            .artist-backdrop {
+                background-color: $c-t-1;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                width: 100%;
+                height: 450px;
+
+                display: flex;
+                align-items: flex-end;
+                position: relative;
+            }
+
+                .artist-h1 {
+                    line-height: 50px;
+                    font-size: 80px;
+                    margin-left: 30px;
+                    color: rgb(32, 32, 32);
+                    text-transform: uppercase;
+                    z-index: 1;
+                    position: relative;
+                }
+
+                .artist-img-overlay {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to left,rgba($c-t-1, 0.9),  rgba($c-t-2, 0.9));
+                    top: 0px;
+                    left: 0px;
+                    mix-blend-mode:  exclusion;
+                }
+
+            .artist-album-header {
+                font-size: 30px;
+                margin: 50px 0px 20px;
+            }
+
+            .artist-album-list {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+                .artist-album-item {
+                    width: 200px;
+                    overflow: hidden;
+                    border: 1px solid tomato;
+                    margin: 0px 30px 30px 0px;
+                }
+
+                    .artist-album-image {
+                        width: 200px;
+                        height: 200px;
+                    }
+
+                    .artist-album-name {
+                        width: auto;
+                    }
+
+//==================================================================
+// RIGHT SECTION
+        .artist-right {
+            flex: 1
+        }
+
+
+
+
+
+
+//==================================================================
+
+    .artist-backdrop-wrapper {
+        display: none;
+    }
+
+        .artist-img-backdrop {
+            position: absolute;
+            height: 100vh;
+            max-width: 2560px;
+            width: 100%;
+            // background-blend-mode: color-dodge;
+            // mix-blend-mode: multiply;
+            background-size: contain;
+            mix-blend-mode: overlay;
+            filter: blur(10px);
+        }

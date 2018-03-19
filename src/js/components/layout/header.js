@@ -52,6 +52,9 @@ class Header extends React.Component {
                         <li className="nav-menu-li">
                             <Link to="/explore" className="nav-menu-a text-nav" href="">Explore</Link>
                         </li>
+                        <li className="nav-menu-li">
+                            <Link to="/template" className="nav-menu-a text-nav" href="">Template</Link>
+                        </li>
                         <li className="nav-menu-li" id="nav-menu-button" onClick={() => this.toggleMenu()}>
                             <img className="nav-menu-logo" src={logo} alt=""/>
                         </li>

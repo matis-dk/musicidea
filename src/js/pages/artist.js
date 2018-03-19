@@ -4,45 +4,84 @@ import { connect } from 'react-redux'
 import * as actionContent from '../store/actions/action_content'
 
 
+let artistID;
+
 class Artist extends React.Component {
 
-    componentWillMount() {
-
+    componentDidMount() {
 
         this.props.getArtistAlbums(
             this.props.store.spotify.init,
             this.props.history,
-            this.props.match.params.id
+            artistID
         );
 
         this.props.getArtist(
             this.props.store.spotify.init,
             this.props.history,
-            this.props.match.params.id
+            artistID
         );
 
-        // this.props.getArtistAlbums(
+        // this.props.getArtist(
         //     this.props.store.spotify.init,
         //     this.props.history,
-        //     this.props.match.params.id
+        //     artistID
         // );
+
     }
+
 
     render () {
 
-        let artistID = this.props.match.params.id;
-        let artists = this.props.store.content.artists;
+        let artists     = this.props.store.content.artists;
+        artistID    = this.props.match.params.id;
 
-        if (!artists[artistID]) { return <div></div> }
+        console.log(artists)
+
+        // Checking objects nested properties
+        if (artists.hasOwnProperty(artistID) == false) {
+            console.log("ENTERING 1")
+            return <div></div>
+        }
+
+        if ( (artists[artistID].hasOwnProperty("items") == false) || (artists[artistID].hasOwnProperty("id") == false) ) {
+            console.log("ENTERING 2")
+            return <div></div>
+        }
 
         return (
             <div className="container">
+                {   console.log("ENTERING 3") }
                 <div className="container-item" id="artist">
-                    <div className="artist-backdrop" style={{backgroundImage: `url(${this.props.store.content.artists[artistID].images[0].url})`}}>
-                        
-                    </div>
+
+
                     <div className="artist-content">
-                        <h1>Artist page!</h1>
+                        <div className="artist-left">
+                            <div className="artist-backdrop" style={{backgroundImage: `url(${artists[artistID].images[0].url})`}}>
+                                <div className="artist-img-overlay"></div>
+                                <h1 className="artist-h1">{artists[artistID].name}</h1>
+                            </div>
+                            <div className="artist-albums">
+                                <h1 className="artist-album-header">Albums</h1>
+                                <ul className="artist-album-list">
+                                    {
+                                        artists[artistID].items
+                                            .filter((item) => (item.album_type == "album" && item.album_group == "album") )
+                                            .map((track) => (
+                                                <li key={track.id} className="artist-album-item" >
+                                                    <img className="artist-album-image" src={track.images[0].url} alt=""/>
+                                                    <p className="artist-album-date">{parseFloat(track.release_date)}</p>
+                                                    <h3 className="artist-album-name">{track.name}</h3>
+                                                </li>
+                                            ))
+                                    }
+                                </ul>
+                            </div>
+                            <div className="artist-similar">slider</div>
+                        </div>
+                        <div className="artist-right">
+                            <div>Top tracks!</div>
+                        </div>
                     </div>
 
                 </div>
@@ -51,5 +90,10 @@ class Artist extends React.Component {
     }
 }
 
+
+/* <div className="artist-backdrop-wrapper">
+    <div className="artist-img-backdrop" style={{backgroundImage: `url(${ artists[artistID].images[0].url })`}}></div>
+    <div className="artist-img-overlay"></div>
+</div> */
 
 export default connect(store => {return {store: store }}, { ...actionContent }) (Artist)
