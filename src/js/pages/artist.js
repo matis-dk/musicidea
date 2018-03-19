@@ -10,24 +10,42 @@ class Artist extends React.Component {
 
     componentDidMount() {
 
-        this.props.getArtistAlbums(
+        this.props.getArtistData(
             this.props.store.spotify.init,
-            this.props.history,
-            artistID
+            artistID,
+            "getArtistAlbums",
+            "GET_ARTIST_ALBUMS",
+            "Vi kunne ikke hente albums fra denne kunstner"
         );
 
-        this.props.getArtist(
+        this.props.getArtistData(
             this.props.store.spotify.init,
-            this.props.history,
-            artistID
+            artistID,
+            "getArtist",
+            "GET_ARTIST",
+            "Vi kunne ikke hente oplysningerne fra denne kunster"
         );
 
-        // this.props.getArtist(
-        //     this.props.store.spotify.init,
-        //     this.props.history,
-        //     artistID
-        // );
+        this.props.getArtistData(
+            this.props.store.spotify.init,
+            artistID,
+            "getArtistRelatedArtists",
+            "GET_ARTIST_RELATED_ARTISTS",
+            "Vi kunne finde relaterede kunstnere"
+        );
 
+        this.props.getArtistData(
+            this.props.store.spotify.init,
+            artistID,
+            "getArtistTopTracks",
+            "GET_ARTIST_TOP_TRACKS",
+            "Vi kunne hente kunstnerens top tracks",
+            "US"
+        );
+
+
+        // Top tracks for a specific artist
+        // Artists similar to a specific artist
     }
 
 
@@ -36,7 +54,6 @@ class Artist extends React.Component {
         let artists     = this.props.store.content.artists;
         artistID    = this.props.match.params.id;
 
-        console.log(artists)
 
         // Checking objects nested properties
         if (artists.hasOwnProperty(artistID) == false) {
@@ -44,7 +61,7 @@ class Artist extends React.Component {
             return <div></div>
         }
 
-        if ( (artists[artistID].hasOwnProperty("items") == false) || (artists[artistID].hasOwnProperty("id") == false) ) {
+        if ( (artists[artistID].hasOwnProperty("albums") == false) || (artists[artistID].hasOwnProperty("id") == false) ) {
             console.log("ENTERING 2")
             return <div></div>
         }
@@ -65,7 +82,7 @@ class Artist extends React.Component {
                                 <h1 className="artist-album-header">Albums</h1>
                                 <ul className="artist-album-list">
                                     {
-                                        artists[artistID].items
+                                        artists[artistID].albums
                                             .filter((item) => (item.album_type == "album" && item.album_group == "album") )
                                             .map((track) => (
                                                 <li key={track.id} className="artist-album-item" >
