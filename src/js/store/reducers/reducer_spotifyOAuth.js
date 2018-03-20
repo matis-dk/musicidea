@@ -45,7 +45,8 @@ function reducer_spotifyOAuth (state = stateInit, action) {
             state = {
                 ...state,
                 token_validated: false,
-                isLoading: false
+                isLoading: false,
+                loginAllowed: false
             }
             return state;
         case "SPOTIFY_IS_LOADING":
@@ -54,12 +55,11 @@ function reducer_spotifyOAuth (state = stateInit, action) {
                 isLoading: action.payload
             }
             return state;
-        case "MUSICIDEA_LOGIN":
+        case "MUSICIDEA_LOGIN_ALLOWED":
             state = {
                 ...state,
-                loginAllowed: action.payload
+                loginAllowed: true
             }
-            return state;
         default:
             state = {
                 ...state

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import * as actionUsers from '../store/actions/action_user'
 
+import CompArtist from '../components/ui/compArtist'
+
 let userCurrently = null;
 
 class Profile extends React.Component {
@@ -49,17 +51,11 @@ class Profile extends React.Component {
                         <hr/>
                         <ul className="profile-list">
                             {
-                                this.props.store.user.userTopArtists.slice(0, 12).map((item) => (
-                                        <li className="profile-list-item" key={item.id}>
-                                            <Link to={"/artist/" + item.id}>
-                                                <img className="profile-list-img" src={item.images[0].url} alt={item.name}/>
-                                            </Link>
-                                            <div className="profile-list-artist">
-                                                <h3>{item.name}</h3>
-                                                <p>{item.popularity} points</p>
-                                            </div>
-                                        </li>
-                                ))
+                                this.props.store.user.userTopArtists
+                                    .slice(0, 12)
+                                    .map((artist) => (
+                                        <CompArtist artist={artist} key={artist.id} />
+                                    ))
                             }
                         </ul>
                     </div>

@@ -21,7 +21,7 @@
             @keyframes imgFadein {
                 0% {
                     opacity: 0;
-                    transform: scale(1.15) translateY(-20px);
+                    transform: scale(1.15) translateY(-1.25rem);
                 }
                 100% {
                     opacity: 0.2;
@@ -42,7 +42,7 @@
             display: inline-block;
             color: $c-w-5;
             opacity: 0.9;
-            font-size: 140px;
+            font-size: 8.75rem;
             user-select: none;
             opacity: 0;
         }
@@ -70,7 +70,7 @@
 
     @keyframes h1_hero1_enter {
         0% {
-            transform: translateX(100px);
+            transform: translateX(6.25rem);
             opacity: 0;
         }
 
@@ -83,11 +83,11 @@
 
     @keyframes h1_hero2_enter {
         0% {
-            transform: translateX(400px) scaleY(5);
+            transform: translateX(25rem) scaleY(5);
         }
 
         30% {
-            transform: translateX(400px) scaleY(1);
+            transform: translateX(25rem) scaleY(1);
         }
 
         100% {
@@ -97,7 +97,7 @@
 
     @keyframes h1_hero3_enter {
         0% {
-            transform: translateX(-50px);
+            transform: translateX(-3.13rem);
             opacity: 0;
         }
 

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import CompArtist from './compArtist'
 
 const CompSimilar  = ( { artists, artistID } ) => {
 
@@ -9,15 +10,12 @@ const CompSimilar  = ( { artists, artistID } ) => {
         <Fragment>
             <h2 className="artist-album-header">Related artists</h2>
             <hr/>
-            <ul>
+            <ul className="artists-related">
                 {
                     artists[artistID].relatedArtists
+                        .slice(0, 18)
                         .map((relatedArtist) => (
-                            <li key={relatedArtist.id}>
-                                <Link to={`/artist/${relatedArtist.id}`}>
-                                    <p>{relatedArtist.name}</p>
-                                </Link>
-                            </li>
+                            <CompArtist artist={relatedArtist} key={relatedArtist.id} />
                         ))
                 }
             </ul>

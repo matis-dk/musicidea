@@ -8,14 +8,14 @@
 }
 
     .signin-box {
-        max-width: 550px;
+        max-width: 34.38rem;
         height: auto;
         width: 100%;
-        padding: 35px 45px 40px;
+        padding: 2.19rem 2.81rem 2.5rem;
 
         position: relative;
         overflow: hidden;
-        box-shadow: 0px 8px 70px -2px rgba(0,0,0,0.51);
+        box-shadow: 0px .5rem 4.38rem -.13rem rgba(0,0,0,0.51);
         color: white;
     }
 
@@ -29,7 +29,7 @@
             right: 50%;
             transform: translateX(50vw) translateY(-50vh);
             background-size: cover;
-            filter: blur(25px);
+            filter: blur(1.56rem);
         }
 
         .signin-form {
@@ -38,16 +38,17 @@
 
             .signin-logo {
                 position: absolute;
-                top: 40px;
-                left: 40px;
-                width: 130px;
+                top: 2.5rem;
+                left: 2.5rem;
+                height: 5rem;
+                mix-blend-mode: luminosity;
             }
 
             .signin-github {
                 position: absolute;
-                left: 40px;
-                bottom: 40px;
-                font-size: 40px;
+                left: 2.5rem;
+                bottom: 2.5rem;
+                font-size: 2.5rem;
                 color: $c-g-1;
                 cursor: pointer;
             }
@@ -56,32 +57,31 @@
                 position: relative;
                 z-index: 1;
                 font-family: "LarsseitBold";
-                margin-bottom: 65px;
-                color: rgba($c-w-3, 0.4);
-                mix-blend-mode: luminosity;
+                margin-bottom: 4.06rem;
+                color: rgba($c-w-1, 0.8);
             }
 
             .signin-modal {
                 position: absolute;
                 z-index: 1;
-                bottom: 20px;
-                right: 20px;
+                bottom: 1.25rem;
+                right: 1.25rem;
                 color: rgba($c-g-2, 0.3);
-                font-size: 18px;
+                font-size: 1.13rem;
                 cursor: pointer;
             }
 
 
                 .signin-spotify {
-                    margin-top: 10px;
+                    margin-top: .63rem;
                 }
 
                 .signin-spotify-button {
-                    margin-left: 10px;
+                    margin-left: .63rem;
                     color: white !important;
                 }
 
 
                 .signin-buttons {
-                    margin-right: 20px;
+                    margin-right: 1.25rem;
                 }

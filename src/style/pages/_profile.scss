@@ -1,8 +1,8 @@
 
 #profile {
     display: flex;
-    padding: 150px 50px;
-    max-width: 1800px;
+    padding: 9.38rem 3.13rem;
+    max-width: 112.5rem;
     width: 100%;
 }
 
@@ -11,7 +11,7 @@
     // PLAYLIST
 
     .profile-playlist-header {
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
     }
 
     .profile-playlists {
@@ -26,8 +26,8 @@
         .profile-playlist-item {
             display: flex;
 
-            margin-right: 60px;
-            margin-bottom: 60px;
+            margin-right: 3.75rem;
+            margin-bottom: 3.75rem;
 
             background-size: cover;
             background-position: center;
@@ -44,8 +44,8 @@
         .profile-playlist-item::before {
             content: " ";
             position: absolute;
-            width: 270px;
-            height: 270px;
+            width: 16.88rem;
+            height: 16.88rem;
             @include shadow5;
             opacity: 0;
             transition: 0.3s;
@@ -56,15 +56,15 @@
                 display: flex;
                 align-items: flex-end;
 
-                width: 270px;
-                height: 270px;
+                width: 16.88rem;
+                height: 16.88rem;
                 z-index: 1;
             }
 
                 .profile-item-header {
                     background-color: rgba($c-b-4, 0.5);
                     width: 100%;
-                    padding: 15px;
+                    padding: .94rem;
                 }
 
     //==================================================================
@@ -84,13 +84,13 @@
 
                 display: flex;
                 align-items: center;
-                margin-bottom: 30px;
+                margin-bottom: 1.88rem;
             }
 
                 .profile-list-img {
-                    width: 100px;
-                    height: 100px;
+                    width: 6.25rem;
+                    height: 6.25rem;
                     border-radius: 50%;
-                    margin-right: 30px;
+                    margin-right: 1.88rem;
                     mix-blend-mode: luminosity;
                 }

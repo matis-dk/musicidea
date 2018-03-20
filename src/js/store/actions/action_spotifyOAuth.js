@@ -54,9 +54,9 @@ export function spotifyValidateToken(token) {
             })
 
             dispatch({
-                type: "MUSICIDEA_LOGIN",
-                payload: true
+                type: "MUSICIDEA_LOGIN_ALLOWED"
             })
+
         })
         .catch((err) => {
             openNotification("Login fejlede", "Vi kunne ikke logge ind på din spotify account", "frown")

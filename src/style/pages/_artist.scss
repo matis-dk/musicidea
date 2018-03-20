@@ -1,13 +1,13 @@
 
 #artist {
-    margin-top: 150px;
+    margin-top: 9.38rem;
     display: flex;
     justify-content: center;
 }
 
 
     .artist-content {
-        max-width: 1400px;
+        max-width: 87.5rem;
         width: 100%;
     }
 
@@ -31,7 +31,7 @@
                 background-position: center;
                 background-size: cover;
                 width: 100%;
-                height: 500px;
+                height: 31.25rem;
 
                 display: flex;
                 align-items: flex-end;
@@ -40,9 +40,9 @@
             }
 
                 .artist-h1 {
-                    line-height: 50px;
-                    font-size: 80px;
-                    margin-left: 30px;
+                    line-height: 3.13rem;
+                    font-size: 5rem;
+                    margin-left: 1.88rem;
                     color: rgb(32, 32, 32);
                     text-transform: uppercase;
                     z-index: 1;
@@ -61,7 +61,17 @@
                 }
 
             .artist-album-header {
-                margin-top: 70px;
+                margin-top: 4.38rem;
+            }
+
+            .artists-related {
+                display: flex;
+                flex-wrap: wrap;
+
+                > * {
+                    width: 30%;
+                }
+
             }
 
             .artist-album-list {
@@ -70,14 +80,14 @@
             }
 
                 .artist-album-item {
-                    width: 200px;
+                    width: 12.5rem;
                     overflow: hidden;
-                    margin: 0px 30px 30px 0px;
+                    margin: 0px 1.88rem 1.88rem 0px;
                 }
 
                     .artist-album-image {
-                        width: 200px;
-                        height: 200px;
+                        width: 12.5rem;
+                        height: 12.5rem;
                     }
 
                     .artist-album-name {
@@ -88,11 +98,11 @@
 // RIGHT SECTION
 
         .artist-toptracks {
-            margin: 0px 60px;
+            margin: 0px 3.75rem;
         }
 
             .artist-toptracks-header {
-                margin-bottom: 20px;
+                margin-bottom: 1.25rem;
             }
 
 
@@ -108,11 +118,11 @@
         .artist-img-backdrop {
             position: absolute;
             height: 100vh;
-            max-width: 2560px;
+            max-width: 160rem;
             width: 100%;
             // background-blend-mode: color-dodge;
             // mix-blend-mode: multiply;
             background-size: contain;
             mix-blend-mode: overlay;
-            filter: blur(10px);
+            filter: blur(.63rem);
         }

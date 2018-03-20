@@ -20,21 +20,21 @@
 h1 {
     font-family: LarsseitBold;
     color: $c-w-5;
-    font-size: 40px;
+    font-size: 2.5rem;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 1.88rem;
     font-family: Larsseit;
     color: $c-g-1;
-    padding-bottom: 12px;
-    line-height: 30px;
+    padding-bottom: .75rem;
+    line-height: 1.88rem;
     font-weight: 700;
 }
 
 h3 {
     font-family: Larsseit;
-    font-size: 20px;
+    font-size: 1.25rem;
     color: $c-w-5;
 }
 
@@ -55,8 +55,8 @@ span {
 
 hr {
     border: none;
-    border-bottom: 2px solid rgba($c-b-4, 0.85);
-    margin-bottom: 50px;
+    border-bottom: .13rem solid rgba($c-b-4, 0.85);
+    margin-bottom: 3.13rem;
     margin-left: 0px;
     width: 95%;
 }
@@ -69,9 +69,9 @@ hr {
     // SPECIFIC
     .text-nav {
         font-family: Larsseit;
-        font-size: 13px;
+        font-size: .81rem;
         font-weight: 700;
-        letter-spacing: 2.5px;
+        letter-spacing: .16rem;
         color: $c-g-1;
         text-transform: uppercase;
     }
@@ -93,7 +93,7 @@ hr {
 
         .item-draggable {         //.text-player-playerlist-item
             font-family: Larsseit;
-            font-size: 11px;
+            font-size: .69rem;
             letter-spacing: 1px;
         }
 
@@ -106,9 +106,9 @@ hr {
 
     @mixin text-musiclist-default {
         font-family: Larsseit;
-        font-size: 12px;
+        font-size: .75rem;
         font-weight: 700;
-        letter-spacing: 1.6px;
+        letter-spacing: .1rem;
         color: $c-b-6;
     }
 

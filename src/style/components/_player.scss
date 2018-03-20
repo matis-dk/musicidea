@@ -2,7 +2,7 @@
 .player-wrapper {
     display: flex; // flex
 
-    max-width: 400px;
+    max-width: 25rem;
     max-height: 100vh;
 
     width: 100%;
@@ -16,12 +16,12 @@
     //background-color: rgba($c-b-4, 0.9);
     //@include shadow3;
     color: white;
-    padding-top: 100px;
+    padding-top: 6.25rem;
     overflow: hidden;
 }
 
     .player-item  {
-        //padding-top: 35px;
+        //padding-top: 2.19rem;
         padding: 0px 0px;
     }
 
@@ -31,15 +31,15 @@
 
 
 .player-toggle {
-    font-size: 24px;
+    font-size: 1.5rem;
     color: $c-w-5;
     display: flex;
 }
 
 .player-toggle-menu {
     position: absolute;
-    top: 30px;
-    right: 40px;
+    top: 1.88rem;
+    right: 2.5rem;
     cursor: pointer;
     transition: color 0.3s;
 }
@@ -50,8 +50,8 @@
 
 .player-toggle-music {
     position: fixed;
-    left: 40px;
-    bottom: 40px;
+    left: 2.5rem;
+    bottom: 2.5rem;
 }
 
 .player-toggle-music:hover {
@@ -67,8 +67,8 @@
 
         .player-music-slider {
             position: absolute;
-            height: 100px;
-            top: -100px;
+            height: 6.25rem;
+            top: -6.25rem;
             opacity: 0;
             transform: scaleY(0.01);
             transform-origin: bottom;
@@ -82,21 +82,21 @@
             .player-music-volume {
                 position: absolute;
                 bottom: 0px;
-                left: 150px;
-                font-size: 450px;
-                line-height: 300px;
+                left: 9.38rem;
+                font-size: 28.13rem;
+                line-height: 18.75rem;
                 color: rgba($c-g-3, 0.15);
                 pointer-events: none;
             }
 
         .player-music-slider {
             .ant-slider, .ant-slider-rail, .ant-slider-track, .ant-slider-step {
-                width: 20px;
+                width: 1.25rem;
             }
 
             .ant-slider-track {
-                border-top-left-radius: 2px;
-                border-top-right-radius: 2px;
+                border-top-left-radius: .13rem;
+                border-top-right-radius: .13rem;
             }
 
             .ant-slider-rail {
@@ -118,11 +118,11 @@
 // CONTROL
 .player-control {
     position: absolute;
-    top: 25px;
-    right: 140px;
+    top: 1.56rem;
+    right: 8.75rem;
 }
     .player-current-song {
-        padding-bottom: 10px;
+        padding-bottom: .63rem;
     }
 
     .player-navigation {
@@ -132,7 +132,7 @@
     }
 
         .player-nav {
-            font-size: 17px;
+            font-size: 1.06rem;
             font-weight: 100;
             cursor: pointer;
             color: $c-g-1;
@@ -140,7 +140,7 @@
 
 
             > i {
-                padding: 10px;
+                padding: .63rem;
             }
         }
 
@@ -149,7 +149,7 @@
         }
 
         .player-nav-play {
-            font-size: 28px;
+            font-size: 1.75rem;
         }
 
 
@@ -160,7 +160,7 @@
     display: flex;
     position: relative;
     justify-content: space-between;
-    padding: 15px 25px;
+    padding: .94rem 1.56rem;
     border-top: 1px solid rgba($c-g-3, 0.3);
 }
     .player-switch-wrapper {
@@ -170,12 +170,12 @@
         .player-settings-switch {
             display: flex;
             align-items: center;
-            padding-right: 12px;
+            padding-right: .75rem;
         }
 
             .player-settings-icon {
-                padding-right: 10px;
-                font-size: 18px;
+                padding-right: .63rem;
+                font-size: 1.13rem;
             }
 
             .player-settings-switch > .ant-switch {
@@ -187,10 +187,10 @@
     }
 
         .player-icon {
-            font-size: 20px;
+            font-size: 1.25rem;
             font-weight: 100;
             color: $c-w-5;
-            padding-left: 15px;
+            padding-left: .94rem;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -213,8 +213,8 @@
         .player-playlist-cat {
             display: flex;
             justify-content: space-between;
-            padding: 16px 25px;
-            padding-right: 45px;
+            padding: 1rem 1.56rem;
+            padding-right: 2.81rem;
             border-bottom: 1px solid rgba($c-g-1, 0.1);
             color: $c-g-1;
         }
@@ -222,7 +222,7 @@
 
             .player-playlist-cat  > h5 > i {
                 font-weight: 700;
-                padding-right: 5px;
+                padding-right: .31rem;
             }
 
 
@@ -247,7 +247,7 @@
         }
 
         100% {
-            transform: translateY(800px);
+            transform: translateY(50rem);
             opacity: 0;
         }
     }
@@ -281,7 +281,7 @@
     @keyframes hidePlayerMenu {
         0% {
             opacity: 0;
-            right: -400px;
+            right: -25rem;
 
         }
 

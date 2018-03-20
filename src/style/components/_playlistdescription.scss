@@ -6,8 +6,8 @@
 
     .playlist-image {
         background-color: rgba($c-b-4, 0.5);
-        width: 250px;
-        height: 250px;
+        width: 15.63rem;
+        height: 15.63rem;
         background-size: cover;
         background-position: center;
         @include shadow4;
@@ -17,22 +17,22 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 800px;                // Avoiding to long text lines
-        padding-left: 30px;
+        width: 50rem;                // Avoiding to long text lines
+        padding-left: 1.88rem;
 
     }
 
         .playlist-name {
-            line-height: 44px;
+            line-height: 2.75rem;
         }
 
         .playlist-tags-container {
         }
 
             .playlist-tags {
-                padding: 3px 6px;
+                padding: .19rem .38rem;
                 color: $c-b-6;
-                font-size: 12px;
+                font-size: .75rem;
                 font-family: 'Larsseit';
                 cursor: pointer;
                 transition: color 0.3s;
@@ -47,21 +47,21 @@
             }
 
         .playlist-des-text {
-            margin: 20px 0px;
+            margin: 1.25rem 0px;
         }
 
         .playlist-buttons {
             > * {
                 text-transform: uppercase;
                 font-family: 'Larsseit';
-                padding-right: 20px;
-                font-size: 12px;
-                margin-right: 15px;
-            //    box-shadow: 0 10px 20px rgba(#193D71,0.19), 0 6px 6px rgba(#193D71,0.23);
+                padding-right: 1.25rem;
+                font-size: .75rem;
+                margin-right: .94rem;
+            //    box-shadow: 0 .63rem 1.25rem rgba(#193D71,0.19), 0 .38rem .38rem rgba(#193D71,0.23);
             }
         }
 
             .playlist-buttons-default {
                 background-color: transparent;
-                border-width: 2px;
+                border-width: .13rem;
             }

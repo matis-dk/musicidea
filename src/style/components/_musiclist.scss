@@ -1,11 +1,11 @@
 
 
 .wrapper-musiclist  td, .wrapper-musiclist  th {
-    padding: 10px 12px;
+    padding: .63rem .75rem;
 }
 
 .wrapper-musiclist {
-    //width: 800px;            // <-- CHECK
+    //width: 50rem;            // <-- CHECK
 }
 
     .musiclist-table {
@@ -76,9 +76,9 @@
             }
 
             .musiclist-buttons {
-                font-size: 15px;
+                font-size: .94rem;
                 opacity: 0;
-                transform: translateX(-15px);
+                transform: translateX(-.94rem);
             }
 
             .musiclist-button-show {
@@ -101,7 +101,7 @@
 
         > a {
             color: $c-g-5;
-            margin-right: 8px;
+            margin-right: .5rem;
         }
 
         > a::after {
@@ -125,7 +125,7 @@
         display: flex;
 
         > .musiclist-buttons {
-            margin-left: 15px;
+            margin-left: .94rem;
         }
 
     }

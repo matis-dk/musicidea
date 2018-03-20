@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 40px;
+    padding: 0px 2.5rem;
 
     position: absolute;
     top: 0px;
@@ -25,7 +25,7 @@
 
         .text-nav {
             position: absolute;
-            left: 80px;
+            left: 5rem;
         }
     }
 
@@ -34,9 +34,9 @@
     }
 
         .nav-user {
-            font-size: 24px;
+            font-size: 1.5rem;
             transition: 0.3s;
-            margin-right: 15px;
+            margin-right: .94rem;
             //@include shadow3;
         }
 
@@ -54,23 +54,24 @@
             transition: 0.45s;
             transition-delay: 0s;
             opacity: 0;
-            height: 100px;
+            height: 6.25rem;
         }
 
             .nav-menu-a {
                 height: 100%;
                 display: flex;
                 align-items: center;
-                padding: 0px 20px;
+                padding: 0px 1.25rem;
             }
 
             .nav-menu-logo {
-                height: 50px;
+                height: 3.44rem;
                 opacity: 0.8;
+                cursor: pointer;
             }
 
             #nav-menu-button {
-                padding: 0px 20px;
+                padding: 0px 1.25rem;
                 opacity: 1;
                 transform: scale(0.8);
                 align-items: center;
@@ -79,22 +80,22 @@
 
         .nav-menu-li:nth-child(1) {
             transform-origin: right center;
-            transform: translate(-25px, 15px) rotateZ(-10deg);
+            transform: translate(-1.56rem, .94rem) rotateZ(-10deg);
         }
 
         .nav-menu-li:nth-child(2) {
             transform-origin: right center;
-            transform: translate(-25px, 15px) rotateZ(-10deg);
+            transform: translate(-1.56rem, .94rem) rotateZ(-10deg);
         }
 
         .nav-menu-li:nth-last-child(2) {
             transform-origin: left center;
-            transform: translate(25px, 15px) rotateZ(10deg);
+            transform: translate(1.56rem, .94rem) rotateZ(10deg);
         }
 
         .nav-menu-li:nth-last-child(1) {
             transform-origin: left center;
-            transform: translate(25px, 15px) rotateZ(10deg);
+            transform: translate(1.56rem, .94rem) rotateZ(10deg);
         }
 
 

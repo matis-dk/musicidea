@@ -1,6 +1,6 @@
 
     .item-droppable {
-        max-height: 600px;
+        max-height: 37.5rem;
         height: 100%;
     }
 
@@ -12,7 +12,7 @@
         }
 
             .item-draggable-inner {
-                padding: 16px 25px;
+                padding: 1rem 1.56rem;
                 border-bottom: 1px solid rgba($c-g-1, 0.1);
                 //background-color: rgba($c-b-4, 0.2);
             }
