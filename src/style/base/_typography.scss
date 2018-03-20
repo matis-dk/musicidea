@@ -24,12 +24,17 @@ h1 {
 }
 
 h2 {
-    font-family: LarsseitLight;
-    color: $c-w-5;
+    font-size: 30px;
+    font-family: Larsseit;
+    color: $c-g-1;
+    padding-bottom: 12px;
+    line-height: 30px;
+    font-weight: 700;
 }
 
 h3 {
     font-family: Larsseit;
+    font-size: 20px;
     color: $c-w-5;
 }
 
@@ -48,6 +53,13 @@ p {
 span {
 }
 
+hr {
+    border: none;
+    border-bottom: 2px solid rgba($c-b-4, 0.85);
+    margin-bottom: 50px;
+    margin-left: 0px;
+    width: 95%;
+}
 
 //==================================================================
 // CLASSES
@@ -69,9 +81,6 @@ span {
         }
 
 
-    .text-h1 {
-        font-size: 140px;
-    }
 
     //==================================================================
     // PLAYER

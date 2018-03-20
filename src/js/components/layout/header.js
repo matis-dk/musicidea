@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from '../../../img/musicidea-logo3-white.svg'
 
-import { Avatar } from 'antd'
+import { Avatar, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
 import Immutable from 'immutable';
 
@@ -35,13 +35,14 @@ class Header extends React.Component {
     }
 
     render() {
-        const userProfileImg = this.props.store.user.userImages[0];
+        const username = this.props.store.user.userId;
 
         return (
             <div id="header">
-                <div className="header-profile">
-                    <Link to="/profile">
-                        <Avatar className="nav-user" shape="circle" icon={userProfileImg ? false : 'user'} src={userProfileImg ? userProfileImg.url : false} size="large" />
+                <div>
+                    <Link to="/profile" className="header-profile">
+                        <Icon className="nav-user" type="user" size="large" />
+                        { username ? <span className="text-nav">{username}</span> : null }
                     </Link>
                 </div>
                 <nav>

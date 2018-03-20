@@ -38,7 +38,7 @@ class App extends React.Component {
                         <Route exact path='/' component={Home}/>
                         <Route path='/profile' component={Profile}/>
                         <Route path='/explore' component={Explore}/>
-                        <Route path='/playlist/:owner/:id' component={Playlist}/>
+                        <Route path='/playlist/:owner/:type/:id' component={Playlist}/>
                         <Route path='/artist/:id' component={Artist}/>
                         <Route path='/template' component={Template}/>
                         <Route path='/' component={Home}/>

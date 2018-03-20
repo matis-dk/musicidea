@@ -7,45 +7,103 @@
         overflow: hidden;
     }
 
+        .home-hero-img {
+            height: 100vh;
+            width: 100%;
+            mix-blend-mode: luminosity;
+            opacity: 0;
+            animation-name: imgFadein;
+            animation-duration: 6s;
+            animation-fill-mode: forwards;
+            background-size: cover;
+        }
+
+            @keyframes imgFadein {
+                0% {
+                    opacity: 0;
+                    transform: scale(1.15) translateY(-20px);
+                }
+                100% {
+                    opacity: 0.2;
+                    transform: scale(1) translateY(0px);
+
+                }
+            }
+
+    //==================================================================
+
     .home-des {
         position: absolute;
         top: 40%;
         left: 8%;
     }
 
-        .text-h1 {
-            color: $c-w-1;
+        .h1-hero {
+            display: inline-block;
+            color: $c-w-5;
             opacity: 0.9;
-        }
-
-    #home-hero-img {
-        height: 100vh;
-        width: 100%;
-        mix-blend-mode: luminosity;        //<- lag
-        opacity: 0;
-        animation-name: imgFadein;
-        animation-duration: 6s;
-        animation-fill-mode: forwards;
-        background-size: cover;
-    }
-
-
-    @keyframes imgFadein {
-        0% {
+            font-size: 140px;
+            user-select: none;
             opacity: 0;
-            transform: scale(1.15) translateY(-20px);
         }
-        100% {
-            opacity: 0.2;
-            transform: scale(1) translateY(0px);
 
+    #h1-hero1 {
+        animation-name: h1_hero1_enter;
+        animation-duration: 0.6s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.35s;
+    }
+
+    #h1-hero2 {
+        animation-name: h1_hero2_enter;
+        animation-duration: 0.8s;
+        animation-fill-mode: forwards;
+        opacity: 1;
+    }
+
+    #h1-hero3 {
+        animation-name: h1_hero3_enter;
+        animation-duration: 0.8s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.50s;
+    }
+
+    @keyframes h1_hero1_enter {
+        0% {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+
+
+        100% {
+            transform: translateX(0px);
+            opacity: 1;
         }
     }
 
+    @keyframes h1_hero2_enter {
+        0% {
+            transform: translateX(400px) scaleY(5);
+        }
 
-//==================================================================
+        30% {
+            transform: translateX(400px) scaleY(1);
+        }
 
-.home-section {
-    height: 400px;
-    border-bottom: 1px solid $c-g-3;
-}
+        100% {
+            transform: translateX(0px) scaleY(1);
+        }
+    }
+
+    @keyframes h1_hero3_enter {
+        0% {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+
+
+        100% {
+            transform: translateX(0px);
+            opacity: 1;
+        }
+    }

@@ -1,27 +1,30 @@
 
 #artist {
     margin-top: 150px;
-    padding: 0px;
     display: flex;
     justify-content: center;
 }
 
 
     .artist-content {
-        max-width: 1500px;
+        max-width: 1400px;
         width: 100%;
-        flex: 1;
-
-        display: flex;
-
     }
 
 //==================================================================
-// LEFT SECTION
-        .artist-left {
-            flex: 1.8
+//
+
+    .artist-backdrop-container {
+        display: flex;
+
+        > .artist-backdrop {
+            flex: 1.6;
         }
 
+        > .artist-toptracks {
+            flex: 1;
+        }
+    }
             .artist-backdrop {
                 background-color: $c-t-1;
                 background-repeat: no-repeat;
@@ -33,6 +36,7 @@
                 display: flex;
                 align-items: flex-end;
                 position: relative;
+                @include shadow1;
             }
 
                 .artist-h1 {
@@ -43,6 +47,7 @@
                     text-transform: uppercase;
                     z-index: 1;
                     position: relative;
+                    user-select: none;
                 }
 
                 .artist-img-overlay {
@@ -56,8 +61,7 @@
                 }
 
             .artist-album-header {
-                font-size: 30px;
-                margin: 50px 0px 20px;
+                margin-top: 70px;
             }
 
             .artist-album-list {
@@ -68,7 +72,6 @@
                 .artist-album-item {
                     width: 200px;
                     overflow: hidden;
-                    border: 1px solid tomato;
                     margin: 0px 30px 30px 0px;
                 }
 
@@ -83,10 +86,14 @@
 
 //==================================================================
 // RIGHT SECTION
-        .artist-right {
-            flex: 1
+
+        .artist-toptracks {
+            margin: 0px 60px;
         }
 
+            .artist-toptracks-header {
+                margin-bottom: 20px;
+            }
 
 
 

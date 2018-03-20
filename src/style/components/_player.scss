@@ -12,11 +12,11 @@
     top: 0px;
     z-index: 3;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     //background-color: rgba($c-b-4, 0.9);
     //@include shadow3;
     color: white;
-    padding-top: 150px;
+    padding-top: 100px;
     overflow: hidden;
 }
 
@@ -33,6 +33,7 @@
 .player-toggle {
     font-size: 24px;
     color: $c-w-5;
+    display: flex;
 }
 
 .player-toggle-menu {
@@ -44,7 +45,7 @@
 }
 
     .player-toggle-menu:hover {
-        color: $c-t-1;
+        color: $c-t-4;
     }
 
 .player-toggle-music {
@@ -116,9 +117,9 @@
 //==================================================================
 // CONTROL
 .player-control {
-    padding: 35px 0px 0px;
     position: absolute;
-    top: 0px;
+    top: 25px;
+    right: 140px;
 }
     .player-current-song {
         padding-bottom: 10px;
@@ -126,17 +127,29 @@
 
     .player-navigation {
         display: flex;
-        justify-content: center;
+        align-items: center;
+
     }
 
         .player-nav {
-            font-size: 26px;
+            font-size: 17px;
+            font-weight: 100;
             cursor: pointer;
             color: $c-g-1;
+            transition: 0.3s;
+
 
             > i {
                 padding: 10px;
             }
+        }
+
+        .player-nav:hover {
+            color: $c-t-4;
+        }
+
+        .player-nav-play {
+            font-size: 28px;
         }
 
 
@@ -147,7 +160,8 @@
     display: flex;
     position: relative;
     justify-content: space-between;
-    padding: 0px 25px;
+    padding: 15px 25px;
+    border-top: 1px solid rgba($c-g-3, 0.3);
 }
     .player-switch-wrapper {
         display: flex;
@@ -157,7 +171,6 @@
             display: flex;
             align-items: center;
             padding-right: 12px;
-            padding-bottom: 30px;
         }
 
             .player-settings-icon {
@@ -173,8 +186,17 @@
 
     }
 
-        .player-save-playlist {
+        .player-icon {
+            font-size: 20px;
+            font-weight: 100;
             color: $c-w-5;
+            padding-left: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .player-icon:hover {
+            color: $c-t-4;
         }
 
 //==================================================================
@@ -192,6 +214,7 @@
             display: flex;
             justify-content: space-between;
             padding: 16px 25px;
+            padding-right: 45px;
             border-bottom: 1px solid rgba($c-g-1, 0.1);
             color: $c-g-1;
         }
@@ -202,19 +225,6 @@
                 padding-right: 5px;
             }
 
-//==================================================================
-.player-cover {
-    align-items: flex-end;
-    position: relative;
-    height: 350px;
-}
-
-    .player-cover-img {
-        height: 350px;
-        background-color: $c-b-5;
-        opacity: 0.4;
-        width: 100%;
-    }
 
 //==================================================================
 // KEYFRAMES
@@ -247,16 +257,17 @@
     // OPEN / CLOSE PLAYER MENU
     .show-player-menu {
         height: 100%;
-
-        .player-control {
-            //left: 25%;
-        }
+        background-color: rgba(45, 45, 45, .2);
 
         .player-settings, .player-playlist, .player-cover {
             display: flex !important;
             animation-name: hidePlayerMenu;
-            animation-duration: 1s;
+            animation-duration: 0.4s;
             animation-fill-mode: forwards;
+        }
+
+        .player-toggle-menu {
+            color: $c-t-4;
         }
 
     }

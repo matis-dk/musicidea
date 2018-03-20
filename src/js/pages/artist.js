@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import * as actionContent from '../store/actions/action_content'
+import { Link } from 'react-router-dom'
 
+import * as actionContent from '../store/actions/action_content'
+import Musiclist from '../components/ui/musiclist'
 
 let artistID;
 
 class Artist extends React.Component {
 
-    componentDidMount() {
+    componentDidMount () {
 
         this.props.getArtistData(
             this.props.store.spotify.init,
@@ -52,7 +54,7 @@ class Artist extends React.Component {
     render () {
 
         let artists     = this.props.store.content.artists;
-        artistID    = this.props.match.params.id;
+        artistID        = this.props.match.params.id;
 
 
         // Checking objects nested properties
@@ -61,7 +63,9 @@ class Artist extends React.Component {
             return <div></div>
         }
 
-        if ( (artists[artistID].hasOwnProperty("albums") == false) || (artists[artistID].hasOwnProperty("id") == false) ) {
+        if ( (artists[artistID].hasOwnProperty("albums") == false) ||
+             (artists[artistID].hasOwnProperty("id") == false) ||
+             (artists[artistID].hasOwnProperty("relatedArtists") == false)  ) {
             console.log("ENTERING 2")
             return <div></div>
         }
@@ -70,37 +74,57 @@ class Artist extends React.Component {
             <div className="container">
                 {   console.log("ENTERING 3") }
                 <div className="container-item" id="artist">
-
-
                     <div className="artist-content">
-                        <div className="artist-left">
+                        <div className="artist-backdrop-container">
                             <div className="artist-backdrop" style={{backgroundImage: `url(${artists[artistID].images[0].url})`}}>
                                 <div className="artist-img-overlay"></div>
                                 <h1 className="artist-h1">{artists[artistID].name}</h1>
                             </div>
-                            <div className="artist-albums">
-                                <h1 className="artist-album-header">Albums</h1>
-                                <ul className="artist-album-list">
-                                    {
-                                        artists[artistID].albums
-                                            .filter((item) => (item.album_type == "album" && item.album_group == "album") )
-                                            .map((track) => (
-                                                <li key={track.id} className="artist-album-item" >
-                                                    <img className="artist-album-image" src={track.images[0].url} alt=""/>
-                                                    <p className="artist-album-date">{parseFloat(track.release_date)}</p>
-                                                    <h3 className="artist-album-name">{track.name}</h3>
-                                                </li>
-                                            ))
-                                    }
-                                </ul>
+                            <div className="artist-toptracks">
+                                <h2 className="artist-toptracks-header">Top tracks</h2>
+                                {
+                                    artists[artistID].hasOwnProperty("topTracks") ?
+                                    <Musiclist playlist={artists[artistID].topTracks} options={{nr: true, song:true, time: true}} /> :
+                                    <div></div>
+                                }
                             </div>
-                            <div className="artist-similar">slider</div>
                         </div>
-                        <div className="artist-right">
-                            <div>Top tracks!</div>
+                        <div className="artist-albums">
+                            <h2 className="artist-album-header">Albums</h2>
+                            <hr/>
+                            <ul className="artist-album-list">
+                                {
+                                    artists[artistID].albums
+                                        .filter((item) => (item.album_type == "album" && item.album_group == "album") )
+                                        .map((album) => (
+                                            <li key={album.id} className="artist-album-item" >
+                                                <Link to={"/playlist/" + artistID + "/album/" + album.id}>
+                                                    <img className="artist-album-image" src={album.images[0].url} alt=""/>
+                                                </Link>
+                                                <p className="artist-album-date">{parseFloat(album.release_date)}</p>
+                                                <h3 className="artist-album-name">{album.name}</h3>
+                                            </li>
+                                        ))
+                                }
+                            </ul>
+                        </div>
+                        <div className="artist-similar">
+                            <h2 className="artist-album-header">Related artists</h2>
+                            <hr/>
+                            <ul>
+                                {
+                                    artists[artistID].relatedArtists
+                                        .map((relatedArtist) => (
+                                            <li key={relatedArtist.id}>
+                                                <Link to={`/artist/${relatedArtist.id}`}>
+                                                    <p>{relatedArtist.name}</p>
+                                                </Link>
+                                            </li>
+                                        ))
+                                }
+                            </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         )

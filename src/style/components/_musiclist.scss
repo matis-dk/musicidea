@@ -34,7 +34,11 @@
                 }
 
 
-        .m-th-nr, .m-th-settings {
+        .m-th-settings {
+            width: 15%;
+        }
+
+        .m-th-duration, .m-th-nr {
             width: 10%;
         }
 
@@ -77,6 +81,10 @@
                 transform: translateX(-15px);
             }
 
+            .musiclist-button-show {
+                opacity: 1;
+            }
+
 
 //==================================================================
 
@@ -117,6 +125,7 @@
         display: flex;
 
         > .musiclist-buttons {
-            margin-right: 15px;
+            margin-left: 15px;
         }
+
     }

@@ -20,22 +20,15 @@ class Home extends React.Component {
         return (
             <div id="home">
                 <div className="home-hero">
-                    <img src={bc} alt="" id="home-hero-img"/>
+                    <img src={bc} alt="" className="home-hero-img"/>
                     <div className="home-des">
                         <div className="home-h1-wrapper">
-                            <h1 className="text-h1">MusicIdea</h1>
+                            <h1 className="h1-hero" id="h1-hero1">Music</h1>
+                            <h1 className="h1-hero" id="h1-hero2">I</h1>
+                            <h1 className="h1-hero" id="h1-hero3">dea</h1>
                         </div>
                     </div>
                 </div>
-                <section className="home-section">
-                    News1
-                </section>
-                <section className="home-section">
-                    News1
-                </section>
-                <section className="home-section">
-                    News1
-                </section>
             </div>
         )
     }

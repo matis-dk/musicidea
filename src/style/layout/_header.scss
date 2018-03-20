@@ -16,12 +16,25 @@
 // PROFILE
 
     .header-profile {
+        display: flex;
+        align-items: center;
 
+        > * {
+            transition: 0.3s;
+        }
+    }
+
+    .header-profile:hover {
+        color: $c-t-1;
     }
 
         .nav-user {
-            @include shadow3;
+            font-size: 24px;
+            transition: 0.3s;
+            margin-right: 15px;
+            //@include shadow3;
         }
+
 
 //==================================================================
 // NAVIGATION

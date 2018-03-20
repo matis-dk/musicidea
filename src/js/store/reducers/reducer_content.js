@@ -1,5 +1,6 @@
 let stateInit = {
     playlists: {},
+    albums: {},
     artists: {}
 }
 
@@ -10,7 +11,16 @@ function reducer_content (state = stateInit, action) {
                 ...state,
                 playlists: {
                     ...state.playlists,
-                    [action.payload.id]: action.payload
+                    [action.payload.res.id]: action.payload.res
+                }
+            }
+            return state;
+        case "GET_ALBUM":
+            state = {
+                ...state,
+                albums: {
+                    ...state.albums,
+                    [action.payload.res.id]: action.payload.res
                 }
             }
             return state;

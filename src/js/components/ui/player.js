@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Switch, Icon, Slider, Button } from 'antd';
+import { Switch, Icon, Slider, Button, Modal } from 'antd';
 import DroppableItem from './droppableitem'
 
 
@@ -44,7 +44,7 @@ class Player extends React.Component {
             <div className={this.state.menuActive ? "player-wrapper show-player-menu" : "player-wrapper" }>
                 <div className="player-toggle">
                     <div className="player-toggle-menu" onClick={ () => {this.toggleMenu()}}>
-                        <span><Icon type="arrows-alt" /></span>
+                        <span><Icon type="bars" /></span>
                     </div>
                     <div className="player-toggle-music">
                         <div className="player-music-slider">
@@ -60,13 +60,19 @@ class Player extends React.Component {
                     </div>
                 </div>
                 <div className="player-item player-control">
-                    <h2 className="player-current-song">50 Cent - In Da Club</h2>
                     <div className="player-navigation">
-                        <div>
-                            <span className="player-nav"><Icon type="step-backward" /></span>
-                            <span className="player-nav"><Icon type="play-circle" /></span>
-                            <span className="player-nav"><Icon type="step-forward" /></span>
+                        <span className="player-nav"><Icon type="step-backward" /></span>
+                        <span className="player-nav player-nav-play"><Icon type="play-circle-o" /></span>
+                        <span className="player-nav"><Icon type="step-forward" /></span>
+                    </div>
+                </div>
+                <div className="player-item player-playlist">
+                    <div className="player-playlist-wrapper">
+                        <div className="player-playlist-cat">
+                            <h5 className="text-player-playerlist-cat">Songs</h5>
+                            <h5 className="text-player-playerlist-cat"><Icon type="clock-circle-o" /> Time</h5>
                         </div>
+                        <DroppableItem />
                     </div>
                 </div>
                 <div className="player-item player-settings">
@@ -81,20 +87,9 @@ class Player extends React.Component {
                         </div>
                     </div>
                     <div className="player-settings-tools">
-                        <Button className="player-save-playlist" shape="circle" icon="save" ghost  />
+                        <Icon className="player-icon" type="delete" />
+                        <Icon className="player-icon" type="save" />
                     </div>
-                </div>
-                <div className="player-item player-playlist">
-                    <div className="player-playlist-wrapper">
-                        <div className="player-playlist-cat">
-                            <h5 className="text-player-playerlist-cat">Song</h5>
-                            <h5 className="text-player-playerlist-cat"><Icon type="clock-circle-o" /> Time</h5>
-                        </div>
-                        <DroppableItem />
-                    </div>
-                </div>
-                <div className="player-item player-cover">
-                    <div className="player-cover-img">COVER</div>
                 </div>
             </div>
         )

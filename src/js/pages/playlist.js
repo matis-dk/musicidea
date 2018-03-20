@@ -11,25 +11,48 @@ import * as actionContent from '../store/actions/action_content'
 
 class Playlist extends React.Component {
 
-    state = {
-        playlistID: this.props.match.params.id,
-        playlistOwner: this.props.match.params.owner
-    }
+    componentDidMount () {
+        console.log(this.props)
+        let method, type, msg, id, owner;
 
-    componentWillMount() {
-        this.props.getPlaylist(
+        if (this.props.match.params.type == "playlist") {
+            id = this.props.match.params.owner;
+            method = "getPlaylist"
+            type = "GET_PLAYLIST"
+            msg = "Vi kunne ikke hente denne playliste"
+            owner = this.props.match.params.id;
+        } else {
+            id = this.props.match.params.id;
+            method = "getAlbum"
+            type = "GET_ALBUM"
+            msg = "Vi kunne ikke hente dette album"
+            owner = null;
+        }
+
+        this.props.getArtistData(
             this.props.store.spotify.init,
-            this.props.history,
-            this.state.playlistID,
-            this.state.playlistOwner
+            id,
+            method,
+            type,
+            msg,
+            owner
         );
+
     }
 
     render () {
 
-        let playlists     = this.props.store.content.playlists;            // current playlists in the store
-        let playlist      = playlists[this.state.playlistID];              // the actually playlist
+        let playlists, playlist;
 
+        if (this.props.match.params.type == "playlist") {
+            playlists     = this.props.store.content.playlists;                 // current playlists in the store
+            playlist      = playlists[this.props.match.params.id];              // the actually playlist
+        } else {
+            playlists     = this.props.store.content.albums;                     // current albums in the store
+            playlist      = playlists[this.props.match.params.id];              // the actually playlist
+        }
+        
+        let options       = {nr: true, song:true, artist:true, time:true, settings:true};
 
         return (
             <div className="container">
@@ -39,9 +62,9 @@ class Playlist extends React.Component {
                         playlist ?
                         <Fragment>
                             <PlaylistDescription playlist={playlist} />
-                            <Musiclist playlist={playlist} />
+                            <Musiclist playlist={playlist.tracks.items} options={options} />
                         </Fragment> :
-                        <div></div>
+                        null
                     }
 
                 </div>
