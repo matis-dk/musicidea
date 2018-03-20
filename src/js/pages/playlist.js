@@ -9,26 +9,12 @@ import * as actionContent from '../store/actions/action_content'
 
 //==================================================================
 
+let playlistCurrently = null;
+let options       = {nr: true, song:true, artist:true, time:true, settings:true};
+
 class Playlist extends React.Component {
 
-    componentDidMount () {
-        console.log(this.props)
-        let method, type, msg, id, owner;
-
-        if (this.props.match.params.type == "playlist") {
-            id = this.props.match.params.owner;
-            method = "getPlaylist"
-            type = "GET_PLAYLIST"
-            msg = "Vi kunne ikke hente denne playliste"
-            owner = this.props.match.params.id;
-        } else {
-            id = this.props.match.params.id;
-            method = "getAlbum"
-            type = "GET_ALBUM"
-            msg = "Vi kunne ikke hente dette album"
-            owner = null;
-        }
-
+    startFetching (id, method, type, msg, owner) {
         this.props.getArtistData(
             this.props.store.spotify.init,
             id,
@@ -37,36 +23,52 @@ class Playlist extends React.Component {
             msg,
             owner
         );
-
     }
 
     render () {
 
-        let playlists, playlist;
+        let playlist;
 
-        if (this.props.match.params.type == "playlist") {
-            playlists     = this.props.store.content.playlists;                 // current playlists in the store
-            playlist      = playlists[this.props.match.params.id];              // the actually playlist
-        } else {
-            playlists     = this.props.store.content.albums;                     // current albums in the store
-            playlist      = playlists[this.props.match.params.id];              // the actually playlist
+        let paramsID  = this.props.match.params.id;
+        let paramsType= this.props.match.params.type;
+
+        let store     = this.props.store;
+
+        if (paramsType == "playlist") {
+            if ( store.content.playlists[paramsID] ) {
+                playlist = store.content.playlists[paramsID];
+            } else if (playlistCurrently !== paramsID) {
+                //this.startFetching(id, method, type, msg, owner);     <- argument order
+                this.startFetching(this.props.match.params.owner, "getPlaylist", "GET_PLAYLIST", "Vi kunne ikke hente denne playliste", paramsID);
+
+                playlistCurrently = paramsID;
+            }
         }
-        
-        let options       = {nr: true, song:true, artist:true, time:true, settings:true};
+
+        if (paramsType == "albums") {
+            if ( store.content.albums[paramsID] ) {
+                playlist = store.content.albums[paramsID];
+            } else if (playlistCurrently !== paramsID) {
+                //this.startFetching(id, method, type, msg, owner);     <- argument order
+                this.startFetching(paramsID, "getAlbum", "GET_ALBUM", "Vi kunne ikke hente dette album", null);
+
+                playlistCurrently = paramsID;
+            }
+        }
+
+
 
         return (
             <div className="container">
                 <div className="container-item" id="playlist">
-
                     {
                         playlist ?
                         <Fragment>
                             <PlaylistDescription playlist={playlist} />
                             <Musiclist playlist={playlist.tracks.items} options={options} />
-                        </Fragment> :
-                        null
-                    }
+                        </Fragment> : null
 
+                    }
                 </div>
             </div>
         )

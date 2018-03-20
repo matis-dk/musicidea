@@ -6,15 +6,24 @@ import { Link } from 'react-router-dom';
 
 import * as actionUsers from '../store/actions/action_user'
 
+let userCurrently = null;
 
 class Profile extends React.Component {
 
-    componentDidMount () {
-        this.props.getUserPlaylists(this.props.store.spotify.init);
-        this.props.getMyTopArtists(this.props.store.spotify.init);
-    }
-
     render () {
+
+        if (this.props.store.user.userId !== userCurrently) {
+
+            userCurrently = this.props.store.user.userId;
+
+            // Fetching
+            this.props.getUserPlaylists(this.props.store.spotify.init);
+            this.props.getMyTopArtists(this.props.store.spotify.init);
+
+            return null;
+        }
+
+
         return (
             <div className="container">
                 <div className="container-item" id="profile">

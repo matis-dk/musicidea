@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
@@ -6,12 +6,16 @@ import { Link } from 'react-router-dom'
 import * as actionContent from '../store/actions/action_content'
 import Musiclist from '../components/ui/musiclist'
 
-let artistID;
+import CompAlbum from '../components/ui/compAlbum'
+import CompSimilar from '../components/ui/compSimilar'
+
+import userdefault from '../../img/user-default.svg'
+
+let artistCurrently = null;
 
 class Artist extends React.Component {
 
-    componentDidMount () {
-
+    startFetching (artistID) {
         this.props.getArtistData(
             this.props.store.spotify.init,
             artistID,
@@ -45,84 +49,51 @@ class Artist extends React.Component {
             "US"
         );
 
-
-        // Top tracks for a specific artist
-        // Artists similar to a specific artist
     }
-
 
     render () {
 
-        let artists     = this.props.store.content.artists;
-        artistID        = this.props.match.params.id;
+        let artists         = this.props.store.content.artists;
+        let artistID        = this.props.match.params.id;
 
-
-        // Checking objects nested properties
         if (artists.hasOwnProperty(artistID) == false) {
-            console.log("ENTERING 1")
-            return <div></div>
+
+            if (artists.hasOwnProperty(artistID) !== artistCurrently) {
+
+                artistCurrently = artistID;
+
+                console.log("ENTERING 1 - fetching artist data")
+                this.startFetching (artistID);
+            }
+
+            return null;
         }
 
-        if ( (artists[artistID].hasOwnProperty("albums") == false) ||
-             (artists[artistID].hasOwnProperty("id") == false) ||
-             (artists[artistID].hasOwnProperty("relatedArtists") == false)  ) {
-            console.log("ENTERING 2")
-            return <div></div>
-        }
 
         return (
             <div className="container">
-                {   console.log("ENTERING 3") }
                 <div className="container-item" id="artist">
                     <div className="artist-content">
                         <div className="artist-backdrop-container">
-                            <div className="artist-backdrop" style={{backgroundImage: `url(${artists[artistID].images[0].url})`}}>
-                                <div className="artist-img-overlay"></div>
-                                <h1 className="artist-h1">{artists[artistID].name}</h1>
-                            </div>
-                            <div className="artist-toptracks">
-                                <h2 className="artist-toptracks-header">Top tracks</h2>
-                                {
-                                    artists[artistID].hasOwnProperty("topTracks") ?
-                                    <Musiclist playlist={artists[artistID].topTracks} options={{nr: true, song:true, time: true}} /> :
-                                    <div></div>
-                                }
-                            </div>
+                            {   artists[artistID].hasOwnProperty("id") ?
+                                <div className="artist-backdrop" style={{backgroundImage: `url(${ artists[artistID].images[0] ? artists[artistID].images[0].url : userdefault })`}}>
+                                    <div className="artist-img-overlay"></div>
+                                    <h1 className="artist-h1">{artists[artistID].name}</h1>
+                                </div> : null
+                            }
+                            {
+                                artists[artistID].hasOwnProperty("topTracks") ?
+                                <div className="artist-toptracks">
+                                    <h2 className="artist-toptracks-header">Top tracks</h2>
+                                    <Musiclist playlist={artists[artistID].topTracks} options={{nr: true, song:true, time: true}} />
+                                </div> : null
+                            }
                         </div>
                         <div className="artist-albums">
-                            <h2 className="artist-album-header">Albums</h2>
-                            <hr/>
-                            <ul className="artist-album-list">
-                                {
-                                    artists[artistID].albums
-                                        .filter((item) => (item.album_type == "album" && item.album_group == "album") )
-                                        .map((album) => (
-                                            <li key={album.id} className="artist-album-item" >
-                                                <Link to={"/playlist/" + artistID + "/album/" + album.id}>
-                                                    <img className="artist-album-image" src={album.images[0].url} alt=""/>
-                                                </Link>
-                                                <p className="artist-album-date">{parseFloat(album.release_date)}</p>
-                                                <h3 className="artist-album-name">{album.name}</h3>
-                                            </li>
-                                        ))
-                                }
-                            </ul>
+                            <CompAlbum artists={artists} artistID={artistID} />
                         </div>
                         <div className="artist-similar">
-                            <h2 className="artist-album-header">Related artists</h2>
-                            <hr/>
-                            <ul>
-                                {
-                                    artists[artistID].relatedArtists
-                                        .map((relatedArtist) => (
-                                            <li key={relatedArtist.id}>
-                                                <Link to={`/artist/${relatedArtist.id}`}>
-                                                    <p>{relatedArtist.name}</p>
-                                                </Link>
-                                            </li>
-                                        ))
-                                }
-                            </ul>
+                            <CompSimilar artists={artists} artistID={artistID} />
                         </div>
                     </div>
                 </div>
