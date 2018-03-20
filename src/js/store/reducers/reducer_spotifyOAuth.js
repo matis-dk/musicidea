@@ -14,19 +14,26 @@ function reducer_spotifyOAuth (state = stateInit, action) {
                 init: action.payload
             }
             return state;
-        case "SPOTIFY_GET_TOKEN":
+        case "SPOTIFY_SET_URL_TOKEN":
             state = {
                 ...state,
                 token: action.payload
             }
             return state;
-        case "SPOTIFY_SET_TOKEN":
+        case "SPOTIFY_SET_LOCALSTORAGE_TOKEN":
+            state = {
+                ...state,
+                token: window.localStorage.getItem('token')
+            }
+            return state;
+        case "SPOTIFY_SET_VALIDATED_TOKEN":
             state = {
                 ...state
             }
             state.init.setAccessToken(state.token);
             return state;
         case "SPOTIFY_TOKEN_SUCCESS":
+            window.localStorage.setItem('token', state.token);
             state = {
                 ...state,
                 token_validated: true,
@@ -34,6 +41,7 @@ function reducer_spotifyOAuth (state = stateInit, action) {
             }
             return state;
         case "SPOTIFY_TOKEN_FAILED":
+            window.localStorage.removeItem('token');
             state = {
                 ...state,
                 token_validated: false,

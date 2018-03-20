@@ -45,7 +45,7 @@ class Playlist extends React.Component {
             }
         }
 
-        if (paramsType == "albums") {
+        if (paramsType == "album") {
             if ( store.content.albums[paramsID] ) {
                 playlist = store.content.albums[paramsID];
             } else if (playlistCurrently !== paramsID) {

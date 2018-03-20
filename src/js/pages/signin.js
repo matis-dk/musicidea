@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { Button, Link, Icon, Modal } from 'antd';
 
-import { openNotification } from '../utility/utility'
 
 import * as spotifyOAuth from '../store/actions/action_spotifyOAuth'
 
@@ -18,6 +17,10 @@ class Signin extends React.Component {
 
     state = {
         modalVisible: false
+    }
+
+    setModalVisible(modalVisible) {
+        this.setState({ modalVisible });
     }
 
     // Creating login URI
@@ -55,35 +58,39 @@ class Signin extends React.Component {
     }
 
 
-    isTokenAvailabel = () => {
-        // Enabling / disabling signin button based on hash fragment
-        if (!this.props.location.hash) {
-            this.props.history.replace('/');
-            return true
-        };
+    disableSignin = () => {
 
-        // Extracting token from url if availabel
-        if (!this.props.store.spotify.token) {
-            this.props.spotifyGetToken(this.props.location.hash);
+        // Looking for token in store
+        if (this.props.store.spotify.token) {
+            return false
         }
 
-        return false;
+        // Looking for token in localstorage
+        if (localStorage.getItem('token') ) {
+            this.props.spotifySetTokenFromLocalStorage();
+            return false;
+        }
+
+        // Looking for token in URL
+        if (this.props.location.hash ) {
+            this.props.spotifySetTokenFromURL(this.props.location.hash);
+            //this.props.history.replace('/');
+            return false
+        };
+
+        return true;
     }
 
 
     // Trying to login
     handleLogin = () => {
-        this.props.spotifyValidateToken(
-            this.props.store.spotify.token,
-            openNotification);
+        this.props.spotifyValidateToken(this.props.store.spotify.token);
 
         // Adjusting URL
         this.props.history.replace('/');
     }
 
-    setModalVisible(modalVisible) {
-        this.setState({ modalVisible });
-    }
+
 
     render () {
         return (
@@ -97,7 +104,14 @@ class Signin extends React.Component {
                             <Button type="primary" icon="form" size="large" className="signin-buttons">
                                 <a className="signin-spotify-button" href={this.getLoginUri()}>Log på Spotify</a>
                             </Button>
-                            <Button type="primary" icon="poweroff" size="large" className="signin-buttons" loading={this.props.store.spotify.isLoading} onClick={this.handleLogin} disabled={this.isTokenAvailabel()}>
+                            <Button
+                                type="primary"
+                                icon="poweroff"
+                                size="large"
+                                className="signin-buttons"
+                                loading={this.props.store.spotify.isLoading}
+                                onClick={this.handleLogin}
+                                disabled={this.disableSignin()}>
                                 Log på MusicIdea
                             </Button>
                         </div>
@@ -125,10 +139,5 @@ class Signin extends React.Component {
 }
 
 
-function mapStateToProps (store) {
-    return {
-        store: store
-    };
-}
 
-export default connect(mapStateToProps, { ...spotifyOAuth })(withRouter(Signin))
+export default connect(store => {return {store: store }}, { ...spotifyOAuth })(withRouter(Signin))

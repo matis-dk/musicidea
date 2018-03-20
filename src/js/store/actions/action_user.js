@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-import { sortArrayOfObjects } from '../../utility/utility';
+import { openNotification, sortArrayOfObjects } from '../../utility/utility'
 
 export function getDataInit (spotifyAPI) {
         return dispatch => {
@@ -22,7 +20,7 @@ export function getDataInit (spotifyAPI) {
                     })
                 })
                 .catch (err => {
-                    console.log("FAILED - getMe")
+                    openNotification("Fejl", "Vi kunne ikke hente dine bruger oplysninger", "frown")
                 })
         }
 };
@@ -31,14 +29,16 @@ export function getMyTopArtists (spotifyAPI) {
     return dispatch => {
         spotifyAPI.getMyTopArtists()
             .then(res => {
-                console.log(sortArrayOfObjects)
+
+                //console.log(sortArrayOfObjects)
+
                 dispatch({
                     type: "ADD_USER_TOP_ARTISTS",
                     payload: res.items
                 })
             })
             .catch (err => {
-                console.log("FAILED - getMyTopArtists")
+                openNotification("Fejl", "Vi kunne ikke hente dine mest populære kunstere", "frown")
             })
     }
 }
@@ -53,7 +53,7 @@ export function getUserPlaylists (spotifyAPI) {
                 })
             })
             .catch (err => {
-                console.log("FAILED - getUserPlaylists")
+                openNotification("Fejl", "Vi kunne ikke hente din playliste", "frown")
             })
     }
 }

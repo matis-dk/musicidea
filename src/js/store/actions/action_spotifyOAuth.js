@@ -1,18 +1,26 @@
 import axios from 'axios';
+
 import Spotify from 'spotify-web-api-js';
+
+import { openNotification } from '../../utility/utility'
 
 
 //==================================================================
 
-export function spotifyGetToken(url) {
+export function spotifySetTokenFromURL(url) {
     return {
-        type: "SPOTIFY_GET_TOKEN",
+        type: "SPOTIFY_SET_URL_TOKEN",
         payload: url.match(/\#(?:access_token)\=([\S\s]*?)\&/)[1]
     }
 };
 
+export function spotifySetTokenFromLocalStorage(url) {
+    return {
+        type: "SPOTIFY_SET_LOCALSTORAGE_TOKEN"
+    }
+};
 
-export function spotifyValidateToken(token, openNotification) {
+export function spotifyValidateToken(token) {
     const spotifyValidationUrl = "https://api.spotify.com/v1/me";
 
     return dispatch => {
@@ -42,7 +50,7 @@ export function spotifyValidateToken(token, openNotification) {
             })
 
             dispatch({
-                type: "SPOTIFY_SET_TOKEN"
+                type: "SPOTIFY_SET_VALIDATED_TOKEN"
             })
 
             dispatch({
