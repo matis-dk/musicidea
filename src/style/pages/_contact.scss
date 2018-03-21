@@ -1,0 +1,16 @@
+.about-links {
+    display: flex;
+    align-items: center;
+
+    > span {
+        color:  $c-w-5;
+        transition: 0.3s;
+    }
+}
+
+.about-links:hover {
+
+    > span {
+        color: $c-t-1 !important;
+    }
+}
