@@ -4,7 +4,6 @@ import logo from '../../../img/musicidea-logo3-white.svg'
 
 import { Avatar, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
-import Immutable from 'immutable';
 
 
 //==================================================================

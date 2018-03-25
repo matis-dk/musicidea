@@ -15,7 +15,7 @@ class Home extends React.Component {
             this.props.getDataInit(store.spotify.init)
         }
 
-        this.props.playerPlay(store.spotify.init);
+      //  this.props.playerPlay(store.spotify.init);
     }
 
     render () {
