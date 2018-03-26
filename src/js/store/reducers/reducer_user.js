@@ -6,6 +6,7 @@ let stateInit = {
     userSpotifyProfile: "",
     userCountry: "",
     userImages: [],
+    userDevices: {},
     userPlaylists: [],
     userFollowers: [],
     userTopArtists: [],
@@ -18,6 +19,18 @@ function reducer_user (state = stateInit, action) {
             state = {
                 ...state,
                 ...action.payload
+            }
+            return state;
+        case "ADD_USER_DEVICES":
+
+            let devices = action.payload.reduce(function (total, device) {
+                total[device.id] = device;
+                return total
+            }, {})
+
+            state = {
+                ...state,
+                userDevices: devices
             }
             return state;
         case "ADD_USER_TOP_ARTISTS":

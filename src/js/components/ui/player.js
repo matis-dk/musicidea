@@ -3,6 +3,11 @@ import React from 'react';
 import { Switch, Icon, Slider, Button, Modal } from 'antd';
 import DroppableItem from './droppableitem'
 
+import * as actionPlayer from '../../store/actions/action_playback'
+
+import { connect } from 'react-redux'
+
+//==================================================================
 
 function formatter(value) {
   return `${value}%`;
@@ -40,6 +45,11 @@ class Player extends React.Component {
     }
 
     render () {
+
+        let spotifyInit         = this.props.store.spotify.init;
+        let playbackPlaying     = this.props.store.playback.playing;
+        let playbackQueue       = this.props.store.playback.queue;
+
         return (
             <div className={this.state.menuActive ? "player-wrapper show-player-menu" : "player-wrapper" }>
                 <div className="player-toggle">
@@ -61,9 +71,13 @@ class Player extends React.Component {
                 </div>
                 <div className="player-item player-control">
                     <div className="player-navigation">
-                        <span className="player-nav"><Icon type="step-backward" /></span>
-                        <span className="player-nav player-nav-play"><Icon type="play-circle-o" /></span>
-                        <span className="player-nav"><Icon type="step-forward" /></span>
+                        <span className="player-nav"  ><Icon type="step-backward" /></span>
+                        <span
+                            className="player-nav player-nav-play"
+                            onClick={() => { actionPlayer.playerPlay(spotifyInit, playbackQueue) }} >
+                            <Icon type={playbackPlaying ? "play-circle-o" : "pause-circle-o" }/>
+                        </span>
+                        <span className="player-nav"  ><Icon type="step-forward" /></span>
                     </div>
                 </div>
                 <div className="player-item player-playlist">
@@ -97,4 +111,4 @@ class Player extends React.Component {
 }
 
 
-export default Player;
+export default connect(store => {return {store: store }}) (Player)

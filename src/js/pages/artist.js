@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Link } from 'react-router-dom'
 
+import * as actionPlayer from '../store/actions/action_playback'
 import * as actionContent from '../store/actions/action_content'
 import Musiclist from '../components/ui/musiclist'
 
@@ -10,6 +11,8 @@ import CompAlbum from '../components/ui/compAlbum'
 import CompSimilar from '../components/ui/compSimilar'
 
 import userdefault from '../../img/user-default.svg'
+
+//==================================================================
 
 let artistCurrently = null;
 
@@ -69,7 +72,6 @@ class Artist extends React.Component {
             return null;
         }
 
-
         return (
             <div className="container">
                 <div className="container-item" id="artist">
@@ -108,4 +110,4 @@ class Artist extends React.Component {
     <div className="artist-img-overlay"></div>
 </div> */
 
-export default connect(store => {return {store: store }}, { ...actionContent }) (Artist)
+export default connect(store => {return {store: store }}, { ...actionContent, ...actionPlayer }) (Artist)

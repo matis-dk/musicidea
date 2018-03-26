@@ -1,24 +1,11 @@
 import React from 'react';
 import { Icon } from 'antd'
-
 import { Link } from 'react-router-dom'
 
-function convertMsToMin (ms) {
-    let minutes = Math.floor(ms / 60000).toString();
-    let seconds = ((ms % 60000) / 1000).toFixed(0);
+import * as utility from '../../utility/utility'
 
-    if (minutes.length == 1) { minutes = "0" + minutes }
+//==================================================================
 
-    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
-}
-
-function convertMusicNr (index) {
-    index = index + 1;
-    if ( index < 10 ) {
-        return "0" + index
-    }
-    return index
-}
 
 function getArtists (artists) {
     return artists.map((artist) => (
@@ -29,7 +16,8 @@ function getArtists (artists) {
 }
 
 
-const Musiclist = ( {playlist, options} ) => {
+
+const Musiclist = ( {playlist, options, actions} ) => {
     if (options == undefined) {
         options = {}
     }
@@ -55,7 +43,7 @@ const Musiclist = ( {playlist, options} ) => {
                                 <tr key={item.id || item.track.id } className="musiclist-tr" data-current="false">
                                     {options.nr ?
                                         <td className="musiclist-td m-nr-wrap">
-                                            <span className="m-nr"> { convertMusicNr(index) } </span>
+                                            <span className="m-nr"> { utility.convertMusicNr(index) } </span>
                                             <Icon className="musiclist-buttons" type="play-circle-o" />
                                         </td> : null }
                                     { options.song ? <td className="musiclist-td m-song">{ item.name || item.track.name }</td> : null }
@@ -63,18 +51,17 @@ const Musiclist = ( {playlist, options} ) => {
                                         <td className="musiclist-td m-artist-wrapper">
                                             { item.artists ? getArtists(item.artists) : getArtists(item.track.artists) }
                                         </td> : null }
-                                    { options.time ? <td className="musiclist-td m-duration">{convertMsToMin(item.duration_ms || item.track.duration_ms)  }</td> : null }
+                                    { options.time ? <td className="musiclist-td m-duration">{utility.convertMsToMin(item.duration_ms || item.track.duration_ms)  }</td> : null }
                                     { options.settings ?
                                         <td className="musiclist-td m-settings">
                                             <Icon className="musiclist-buttons musiclist-button-show"  type="heart-o" />
-                                            <Icon className="musiclist-buttons"  type="plus-circle-o" />
+                                            <Icon className="musiclist-buttons"  type="plus-circle-o" onClick={() => {actions.addTrackToQueue(item)}} />
                                             <Icon className="musiclist-buttons"  type="share-alt" />
                                         </td> : null }
                                 </tr>
                             )
                         })
                     }
-
 
                 </tbody>
             </table>

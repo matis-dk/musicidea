@@ -2,30 +2,15 @@ import React, { Component } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import DraggableComp from './draggableitem'
+import * as actionPlayer from '../../store/actions/action_playback'
 
-// fake data generator
-const getItems = () => (
-    [{ id: "item-1", content: "Heartbreaker"},
-    { id: "item-2", content: "Bring it all to me"},
-    { id: "item-3", content: "Tonite"},
-    { id: "item-4", content: "Love me (feat. Mase)"},
-    { id: "item-5", content: "If It Isn't Love"},
-    { id: "item-6", content: "Bring it all to me"},
-    { id: "item-7", content: "Tonite"},
-    { id: "item-8", content: "Love me (feat. Mase)"},
-    { id: "item-9", content: "If It Isn't Love"},
-    // { id: "item-10", content: "Bring it all to me"},
-    // { id: "item-11", content: "Tonite"},
-    // { id: "item-12", content: "Love me (feat. Mase)"},
-    // { id: "item-13", content: "If It Isn't Love"},
-    // { id: "item-14", content: "Tonite"},
-    // { id: "item-15", content: "Love me (feat. Mase)"},
-    // { id: "item-16", content: "If It Isn't Love"},
-    // { id: "item-17", content: "Bring it all to me"},
-    // { id: "item-18", content: "Tonite"},
-    // { id: "item-19", content: "Love me (feat. Mase)"},
-    // { id: "item-20", content: "If It Isn't Love"},
-    { id: "item-21", content: "Adorn"}])
+import { connect } from 'react-redux'
+
+// // fake data generator
+// const getItems = () => (
+//         [{ id: "item1", content: "Heartbreaker"},
+//         { id: "item2", content: "Bring it all to me"}]
+//     )
 
 
 // a little function to help us with reordering the result
@@ -45,22 +30,14 @@ const getListStyle = (isDraggingOver) => {
 
 class Droppableitem extends Component {
 
-    state = {
-      items: getItems(),
-    };
-
-
   onDragEnd(result) {
 
     // Dropped outside the list
     if (!result.destination) { return }
 
-    const items = reorder( this.state.items, result.source.index,  result.destination.index );
-
-    this.setState({ items });
-
-    console.log(items)
-
+    // Reordering queue and updating state
+    const items = reorder( this.props.store.playback.queue, result.source.index,  result.destination.index );
+    this.props.playerReorderQueue(items)
   }
 
   render() {
@@ -72,9 +49,7 @@ class Droppableitem extends Component {
                 {(provided, snapshot) => (
                     <div className="item-droppable" ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                         {provided.placeholder}
-
-                        <DraggableComp items={this.state.items} />
-
+                        <DraggableComp items={this.props.store.playback.queue} />
                     </div>
                 )}
 
@@ -85,4 +60,5 @@ class Droppableitem extends Component {
   }
 }
 
-export default Droppableitem;
+
+export default connect(store => {return {store: store }}, { ...actionPlayer }) (Droppableitem)

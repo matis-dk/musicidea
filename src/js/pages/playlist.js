@@ -6,6 +6,7 @@ import PlaylistDescription from '../components/ui/playlistdescription';
 
 
 import * as actionContent from '../store/actions/action_content'
+import * as actionPlayer from '../store/actions/action_playback'
 
 //==================================================================
 
@@ -56,8 +57,6 @@ class Playlist extends React.Component {
             }
         }
 
-
-
         return (
             <div className="container">
                 <div className="container-item" id="playlist">
@@ -65,9 +64,11 @@ class Playlist extends React.Component {
                         playlist ?
                         <Fragment>
                             <PlaylistDescription playlist={playlist} />
-                            <Musiclist playlist={playlist.tracks.items} options={options} />
+                            <Musiclist
+                                playlist={playlist.tracks.items}
+                                options={options}
+                                actions={ {addTrackToQueue: this.props.playerAddTrackToQueue}} />
                         </Fragment> : null
-
                     }
                 </div>
             </div>
@@ -76,4 +77,4 @@ class Playlist extends React.Component {
 }
 
 
-export default connect(store => {return {store: store }}, { ...actionContent }) (Playlist)
+export default connect(store => {return {store: store }}, { ...actionContent, ...actionPlayer }) (Playlist)

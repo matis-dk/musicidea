@@ -201,9 +201,9 @@
 
 //==================================================================
 .player-playlist {
-    height: auto;
+    height: 100%;
     position: relative;
-    flex-grow: 1;
+    overflow-y: auto;
 }
 
     .player-playlist-wrapper {

@@ -32,6 +32,7 @@
     import reducer_spotifyOAuth from './js/store/reducers/reducer_spotifyOAuth';
     import reducer_user from './js/store/reducers/reducer_user';
     import reducer_content from './js/store/reducers/reducer_content';
+    import reducer_playback from './js/store/reducers/reducer_playback';
 
 
 //==================================================================
@@ -40,7 +41,8 @@
     const reducers = combineReducers({
             spotify: reducer_spotifyOAuth,
             user: reducer_user,
-            content: reducer_content
+            content: reducer_content,
+            playback: reducer_playback
     });
 
     const middleware = applyMiddleware(createLogger(), ReduxThunk);
@@ -49,7 +51,7 @@
 
     const store = createStore( reducers, composeEnhancers(middleware) );
 
-
+    window.s = store;
 //==================================================================
 // REACT RENDER
 

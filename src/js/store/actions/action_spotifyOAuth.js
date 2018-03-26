@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import Spotify from 'spotify-web-api-js';
 
-import { openNotification } from '../../utility/utility'
+import { openNotification, initSpotifyPlaybackSDK } from '../../utility/utility'
 
 
 //==================================================================
@@ -20,7 +20,7 @@ export function spotifySetTokenFromLocalStorage(url) {
     }
 };
 
-export function spotifyValidateToken(token) {
+export function spotifyValidateToken(token, updatePlaybackState) {
     const spotifyValidationUrl = "https://api.spotify.com/v1/me";
 
     return dispatch => {
@@ -56,6 +56,8 @@ export function spotifyValidateToken(token) {
             dispatch({
                 type: "MUSICIDEA_LOGIN_ALLOWED"
             })
+
+            initSpotifyPlaybackSDK(token, updatePlaybackState)
 
         })
         .catch((err) => {
