@@ -7,6 +7,7 @@ import { Button, Link, Icon, Modal } from 'antd';
 
 import * as spotifyOAuth from '../store/actions/action_spotifyOAuth'
 import * as actionPlayer from '../store/actions/action_playback'
+import * as actionUser from '../store/actions/action_user'
 
 import logo from '../../img/musicidea-logo.svg';
 import microphone from '../../img/musicidea-logo-microphone.svg'
@@ -85,7 +86,10 @@ class Signin extends React.Component {
 
     // Trying to login
     handleLogin = () => {
-        this.props.spotifyValidateToken(this.props.store.spotify.token, this.props.updatePlaybackState);
+        this.props.spotifyValidateToken(
+            this.props.store.spotify.token,
+            this.props.updatePlaybackState,
+            this.props.getMyDevices);
 
         // Adjusting URL
         this.props.history.replace('/');
@@ -144,4 +148,4 @@ class Signin extends React.Component {
 
 
 
-export default connect(store => {return {store: store }}, { ...spotifyOAuth, ...actionPlayer })(withRouter(Signin))
+export default connect(store => {return {store: store }}, { ...spotifyOAuth, ...actionPlayer, ...actionUser })(withRouter(Signin))

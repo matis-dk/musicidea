@@ -10,21 +10,24 @@ export function updatePlaybackState (state) {
 }
 
 export function playerPlay (spotifyAPI, track) {
+        return (dispatch) => {
 
-        function handleResponse (failed, succeeded) {
-            if (failed == null) {
-                return {
-                    type: "PLAYBACK_PLAYING",
-                    payload: true
-                }
-            }
+
+
+            let call = spotifyAPI.play( {
+                "uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
+            } )
+
+            call.then((res) => {dispatch ({ type: "PLAYBACK_PLAYING" })})
         }
-
-        spotifyAPI.play(
-            {"uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]},
-            handleResponse)
 }
 
+export function playerPause (spotifyAPI, track) {
+
+        spotifyAPI.pause()
+
+        return  { type: "PLAYBACK_PAUSE" }
+}
 
 export function playerReorderQueue (queue) {
     return {
@@ -50,6 +53,36 @@ export function playerRemoveTrackFromQueue (item) {
     }
 }
 
+
+
+export function playerSetRepeat (spotifyAPI, boolean) {
+    return (dispatch) => {
+
+        dispatch ({
+            type: "PLAYBACK_SET_REPEAT",
+            payload: boolean
+       })
+
+        spotifyAPI.setRepeat("track", {})
+            .catch(err => {
+                console.log("error in setRepeat")
+            })
+    }
+}
+
+export function playerSetShuffle (spotifyAPI, boolean) {
+    return (dispatch) => {
+        dispatch ({
+            type: "PLAYBACK_SET_SHUFFLE",
+            payload: boolean
+       })
+
+        spotifyAPI.setShuffle(boolean, {})
+            .catch(err => {
+                console.log("error in setShuffle")
+            })
+    }
+}
 
 
 // next track

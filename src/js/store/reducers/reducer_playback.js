@@ -1,6 +1,6 @@
 let stateInit = {
     current_state: null,
-    playing: false,
+    playing: true,
     queue: [],
     repeat: false,
     shuffle: false,
@@ -14,24 +14,32 @@ function reducer_playback (state = stateInit, action) {
                 ...state,
                 playing: action.payload.paused,
                 repeat: action.payload.repeat_mode,
-                shuffle: action.payload.shuffle,        
+                shuffle: action.payload.shuffle,
                 current_state: action.payload
             }
             return state;
         case "PLAYBACK_PLAYING":
             state = {
                 ...state,
-                playing: action.payload
+                playing: true
             }
             return state;
-        case "PLAYBACK_SET_SHUFFLE":
+        case "PLAYBACK_PAUSE":
             state = {
-                ...state
+                ...state,
+                playing: false
             }
             return state;
         case "PLAYBACK_SET_REPEAT":
             state = {
-                ...state
+                ...state,
+                repeat: action.payload
+            }
+            return state;
+        case "PLAYBACK_SET_SHUFFLE":
+            state = {
+                ...state,
+                shuffle: action.payload
             }
             return state;
         case "PLAYBACK_ADD_TRACK":

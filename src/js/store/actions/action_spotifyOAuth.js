@@ -20,7 +20,7 @@ export function spotifySetTokenFromLocalStorage(url) {
     }
 };
 
-export function spotifyValidateToken(token, updatePlaybackState) {
+export function spotifyValidateToken(token, updatePlaybackState, getMyDevices) {
     const spotifyValidationUrl = "https://api.spotify.com/v1/me";
 
     return dispatch => {
@@ -57,7 +57,7 @@ export function spotifyValidateToken(token, updatePlaybackState) {
                 type: "MUSICIDEA_LOGIN_ALLOWED"
             })
 
-            initSpotifyPlaybackSDK(token, updatePlaybackState)
+            initSpotifyPlaybackSDK(token, updatePlaybackState, getMyDevices)
 
         })
         .catch((err) => {

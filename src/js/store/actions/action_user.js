@@ -22,20 +22,24 @@ export function getDataInit (spotifyAPI) {
                 .catch (err => {
                     openNotification("Fejl", "Vi kunne ikke hente dine bruger oplysninger", "frown")
                 })
-
-
-            spotifyAPI.getMyDevices()
-                .then(res => {
-                    dispatch({
-                        type: "ADD_USER_DEVICES",
-                        payload: res.devices
-                    })
-                })
-                .catch (err => {
-                    openNotification("Fejl", "Vi kunne ikke hente dine afspilningsenheder", "frown")
-                })
         }
 };
+
+export function getMyDevices (spotifyAPI) {
+    return dispatch => {
+
+        spotifyAPI.getMyDevices()
+            .then(res => {
+                dispatch({
+                    type: "ADD_USER_DEVICES",
+                    payload: res.devices
+                })
+            })
+            .catch (err => {
+                openNotification("Fejl", "Vi kunne ikke hente dine afspilningsenheder", "frown")
+            })
+    }
+}
 
 export function getMyTopArtists (spotifyAPI) {
     return dispatch => {

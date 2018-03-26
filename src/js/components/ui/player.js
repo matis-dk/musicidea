@@ -47,8 +47,8 @@ class Player extends React.Component {
     render () {
 
         let spotifyInit         = this.props.store.spotify.init;
-        let playbackPlaying     = this.props.store.playback.playing;
-        let playbackQueue       = this.props.store.playback.queue;
+
+        let playback     = this.props.store.playback;
 
         return (
             <div className={this.state.menuActive ? "player-wrapper show-player-menu" : "player-wrapper" }>
@@ -74,8 +74,10 @@ class Player extends React.Component {
                         <span className="player-nav"  ><Icon type="step-backward" /></span>
                         <span
                             className="player-nav player-nav-play"
-                            onClick={() => { actionPlayer.playerPlay(spotifyInit, playbackQueue) }} >
-                            <Icon type={playbackPlaying ? "play-circle-o" : "pause-circle-o" }/>
+                            onClick={() => { playback.playing ?
+                                this.props.playerPause(spotifyInit, playback.queue) :
+                                this.props.playerPlay(spotifyInit, playback.queue) }} >
+                            <Icon type={playback.playing ? "play-circle-o" : "pause-circle-o" }/>
                         </span>
                         <span className="player-nav"  ><Icon type="step-forward" /></span>
                     </div>
@@ -91,13 +93,19 @@ class Player extends React.Component {
                 </div>
                 <div className="player-item player-settings">
                     <div className="player-switch-wrapper">
-                        <div className="player-settings-switch">
+                        <div className="player-settings-switch" onClick={ () => { this.props.playerSetRepeat(spotifyInit, !playback.repeat) } }>
                             <span className="player-settings-icon"><Icon type="retweet" /></span>
-                            <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />} />
+                            <Switch
+                                checkedChildren={<Icon type="check" />}
+                                unCheckedChildren={<Icon type="cross" />}
+                                checked={Boolean(playback.repeat)} />
                         </div>
-                        <div className="player-settings-switch">
+                        <div className="player-settings-switch" onClick={ () => { this.props.playerSetShuffle(spotifyInit, !playback.shuffle) } }>
                             <span className="player-settings-icon"><Icon type="swap" /></span>
-                            <Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="cross" />}  />
+                            <Switch
+                                checkedChildren={<Icon type="check" />}
+                                unCheckedChildren={<Icon type="cross" />}
+                                checked={Boolean(playback.shuffle)} />
                         </div>
                     </div>
                     <div className="player-settings-tools">
@@ -111,4 +119,4 @@ class Player extends React.Component {
 }
 
 
-export default connect(store => {return {store: store }}) (Player)
+export default connect(store => {return {store: store }}, { ...actionPlayer }) (Player)
