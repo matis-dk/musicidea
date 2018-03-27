@@ -9,35 +9,62 @@ import { connect } from 'react-redux'
 
 import * as spotifyWeb from '../../data/spotifyWeb';
 
+import { openNotification } from '../../utility/utility'
+
 
 //==================================================================
 
-function formatter(value) {
-  return `${value}%`;
-}
+// function formatter(value) {
+//   return `${value}%`;
+// }
 
 
 class Player extends React.Component {
 
     state = {
-        volumeValue: 30,
+        volumeValueTemp: this.props.store.playback.volume,
         volumeHide: true,
         menuActive: false
     }
 
-    volumeControl (e) {
-        console.log(e)
-        let volume = Number(e)
-        if (volume < 10) {
-            volume = "0" + volume;
-        }
+    handleVolume (volume) {
         this.setState({
-            volumeValue: volume,
+            volumeValueTemp: volume,
             volumeHide: false
         })
     }
 
-    toggleMenu() {
+    handleVolumeAfter (volume) {
+        this.setState({
+            volumeHide: true
+        });
+        this.props.playerSetVolume(this.props.store.spotify.device_id , volume);
+
+        // Need a timer to hide volumeValueTemp pointer - Redux only have the old value yet
+        setTimeout(() => {
+            this.setState({
+                volumeValueTemp: this.props.store.playback.volume
+            })
+        }, 500)
+    }
+
+    handlePlay () {
+        let playback     = this.props.store.playback;
+
+        if (playback.current_state == null) {
+            if (playback.queue.length == 0) {
+                openNotification("Mangler spilleliste", "Vi vil super gerne spille noget, men du skal først lige tilføje det til spillelisten")
+                return;
+            }
+            // SONG SELECTION IN QUEUE? FIX LATER
+            this.props.playerPlay(this.props.store.spotify.device_id, playback.queue[0].uri)
+            return;
+            //==================================================================
+        }
+        this.props.playerPlay(this.props.store.spotify.device_id, playback.current_state.track_window.current_track.uri)
+    }
+
+    handlePlayerMenu() {
         let newState = {
             ...this.state
         }
@@ -47,14 +74,16 @@ class Player extends React.Component {
         })
     }
 
+
     render () {
 
         let playback     = this.props.store.playback;
+        let volume       = this.state.volumeValueTemp;
 
         return (
             <div className={this.state.menuActive ? "player-wrapper show-player-menu" : "player-wrapper" }>
                 <div className="player-toggle">
-                    <div className="player-toggle-menu" onClick={ () => {this.toggleMenu()}}>
+                    <div className="player-toggle-menu" onClick={ () => {this.handlePlayerMenu()}}>
                         <span><Icon type="bars" /></span>
                     </div>
                     <div className="player-toggle-music">
@@ -62,10 +91,12 @@ class Player extends React.Component {
                             <Slider
                                 vertical
                                 tipFormatter={null}
-                                defaultValue={this.state.volumeValue}
-                                onChange={ (e) => {this.volumeControl(e)} }
-                                onAfterChange={ () => {this.setState({ volumeHide: true })} }/>
-                            <h1 className={this.state.volumeHide ? "player-music-volume hide-volumebar" : "player-music-volume" } >{this.state.volumeValue}</h1>
+                                defaultValue={volume}
+                                onChange={ (e) => {this.handleVolume(e)} }
+                                onAfterChange={ (e) => { this.handleVolumeAfter(e) } }/>
+                            <h1 className={this.state.volumeHide ? "player-music-volume hide-volumebar" : "player-music-volume" } >
+                                { ((Number(volume) < 10) ? "0" + volume : volume ) }
+                            </h1>
                         </div>
                         <Button type="primary" shape="circle" icon="sound" size="large" />
                     </div>
@@ -76,9 +107,9 @@ class Player extends React.Component {
                         <span
                             className="player-nav player-nav-play"
                             onClick={() => { playback.playing ?
-                                this.props.playerPause(spotifyWeb.init, playback.queue) :
-                                this.props.playerPlay(spotifyWeb.init, playback.queue) }} >
-                            <Icon type={playback.playing ? "play-circle-o" : "pause-circle-o" }/>
+                                this.props.playerPause(this.props.store.spotify.device_id) :
+                                this.handlePlay() }} >
+                            <Icon type={playback.playing ? "pause-circle-o" : "play-circle-o" }/>
                         </span>
                         <span className="player-nav"  ><Icon type="step-forward" /></span>
                     </div>

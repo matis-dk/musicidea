@@ -1,5 +1,3 @@
-import { openNotification } from '../../utility/utility'
-
 import * as spotifyWeb from '../../data/spotifyWeb';
 
 //==================================================================
@@ -11,22 +9,20 @@ export function updatePlaybackState (state) {
     }
 }
 
-export function playerPlay (track) {
-        return (dispatch) => {
+export function playerPlay ( deviceID, uri ) {
+            spotifyWeb.init.play( {
+                "uris": [uri],
+                "device_id": deviceID
+            })
 
-
-
-            let call = spotifyWeb.init.play( {
-                "uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
-            } )
-
-            call.then((res) => {dispatch ({ type: "PLAYBACK_PLAYING" })})
-        }
+            return { type: "PLAYBACK_PLAYING" }
 }
 
-export function playerPause (track) {
+export function playerPause (deviceID) {
 
-        spotifyWeb.init.pause()
+        spotifyWeb.init.pause({
+            "device_id": deviceID
+        })
 
         return  { type: "PLAYBACK_PAUSE" }
 }
@@ -39,11 +35,13 @@ export function playerReorderQueue (queue) {
 }
 
 export function playerAddTrackToQueue (item) {
+    console.log(item)
     return {
         type: "PLAYBACK_ADD_TRACK",
         payload: {
-            id: (item.id || item.track.id ),
-            content: (item.name || item.track.name)
+            timestamp: (+ new Date()),
+            content: (item.name || item.track.name),
+            uri: (item.uri || item.track.uri)
         }
     }
 }
@@ -84,6 +82,19 @@ export function playerSetShuffle (boolean) {
                 console.log("error in setShuffle")
             })
     }
+}
+
+export function playerSetVolume (device_id, volume) {
+        spotifyWeb.init.setVolume(volume, { "device_id": device_id })
+            .catch(err => {
+                console.log("error in setVolume")
+            })
+
+        return {
+            type: "PLAYBACK_SET_VOLUME",
+            payload: volume
+       }
+
 }
 
 

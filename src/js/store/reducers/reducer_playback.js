@@ -1,18 +1,27 @@
 let stateInit = {
     current_state: null,
-    playing: true,
-    queue: [],
+    playing: false,
+    queue: [{
+                timestamp: 15221593129357,
+                content: "Much Wow",
+                uri: "spotify:track:6iKwtIVKmwJg02hik6kz0O"
+            }, {
+                timestamp: 1522159329357,
+                content: "Wall Fuck",
+                uri: "spotify:track:1OraV7qX8LezL3qcUrK3WH"
+            }],
     repeat: false,
     shuffle: false,
-    volume: 0
+    volume: 30
 }
+
 
 function reducer_playback (state = stateInit, action) {
     switch (action.type) {
         case "PLAYBACK_STATE_UPDATE":
             state = {
                 ...state,
-                playing: action.payload.paused,
+                playing: !action.payload.paused,
                 repeat: action.payload.repeat_mode,
                 shuffle: action.payload.shuffle,
                 current_state: action.payload
@@ -54,10 +63,13 @@ function reducer_playback (state = stateInit, action) {
                 queue: [...action.payload]
             }
             return state;
-        default:
+        case "PLAYBACK_SET_VOLUME":
             state = {
-                ...state
+                ...state,
+                volume: action.payload
             }
+            return state;
+        default:
             return state;
     }
 

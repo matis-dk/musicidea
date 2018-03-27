@@ -12,7 +12,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 export default ( { items } ) => {
 
     return items.map((item, index) => (
-        <Draggable key={item.id} draggableId={item.id} index={index}>
+        <Draggable key={item.timestamp} draggableId={item.timestamp} index={index}>
 
             {(provided, snapshot) => (
               <div className="item-draggable">
