@@ -7,6 +7,9 @@ import * as actionPlayer from '../../store/actions/action_playback'
 
 import { connect } from 'react-redux'
 
+import * as spotifyWeb from '../../data/spotifyWeb';
+
+
 //==================================================================
 
 function formatter(value) {
@@ -46,8 +49,6 @@ class Player extends React.Component {
 
     render () {
 
-        let spotifyInit         = this.props.store.spotify.init;
-
         let playback     = this.props.store.playback;
 
         return (
@@ -75,8 +76,8 @@ class Player extends React.Component {
                         <span
                             className="player-nav player-nav-play"
                             onClick={() => { playback.playing ?
-                                this.props.playerPause(spotifyInit, playback.queue) :
-                                this.props.playerPlay(spotifyInit, playback.queue) }} >
+                                this.props.playerPause(spotifyWeb.init, playback.queue) :
+                                this.props.playerPlay(spotifyWeb.init, playback.queue) }} >
                             <Icon type={playback.playing ? "play-circle-o" : "pause-circle-o" }/>
                         </span>
                         <span className="player-nav"  ><Icon type="step-forward" /></span>
@@ -93,14 +94,14 @@ class Player extends React.Component {
                 </div>
                 <div className="player-item player-settings">
                     <div className="player-switch-wrapper">
-                        <div className="player-settings-switch" onClick={ () => { this.props.playerSetRepeat(spotifyInit, !playback.repeat) } }>
+                        <div className="player-settings-switch" onClick={ () => { this.props.playerSetRepeat(spotifyWeb.init, !playback.repeat) } }>
                             <span className="player-settings-icon"><Icon type="retweet" /></span>
                             <Switch
                                 checkedChildren={<Icon type="check" />}
                                 unCheckedChildren={<Icon type="cross" />}
                                 checked={Boolean(playback.repeat)} />
                         </div>
-                        <div className="player-settings-switch" onClick={ () => { this.props.playerSetShuffle(spotifyInit, !playback.shuffle) } }>
+                        <div className="player-settings-switch" onClick={ () => { this.props.playerSetShuffle(spotifyWeb.init, !playback.shuffle) } }>
                             <span className="player-settings-icon"><Icon type="swap" /></span>
                             <Switch
                                 checkedChildren={<Icon type="check" />}

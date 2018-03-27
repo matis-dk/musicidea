@@ -11,7 +11,7 @@ class Home extends React.Component {
     componentDidMount() {
         const store = this.props.store;
         if ( store.spotify.loginAllowed &&  (store.user.userId == "")) {
-            this.props.getDataInit(store.spotify.init)
+            this.props.getDataInit()
         }
 
 

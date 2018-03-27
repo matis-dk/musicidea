@@ -11,8 +11,7 @@ import { Link, withRouter } from 'react-router-dom'
 class Header extends React.Component {
 
     state = {
-        menuActive: false,
-        menuPage: true
+        menuActive: false
     }
 
     componentDidMount () {

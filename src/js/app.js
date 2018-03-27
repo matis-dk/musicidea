@@ -1,12 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as spotifyOAuth from './store/actions/action_spotifyOAuth'
-
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
-import  { Route, Redirect, Switch } from 'react-router-dom'
-
-import * as Application from './data/applicationLogic'
+import  { Route, Switch } from 'react-router-dom'
 
 import Home from './pages/home'
 import Signin from './pages/signin'
@@ -17,8 +12,6 @@ import Playlist from './pages/playlist'
 import Artist from './pages/artist'
 import Contact from './pages/contact'
 
-import Template from './pages/template'
-
 import Header from './components/layout/header'
 import Player from './components/ui/player'
 
@@ -26,8 +19,6 @@ import Player from './components/ui/player'
 //==================================================================
 
 class App extends React.Component {
-
-
 
     render () {
 
@@ -37,14 +28,16 @@ class App extends React.Component {
                 <main id="main">
                     <Header store={this.props.store} />
                     <Switch>
-                        <Route exact path='/' component={Home}/>
-                        <Route path='/about' component={About}/>
                         <Route path='/profile' component={Profile}/>
+
+                        <Route exact path='/' component={Home}/>
                         <Route path='/explore' component={Explore}/>
+                        <Route path='/contact' component={Contact}/>
+                        <Route path='/about' component={About}/>
+
                         <Route path='/playlist/:owner/:type/:id' component={Playlist}/>
                         <Route path='/artist/:id' component={Artist}/>
-                        <Route path='/contact' component={Contact}/>
-                        <Route path='/template' component={Template}/>
+
                         <Route path='/' component={Home}/>
                     </Switch>
                     <Player />

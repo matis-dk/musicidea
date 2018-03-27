@@ -1,8 +1,11 @@
 import { openNotification } from '../../utility/utility'
 
-export function getArtistData(spotifyAPI, id = "", method, type = "",  msg = "Sorry, vi arbejder på det", params = "") {
+import * as spotifyWeb from '../../data/spotifyWeb';
+
+
+export function getArtistData(id = "", method, type = "",  msg = "Sorry, vi arbejder på det", params = "") {
     return dispatch => {
-        spotifyAPI[method](id, params)
+        spotifyWeb.init[method](id, params)
             .then(res => {
                 dispatch({
                     type,

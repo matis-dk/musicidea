@@ -1,5 +1,7 @@
 import { openNotification } from '../../utility/utility'
 
+import * as spotifyWeb from '../../data/spotifyWeb';
+
 //==================================================================
 
 export function updatePlaybackState (state) {
@@ -9,12 +11,12 @@ export function updatePlaybackState (state) {
     }
 }
 
-export function playerPlay (spotifyAPI, track) {
+export function playerPlay (track) {
         return (dispatch) => {
 
 
 
-            let call = spotifyAPI.play( {
+            let call = spotifyWeb.init.play( {
                 "uris": ["spotify:track:4iV5W9uYEdYUVa79Axb7Rh"]
             } )
 
@@ -22,9 +24,9 @@ export function playerPlay (spotifyAPI, track) {
         }
 }
 
-export function playerPause (spotifyAPI, track) {
+export function playerPause (track) {
 
-        spotifyAPI.pause()
+        spotifyWeb.init.pause()
 
         return  { type: "PLAYBACK_PAUSE" }
 }
@@ -55,7 +57,7 @@ export function playerRemoveTrackFromQueue (item) {
 
 
 
-export function playerSetRepeat (spotifyAPI, boolean) {
+export function playerSetRepeat (boolean) {
     return (dispatch) => {
 
         dispatch ({
@@ -63,21 +65,21 @@ export function playerSetRepeat (spotifyAPI, boolean) {
             payload: boolean
        })
 
-        spotifyAPI.setRepeat("track", {})
+        spotifyWeb.init.setRepeat("track", {})
             .catch(err => {
                 console.log("error in setRepeat")
             })
     }
 }
 
-export function playerSetShuffle (spotifyAPI, boolean) {
+export function playerSetShuffle (boolean) {
     return (dispatch) => {
         dispatch ({
             type: "PLAYBACK_SET_SHUFFLE",
             payload: boolean
        })
 
-        spotifyAPI.setShuffle(boolean, {})
+        spotifyWeb.init.setShuffle(boolean, {})
             .catch(err => {
                 console.log("error in setShuffle")
             })

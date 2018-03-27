@@ -17,7 +17,6 @@ class Playlist extends React.Component {
 
     startFetching (id, method, type, msg, owner) {
         this.props.getArtistData(
-            this.props.store.spotify.init,
             id,
             method,
             type,

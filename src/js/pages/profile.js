@@ -19,8 +19,8 @@ class Profile extends React.Component {
             userCurrently = this.props.store.user.userId;
 
             // Fetching
-            this.props.getUserPlaylists(this.props.store.spotify.init);
-            this.props.getMyTopArtists(this.props.store.spotify.init);
+            this.props.getUserPlaylists();
+            this.props.getMyTopArtists();
 
             return null;
         }

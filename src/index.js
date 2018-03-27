@@ -22,7 +22,7 @@
 
 // IMPORT MODULES
 
-    // MODULES
+    // APPLIKATION
     import App from './js/app'
 
     // SCSS STYLES
@@ -51,7 +51,7 @@
 
     const store = createStore( reducers, composeEnhancers(middleware) );
 
-    window.s = store;
+    window.store = store;
 //==================================================================
 // REACT RENDER
 

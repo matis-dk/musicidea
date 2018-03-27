@@ -2,15 +2,13 @@ import React from 'react';
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { Button, Link, Icon, Modal } from 'antd';
-
+import { Button, Icon, Modal } from 'antd';
 
 import * as spotifyOAuth from '../store/actions/action_spotifyOAuth'
 import * as actionPlayer from '../store/actions/action_playback'
 import * as actionUser from '../store/actions/action_user'
 
 import logo from '../../img/musicidea-logo.svg';
-import microphone from '../../img/musicidea-logo-microphone.svg'
 import landingpage from '../../img/landingpage.jpg';
 
 //==================================================================
@@ -60,7 +58,7 @@ class Signin extends React.Component {
     }
 
 
-    disableSignin = () => {
+    disableSignin= () => {
 
         // Looking for token in store
         if (this.props.store.spotify.token) {
@@ -76,7 +74,6 @@ class Signin extends React.Component {
         // Looking for token in URL
         if (this.props.location.hash ) {
             this.props.spotifySetTokenFromURL(this.props.location.hash);
-            //this.props.history.replace('/');
             return false
         };
 
@@ -88,13 +85,11 @@ class Signin extends React.Component {
     handleLogin = () => {
         this.props.spotifyValidateToken(
             this.props.store.spotify.token,
-            this.props.updatePlaybackState,
-            this.props.getMyDevices);
+            this.props.updatePlaybackState
+        );
 
         // Adjusting URL
         this.props.history.replace('/');
-
-
 
     }
 

@@ -20,7 +20,6 @@ class Artist extends React.Component {
 
     startFetching (artistID) {
         this.props.getArtistData(
-            this.props.store.spotify.init,
             artistID,
             "getArtistAlbums",
             "GET_ARTIST_ALBUMS",
@@ -28,7 +27,6 @@ class Artist extends React.Component {
         );
 
         this.props.getArtistData(
-            this.props.store.spotify.init,
             artistID,
             "getArtist",
             "GET_ARTIST",
@@ -36,7 +34,6 @@ class Artist extends React.Component {
         );
 
         this.props.getArtistData(
-            this.props.store.spotify.init,
             artistID,
             "getArtistRelatedArtists",
             "GET_ARTIST_RELATED_ARTISTS",
@@ -44,7 +41,6 @@ class Artist extends React.Component {
         );
 
         this.props.getArtistData(
-            this.props.store.spotify.init,
             artistID,
             "getArtistTopTracks",
             "GET_ARTIST_TOP_TRACKS",

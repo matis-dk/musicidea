@@ -1,19 +1,13 @@
 let stateInit = {
-    init: null,
     token: null,
     token_validated: false,
     isLoading: false,
-    loginAllowed: false
+    loginAllowed: false,
+    device_id: null
 }
 
 function reducer_spotifyOAuth (state = stateInit, action) {
     switch (action.type) {
-        case "SPOTIFY_INIT":
-            state = {
-                ...state,
-                init: action.payload
-            }
-            return state;
         case "SPOTIFY_SET_URL_TOKEN":
             state = {
                 ...state,
@@ -25,12 +19,6 @@ function reducer_spotifyOAuth (state = stateInit, action) {
                 ...state,
                 token: window.localStorage.getItem('token')
             }
-            return state;
-        case "SPOTIFY_SET_VALIDATED_TOKEN":
-            state = {
-                ...state
-            }
-            state.init.setAccessToken(state.token);
             return state;
         case "SPOTIFY_TOKEN_SUCCESS":
             window.localStorage.setItem('token', state.token);
@@ -55,11 +43,18 @@ function reducer_spotifyOAuth (state = stateInit, action) {
                 isLoading: action.payload
             }
             return state;
+        case "SPOTIFY_SET_DEVICE_ID":
+            state = {
+                ...state,
+                device_id: action.payload
+            }
+            return state;
         case "MUSICIDEA_LOGIN_ALLOWED":
             state = {
                 ...state,
                 loginAllowed: true
             }
+            return state;
         default:
             state = {
                 ...state

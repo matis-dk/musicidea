@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import Spotify from 'spotify-web-api-js';
+import { openNotification} from '../../utility/utility'
 
-import { openNotification, initSpotifyPlaybackSDK } from '../../utility/utility'
-
+import * as spotifyWeb from '../../data/spotifyWeb';
+import * as spotifySDK from '../../data/spotifySDK';
 
 //==================================================================
 
@@ -20,8 +20,7 @@ export function spotifySetTokenFromLocalStorage(url) {
     }
 };
 
-export function spotifyValidateToken(token, updatePlaybackState, getMyDevices) {
-    const spotifyValidationUrl = "https://api.spotify.com/v1/me";
+export function spotifyValidateToken(token, updatePlaybackState) {
 
     return dispatch => {
 
@@ -32,40 +31,42 @@ export function spotifyValidateToken(token, updatePlaybackState, getMyDevices) {
 
         axios({
             method: 'get',
-            url: spotifyValidationUrl,
+            url: "https://api.spotify.com/v1/me",
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         })
         .then((res) => {
-            openNotification("Login succesfuld", "Du har nu logget ind med din spotify account", "smile")
+
+            // Initializing spotify web api and playback sdk
+            spotifyWeb.initialize(token);
+            spotifySDK.initialize(token, updatePlaybackState, setDeviceID)
 
             dispatch({
                 type: 'SPOTIFY_TOKEN_SUCCESS'
             });
 
             dispatch({
-                type: "SPOTIFY_INIT",
-                payload: new Spotify()
-            })
-
-            dispatch({
-                type: "SPOTIFY_SET_VALIDATED_TOKEN"
-            })
-
-            dispatch({
                 type: "MUSICIDEA_LOGIN_ALLOWED"
             })
 
-            initSpotifyPlaybackSDK(token, updatePlaybackState, getMyDevices)
+            function setDeviceID (deviceID) {
+                dispatch({
+                    type: "SPOTIFY_SET_DEVICE_ID",
+                    payload: deviceID
+                })
+            }
+
+            openNotification("Login succesfuld", "Du har nu logget ind med din spotify account", "smile")
 
         })
         .catch((err) => {
-            openNotification("Login fejlede", "Vi kunne ikke logge ind på din spotify account", "frown")
-
             dispatch({
                 type: 'SPOTIFY_TOKEN_FAILED'
             })
+
+            openNotification("Login fejlede", "Vi kunne ikke logge ind på din spotify account", "frown")
+
         })
     };
 };

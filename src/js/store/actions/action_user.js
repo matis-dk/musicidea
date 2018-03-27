@@ -1,9 +1,10 @@
 import { openNotification, sortArrayOfObjects } from '../../utility/utility'
+import * as spotifyWeb from '../../data/spotifyWeb';
 
-export function getDataInit (spotifyAPI) {
+export function getDataInit () {
         return dispatch => {
 
-            spotifyAPI.getMe()
+            spotifyWeb.init.getMe()
                 .then(res => {
                     dispatch({
                         type: "ADD_USER_DATA",
@@ -25,10 +26,10 @@ export function getDataInit (spotifyAPI) {
         }
 };
 
-export function getMyDevices (spotifyAPI) {
+export function getMyDevices () {
     return dispatch => {
 
-        spotifyAPI.getMyDevices()
+        spotifyWeb.init.getMyDevices()
             .then(res => {
                 dispatch({
                     type: "ADD_USER_DEVICES",
@@ -41,9 +42,9 @@ export function getMyDevices (spotifyAPI) {
     }
 }
 
-export function getMyTopArtists (spotifyAPI) {
+export function getMyTopArtists () {
     return dispatch => {
-        spotifyAPI.getMyTopArtists()
+        spotifyWeb.init.getMyTopArtists()
             .then(res => {
 
                 //console.log(sortArrayOfObjects)
@@ -59,9 +60,9 @@ export function getMyTopArtists (spotifyAPI) {
     }
 }
 
-export function getUserPlaylists (spotifyAPI) {
+export function getUserPlaylists () {
     return dispatch => {
-        spotifyAPI.getUserPlaylists()
+        spotifyWeb.init.getUserPlaylists()
             .then(res => {
                 dispatch({
                     type: "ADD_USER_PLAYLISTS",
