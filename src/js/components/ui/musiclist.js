@@ -17,9 +17,17 @@ function getArtists (artists) {
 
 
 
-const Musiclist = ( {playlist, options, actions} ) => {
+const Musiclist = ( {playlist, options, actions, device_id, playlistUri} ) => {
     if (options == undefined) {
         options = {}
+    }
+
+    function handlePlayContext(index) {
+        actions.playerPlayContext(device_id, playlistUri, index)
+    }
+
+    function handlePlayTrack (uri) {
+        actions.playerPlay(device_id, uri)
     }
 
     return (
@@ -38,11 +46,10 @@ const Musiclist = ( {playlist, options, actions} ) => {
 
                     {
                         playlist.map((item, index) => {
-
                             return (
                                 <tr key={item.id || item.track.id } className="musiclist-tr" data-current="false">
                                     {options.nr ?
-                                        <td className="musiclist-td m-nr-wrap">
+                                        <td className="musiclist-td m-nr-wrap" onClick={() => { actions.playerPlayContext ? handlePlayContext(index) : handlePlayTrack(item.uri) }} >
                                             <span className="m-nr"> { utility.convertMusicNr(index) } </span>
                                             <Icon className="musiclist-buttons" type="play-circle-o" />
                                         </td> : null }
@@ -55,7 +62,7 @@ const Musiclist = ( {playlist, options, actions} ) => {
                                     { options.settings ?
                                         <td className="musiclist-td m-settings">
                                             <Icon className="musiclist-buttons musiclist-button-show"  type="heart-o" />
-                                            <Icon className="musiclist-buttons"  type="plus-circle-o" onClick={() => {actions.addTrackToQueue(item)}} />
+                                            <Icon className="musiclist-buttons"  type="plus-circle-o" onClick={() => {actions.playerAddTrackToQueue(item)}} />
                                             <Icon className="musiclist-buttons"  type="share-alt" />
                                         </td> : null }
                                 </tr>

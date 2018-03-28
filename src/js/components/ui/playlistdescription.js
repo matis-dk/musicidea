@@ -3,7 +3,8 @@ import React from 'react';
 import { Button, Radio, Icon } from 'antd';
 
 
-const PlaylistDescription = ({ playlist }) => {
+const PlaylistDescription = ({ playlist, actions, device_id }) => {
+
     return (
         <div className="wrapper-playlist">
             <img className="playlist-image" src={playlist.images[0].url} alt=""/>
@@ -16,8 +17,21 @@ const PlaylistDescription = ({ playlist }) => {
                 </div>
                 <p className="playlist-des-text">{playlist.description}</p>
                 <div className="playlist-buttons">
-                    <Button type="primary" icon="play-circle-o" size="default">Play</Button>
-                    <Button type="primary" icon="plus-circle-o" size="default" className="playlist-buttons-default" >Add to playlist</Button>
+                    <Button type="primary"
+                        icon="play-circle-o"
+                        size="default"
+                        onClick={ () => { actions.playerPlayContext(device_id, playlist.uri, 0) } }
+                        >
+                        Play album
+                    </Button>
+                    <Button type="primary"
+                        icon="plus-circle-o"
+                        size="default"
+                        className="playlist-buttons-default"
+                        onClick={ () => { actions.playerAddPlaylistToQueue(playlist.tracks.items) } }
+                        >
+                        Add to queue
+                    </Button>
                 </div>
             </div>
         </div>

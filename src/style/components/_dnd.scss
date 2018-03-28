@@ -7,11 +7,51 @@
         }
 
             .item-draggable-inner {
-                padding: 1rem 1.56rem;
+                padding: 0.7rem 1.6rem;
                 border-bottom: 1px solid rgba($c-g-1, 0.1);
                 //background-color: rgba($c-b-4, 0.2);
+                display: flex;
+                justify-content: space-between;
+                color: $c-g-3;
             }
 
             .item-draggable-inner:active {
                 background-color: rgba($c-b-4, 0.1);
             }
+
+            .item-draggable-inner:hover {
+                .item-draggable-track-name {
+                    color: $c-t-1;
+                }
+
+                .item-draggable-track-settings {
+                    opacity: 1;
+                }
+            }
+
+                .item-draggable-track-name {
+                    flex: 1;
+                    margin: auto;
+                }
+
+
+                .item-draggable-track-settings {
+                    display: flex;
+                    align-items: center;
+                    opacity: 0;
+
+                    > * {
+                        font-size: .94rem;
+                        cursor: pointer;
+                        transition: color 0.3s;
+                        padding: 0.3rem;
+                    }
+                }
+
+                    .player-icon-danger:hover {
+                        color: red !important;
+                    }
+
+                    .player-icon-primary:hover {
+                        color: $c-t-1 !important;
+                    }

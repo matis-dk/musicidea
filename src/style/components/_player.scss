@@ -175,7 +175,7 @@
 
             .player-settings-icon {
                 padding-right: .63rem;
-                font-size: 1.13rem;
+                font-size: 1rem;
             }
 
             .player-settings-switch > .ant-switch {
@@ -184,13 +184,16 @@
 
     .player-settings-tools {
 
+        > .player-icon {
+            padding-left: .94rem;
+        }
+
     }
 
         .player-icon {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 100;
             color: $c-w-5;
-            padding-left: .94rem;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -214,17 +217,23 @@
             display: flex;
             justify-content: space-between;
             padding: 1rem 1.56rem;
-            padding-right: 2.81rem;
             border-bottom: 1px solid rgba($c-g-1, 0.1);
             color: $c-g-1;
         }
 
+            .text-player-playerlist-cat {
 
-            .player-playlist-cat  > h5 > i {
-                font-weight: 700;
-                padding-right: .31rem;
+                display: flex;
+                align-items: center;
+
+                > .player-icon {
+                    padding-right: .5rem;
+                }
+
+                > .anticon-coffee {
+                    padding-bottom: 3px;
+                }
             }
-
 
 //==================================================================
 // KEYFRAMES

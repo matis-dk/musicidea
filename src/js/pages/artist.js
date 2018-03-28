@@ -58,10 +58,7 @@ class Artist extends React.Component {
         if (artists.hasOwnProperty(artistID) == false) {
 
             if (artists.hasOwnProperty(artistID) !== artistCurrently) {
-
                 artistCurrently = artistID;
-
-                console.log("ENTERING 1 - fetching artist data")
                 this.startFetching (artistID);
             }
 
@@ -83,7 +80,11 @@ class Artist extends React.Component {
                                 artists[artistID].hasOwnProperty("topTracks") ?
                                 <div className="artist-toptracks">
                                     <h2 className="artist-toptracks-header">Top tracks</h2>
-                                    <Musiclist playlist={artists[artistID].topTracks} options={{nr: true, song:true, time: true}} />
+                                    <Musiclist
+                                        playlist={artists[artistID].topTracks}
+                                        options={{nr: true, song:true, time: true}}
+                                        actions={ { playerPlay: this.props.playerPlay, playerAddTrackToQueue: this.props.playerAddTrackToQueue } }
+                                        device_id={this.props.store.spotify.device_id} />
                                 </div> : null
                             }
                         </div>

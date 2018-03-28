@@ -1,5 +1,7 @@
 import * as spotifyWeb from '../../data/spotifyWeb';
 
+import { openNotification, getTimestamp } from '../../utility/utility'
+
 //==================================================================
 
 export function updatePlaybackState (state) {
@@ -9,17 +11,30 @@ export function updatePlaybackState (state) {
     }
 }
 
-export function playerPlay ( deviceID, uri ) {
-            spotifyWeb.init.play( {
-                "uris": [uri],
-                "device_id": deviceID
-            })
+//==================================================================
+// PLAYBACK
+//==================================================================
 
-            return { type: "PLAYBACK_PLAYING" }
+export function playerPlayContext (deviceID, context_uri, offset = 0) {
+        spotifyWeb.init.play( {
+            "context_uri": context_uri,
+            "device_id": deviceID,
+            "offset": {"position": offset}
+        } )
+
+        return { type: "PLAYBACK_PLAYING" }
+}
+
+export function playerPlay ( deviceID, uri ) {
+        spotifyWeb.init.play( {
+            "uris": [uri],
+            "device_id": deviceID
+        })
+
+        return { type: "PLAYBACK_PLAYING" }
 }
 
 export function playerPause (deviceID) {
-
         spotifyWeb.init.pause({
             "device_id": deviceID
         })
@@ -27,6 +42,10 @@ export function playerPause (deviceID) {
         return  { type: "PLAYBACK_PAUSE" }
 }
 
+
+//==================================================================
+// QUEUE
+//==================================================================
 export function playerReorderQueue (queue) {
     return {
         type: "PLAYBACK_REORDERED_QUEUE",
@@ -34,54 +53,84 @@ export function playerReorderQueue (queue) {
     }
 }
 
-export function playerAddTrackToQueue (item) {
-    console.log(item)
+export function playerAddTrackToQueue ( item = {} ) {
+
+    let temp = [{
+        ...item,
+        ...item.track,
+        timestamp: getTimestamp()
+    }]
+
     return {
         type: "PLAYBACK_ADD_TRACK",
-        payload: {
-            timestamp: (+ new Date()),
-            content: (item.name || item.track.name),
-            uri: (item.uri || item.track.uri)
-        }
+        payload: temp
     }
 }
 
-export function playerRemoveTrackFromQueue (item) {
+export function playerAddPlaylistToQueue ( playlist = [] ) {
+    let temp = playlist.map((item, index) => {
+        return {
+            ...item,
+            timestamp: getTimestamp() + index
+        }
+    })
+
+    return {
+        type: "PLAYBACK_ADD_PLAYLIST",
+        payload: temp
+    }
+}
+
+export function playerRemoveTrackFromQueue (id, queue) {
+
+    let temp = queue.filter((item) => {
+        if (item.timestamp == id) { return false }
+        return true
+    })
+
     return {
         type: "PLAYBACK_REMOVE_TRACK",
-        payload: (item.id || item.track.id )
+        payload: temp
+    }
+}
+
+export function playerDeleteQueue () {
+    return {
+        type: "PLAYBACK_DELETE_QUEUE"
     }
 }
 
 
+//==================================================================
+// SETTINGS
+//==================================================================
 
 export function playerSetRepeat (boolean) {
-    return (dispatch) => {
 
-        dispatch ({
-            type: "PLAYBACK_SET_REPEAT",
-            payload: boolean
-       })
+        let repeat = (!boolean ? 'track' : 'off')
 
-        spotifyWeb.init.setRepeat("track", {})
+        spotifyWeb.init.setRepeat(repeat, {})
             .catch(err => {
                 console.log("error in setRepeat")
             })
-    }
+
+        return {
+            type: "PLAYBACK_SET_REPEAT",
+            payload: !boolean
+        }
 }
 
 export function playerSetShuffle (boolean) {
-    return (dispatch) => {
-        dispatch ({
-            type: "PLAYBACK_SET_SHUFFLE",
-            payload: boolean
-       })
 
         spotifyWeb.init.setShuffle(boolean, {})
             .catch(err => {
                 console.log("error in setShuffle")
             })
-    }
+
+        return {
+            type: "PLAYBACK_SET_SHUFFLE",
+            payload: boolean
+        }
 }
 
 export function playerSetVolume (device_id, volume) {
@@ -96,22 +145,3 @@ export function playerSetVolume (device_id, volume) {
        }
 
 }
-
-
-// next track
-// previous track
-// play / pause
-
-// volume change
-// playback position
-
-// toggle repeat
-// toggle shuffle
-
-// create a new playlist
-// rename playlist details
-// delete playlist
-// delete song
-// reorder playlist tracks
-
-// device selection

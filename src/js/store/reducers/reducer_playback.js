@@ -1,15 +1,7 @@
 let stateInit = {
     current_state: null,
     playing: false,
-    queue: [{
-                timestamp: 15221593129357,
-                content: "Much Wow",
-                uri: "spotify:track:6iKwtIVKmwJg02hik6kz0O"
-            }, {
-                timestamp: 1522159329357,
-                content: "Wall Fuck",
-                uri: "spotify:track:1OraV7qX8LezL3qcUrK3WH"
-            }],
+    queue: [],
     repeat: false,
     shuffle: false,
     volume: 30
@@ -22,7 +14,7 @@ function reducer_playback (state = stateInit, action) {
             state = {
                 ...state,
                 playing: !action.payload.paused,
-                repeat: action.payload.repeat_mode,
+                //repeat: ( ( action.payload.repeat_mode > 0 ) ? true : false ),      // disabled temp because of buggy server respond
                 shuffle: action.payload.shuffle,
                 current_state: action.payload
             }
@@ -54,13 +46,31 @@ function reducer_playback (state = stateInit, action) {
         case "PLAYBACK_ADD_TRACK":
             state = {
                 ...state,
-                queue: [...state.queue, action.payload]
+                queue: [...state.queue, ...action.payload]
+            }
+            return state;
+        case "PLAYBACK_ADD_PLAYLIST":
+            state = {
+                ...state,
+                queue: [...state.queue, ...action.payload],
             }
             return state;
         case "PLAYBACK_REORDERED_QUEUE":
             state = {
                 ...state,
                 queue: [...action.payload]
+            }
+            return state;
+        case "PLAYBACK_REMOVE_TRACK":
+            state = {
+                ...state,
+                queue: action.payload
+            }
+            return state;
+        case "PLAYBACK_DELETE_QUEUE":
+            state = {
+                ...state,
+                queue: []
             }
             return state;
         case "PLAYBACK_SET_VOLUME":
@@ -78,22 +88,3 @@ function reducer_playback (state = stateInit, action) {
 
 
 export default reducer_playback;
-
-//
-//
-// PLAYBACK_SET_VOLUME (S)
-//
-// USER_GET_DEVICES (S) ??
-//
-// PLAYBACK_PLAYING (S)
-//
-// PLAYBACK_CURRENT_STATE (S)
-//
-// PLAYBACK_SET_REPEAT (S)       CLIENT LOGIC
-// PLAYBACK_SET_SHUFFLE (S)      CLIENT LOGIC
-//
-//
-// PLAYBACK_NEXT_TRACK (A)       CLIENT LOGIC
-// PLAYBACK_PREVIOUS_TRACK (A)   CLIENT LOGIC
-//
-// PLAYBACK_SET_POSITION   (A)

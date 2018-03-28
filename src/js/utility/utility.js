@@ -41,3 +41,9 @@ export function openNotification (msg = "Ukendt fejl", des = "Noget gik helt gal
         icon: <Icon type={icontype} style={{ color: '#108ee9' }} />,
     });
 }
+
+//==================================================================
+
+export function getTimestamp () {
+    return (+ new Date() + "")
+}

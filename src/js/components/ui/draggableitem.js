@@ -1,34 +1,38 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // change background colour if dragging
-  //background: isDragging ? 'lightgreen' : 'grey',
+import { Icon } from 'antd'
 
-  // styles we need to apply on draggables
-  ...draggableStyle,
-});
+const getItemStyle = (isDragging, draggableStyle) => {
 
-export default ( { items } ) => {
+    return {
+      // change background colour if dragging
+      //background: isDragging ? 'lightgreen' : 'grey',
+
+      // styles we need to apply on draggables
+      ...draggableStyle,
+    };
+}
+
+export default ( { items, playerRemoveTrackFromQueue, playerPlay } ) => {
 
     return items.map((item, index) => (
-        <Draggable key={item.timestamp} draggableId={item.timestamp} index={index}>
+        <Draggable key={item.timestamp} draggableId={item.timestamp} index={index} >
 
             {(provided, snapshot) => (
               <div className="item-draggable">
                 {provided.placeholder}
-
                 <div
                   className="item-draggable-inner"
                   ref={provided.innerRef}  {...provided.draggableProps} {...provided.dragHandleProps}
                   style={getItemStyle( snapshot.isDragging, provided.draggableProps.style )}
                 >
-
-                    {item.content}
-
+                    <div className="item-draggable-track-name">{ item.name }</div>
+                    <div className="item-draggable-track-settings">
+                        <Icon className="player-icon-danger" type="close-circle-o" onClick={() => { playerRemoveTrackFromQueue(item.timestamp) }} />
+                        <Icon className="player-icon-primary" type="play-circle-o" onClick={() => { playerPlay(item.uri) }} />
+                    </div>
                 </div>
-
-
               </div>
             )}
 
