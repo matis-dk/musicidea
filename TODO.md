@@ -2,12 +2,11 @@
 FUNCTIONALITY:
     - Play track
     - Current track selector
-    - Next / Prev track
+    - Next / Prev track (still need QUEUE song selector)
 
     - Search button
 
-    - Playback current track
-    - Playback position bar
+    - Playback current track / what about queue
 
     - Jump to playlist
 
@@ -15,7 +14,6 @@ FUNCTIONALITY:
 
     - Different options on artist page section (save album, add song, etc.)
 
-    - Notification when track is added
 
 PAGE
     - Explore page + link from genre with settings
@@ -32,6 +30,10 @@ TASKS:
 
     - CSSTransistionGroup
 
+    - 401 Unarthorized (token expire - redirect to signin page)
+
+    - logoff button
+
 
 BUGGY IMPLEMENTATIONS:
     - Repeat mode synchronization
@@ -40,11 +42,10 @@ BUGGY IMPLEMENTATIONS:
 
 STRETCH GOALS:
     - Animated icons / styling
+    - Easter egg
+    - Spacebar pause song
 
 
 //==================================================================
 
 NOW:
-    - Next / Prev track
-
-    - Adding to queue track from not added artist bug

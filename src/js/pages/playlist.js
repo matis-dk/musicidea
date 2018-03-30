@@ -25,11 +25,6 @@ class Playlist extends React.Component {
         );
     }
 
-    // playerPlayContext (context_uri, offset) {
-    //     console.log(this.props)
-    //     //this.props.playerPlayContext(this.props.store.spotify.device_id, offset)
-    // }
-
     render () {
 
         let playlist;

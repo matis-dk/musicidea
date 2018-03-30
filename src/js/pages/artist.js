@@ -74,7 +74,7 @@ class Artist extends React.Component {
                                 <div className="artist-backdrop" style={{backgroundImage: `url(${ artists[artistID].images[0] ? artists[artistID].images[0].url : userdefault })`}}>
                                     <div className="artist-img-overlay"></div>
                                     <h1 className="artist-h1">{artists[artistID].name}</h1>
-                                </div> : null
+                                </div> : <div>1</div>
                             }
                             {
                                 artists[artistID].hasOwnProperty("topTracks") ?
@@ -85,7 +85,7 @@ class Artist extends React.Component {
                                         options={{nr: true, song:true, time: true}}
                                         actions={ { playerPlay: this.props.playerPlay, playerAddTrackToQueue: this.props.playerAddTrackToQueue } }
                                         device_id={this.props.store.spotify.device_id} />
-                                </div> : null
+                                </div> : <div>2</div>
                             }
                         </div>
                         <div className="artist-albums">

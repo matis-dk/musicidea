@@ -11,13 +11,9 @@ import * as spotifyWeb from '../../data/spotifyWeb';
 
 import { openNotification } from '../../utility/utility'
 
+import PlayerBar from './playerBar'
 
 //==================================================================
-
-// function formatter(value) {
-//   return `${value}%`;
-// }
-
 
 class Player extends React.Component {
 
@@ -74,10 +70,11 @@ class Player extends React.Component {
         })
     }
 
-
     render () {
 
-        let playback     = this.props.store.playback;
+        let store        = this.props.store;
+        let playback     = store.playback;
+
         let volume       = this.state.volumeValueTemp;
 
         return (
@@ -103,16 +100,23 @@ class Player extends React.Component {
                 </div>
                 <div className="player-item player-control">
                     <div className="player-navigation">
-                        <span className="player-nav"  ><Icon type="step-backward" /></span>
+                        <span className="player-nav" onClick={ () => { this.props.playerPrevTrack(store.spotify.device_id) } } >
+                            <Icon type="step-backward" />
+                        </span>
                         <span
                             className="player-nav player-nav-play"
                             onClick={() => { playback.playing ?
-                                this.props.playerPause(this.props.store.spotify.device_id) :
+                                this.props.playerPause(store.spotify.device_id) :
                                 this.handlePlay() }} >
                             <Icon type={playback.playing ? "pause-circle-o" : "play-circle-o" }/>
                         </span>
-                        <span className="player-nav"  ><Icon type="step-forward" /></span>
+                        <span className="player-nav" onClick={ () => { this.props.playerNextTrack(store.spotify.device_id) } } >
+                            <Icon type="step-forward" />
+                        </span>
                     </div>
+                </div>
+                <div className="player-item player-track">
+                    <PlayerBar />
                 </div>
                 <div className="player-item player-playlist">
                     <div className="player-playlist-wrapper">

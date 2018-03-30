@@ -45,6 +45,7 @@ const Musiclist = ( {playlist, options, actions, device_id, playlistUri} ) => {
                 <tbody className="musiclist-tbody">
 
                     {
+
                         playlist.map((item, index) => {
                             return (
                                 <tr key={item.id || item.track.id } className="musiclist-tr" data-current="false">

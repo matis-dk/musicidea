@@ -34,6 +34,14 @@ export function playerPlay ( deviceID, uri ) {
         return { type: "PLAYBACK_PLAYING" }
 }
 
+export function playerResume ( deviceID ) {  // NOBODY USING IT ?
+        spotifyWeb.init.play( {
+            "device_id": deviceID
+        })
+
+        return { type: "PLAYBACK_PLAYING" }
+}
+
 export function playerPause (deviceID) {
         spotifyWeb.init.pause({
             "device_id": deviceID
@@ -42,6 +50,30 @@ export function playerPause (deviceID) {
         return  { type: "PLAYBACK_PAUSE" }
 }
 
+export function playerSetPosition (position, device_id) {
+    spotifyWeb.init.seek( position, { "device_id": device_id } )
+
+    return {
+        type: "PLAYBACK_SET_POSITION",
+        payload: position
+    }
+}
+
+export function playerNextTrack (deviceID) {
+    spotifyWeb.init.skipToNext({
+        "device_id": deviceID
+    })
+
+    return  { type: "PLAYBACK_NEXT_TRACK" }
+}
+
+export function playerPrevTrack (deviceID) {
+    spotifyWeb.init.skipToPrevious({
+        "device_id": deviceID
+    })
+
+    return  { type: "PLAYBACK_PREV_TRACK" }
+}
 
 //==================================================================
 // QUEUE

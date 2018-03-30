@@ -31,6 +31,25 @@ function reducer_playback (state = stateInit, action) {
                 playing: false
             }
             return state;
+        case "PLAYBACK_NEXT_TRACK":
+            state = {
+                ...state
+            }
+            return state;
+        case "PLAYBACK_PREV_TRACK":
+            state = {
+                ...state
+            }
+            return state;
+        case "PLAYBACK_SET_POSITION":
+            state = {
+                ...state,
+                current_state: {
+                    ...state.current_state,
+                    position: action.payload
+                }
+            }
+            return state;
         case "PLAYBACK_SET_REPEAT":
             state = {
                 ...state,

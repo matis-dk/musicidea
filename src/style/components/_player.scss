@@ -6,18 +6,17 @@
     max-height: 100vh;
 
     width: 100%;
-    height: auto;
+    height: 0%;
     position: fixed;
     right: 0px;
     top: 0px;
     z-index: 3;
     flex-direction: column;
     justify-content: flex-end;
-    //background-color: rgba($c-b-4, 0.9);
-    //@include shadow3;
     color: white;
     padding-top: 6.25rem;
     overflow: hidden;
+    transition: background-color 0.45s;
 }
 
     .player-item  {
@@ -113,6 +112,66 @@
         }
 
 
+//==================================================================
+// TRACK
+
+
+
+.player-track {
+
+    .ant-slider {
+        margin: 10px 0px;
+    }
+
+    .ant-slider-track {
+        background-color: $c-t-1;
+    }
+
+    .ant-slider:hover .ant-slider-track {
+        background-color: rgba($c-t-1, 0.7);
+    }
+
+    .ant-slider-handle {
+        border-color: $c-w-5 !important;
+        background-color: rgba($c-g-1, 1) !important;
+    }
+
+    .ant-slider-rail {
+        background-color: rgba($c-g-3, 0.5) !important;
+    }
+}
+
+    .player-track-wrapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.6rem 1.56rem;
+    }
+
+        .player-track-h3 {
+            font-size: 1.1rem;
+            padding-top: 0.5rem;
+        }
+
+
+    .player-track-bar {
+        padding: 0rem 1.56rem;
+    }
+
+    .player-track-duration {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0px 1.56rem;
+        margin-bottom: 2rem;
+    }
+
+        .player-track-duration > * {
+            margin: 0px 0.3rem;
+            font-size: 12px;
+            color: $c-g-2;
+            font-family: "LarsseitBold";
+        }
+
+
 
 //==================================================================
 // CONTROL
@@ -152,6 +211,14 @@
             font-size: 1.75rem;
         }
 
+//==================================================================
+// PLAYERBAR
+
+.player-track {
+    display: block;
+    position: relative;
+    border-top: 1px solid rgba($c-g-3, 0.1);
+}
 
 //==================================================================
 // SETTINGS
@@ -267,9 +334,17 @@
     .show-player-menu {
         height: 100%;
         background-color: rgba(45, 45, 45, .2);
+        @include shadow3;
 
-        .player-settings, .player-playlist, .player-cover {
+        .player-settings, .player-playlist {
             display: flex !important;
+            animation-name: hidePlayerMenu;
+            animation-duration: 0.4s;
+            animation-fill-mode: forwards;
+        }
+
+        .player-track {
+            display: block !important;
             animation-name: hidePlayerMenu;
             animation-duration: 0.4s;
             animation-fill-mode: forwards;
@@ -281,7 +356,7 @@
 
     }
 
-    .player-settings, .player-playlist, .player-cover {
+    .player-settings, .player-playlist, .player-track {
         display: none !important;
     }
 
