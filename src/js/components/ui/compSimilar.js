@@ -13,7 +13,7 @@ const CompSimilar  = ( { artists, artistID } ) => {
             <ul className="artists-related">
                 {
                     artists[artistID].relatedArtists
-                        .slice(0, 18)
+                        .slice(0, 16)
                         .map((relatedArtist) => (
                             <CompArtist artist={relatedArtist} key={relatedArtist.id} />
                         ))

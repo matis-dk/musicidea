@@ -10,7 +10,7 @@ import Musiclist from '../components/ui/musiclist'
 import CompAlbum from '../components/ui/compAlbum'
 import CompSimilar from '../components/ui/compSimilar'
 
-import userdefault from '../../img/user-default.svg'
+import { getImage } from '../utility/utility'
 
 //==================================================================
 
@@ -71,7 +71,7 @@ class Artist extends React.Component {
                     <div className="artist-content">
                         <div className="artist-backdrop-container">
                             {   artists[artistID].hasOwnProperty("id") ?
-                                <div className="artist-backdrop" style={{backgroundImage: `url(${ artists[artistID].images[0] ? artists[artistID].images[0].url : userdefault })`}}>
+                                <div className="artist-backdrop" style={{backgroundImage: `url(${  getImage(artists[artistID].images, 500, "user" ) })`}}>
                                     <div className="artist-img-overlay"></div>
                                     <h1 className="artist-h1">{artists[artistID].name}</h1>
                                 </div> : <div>1</div>

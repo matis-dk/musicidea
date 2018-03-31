@@ -1,6 +1,9 @@
 import React from 'react'
 import { Icon, notification } from 'antd';
 
+import albumDefault from '../../img/album-default.svg'
+import userDefault from '../../img/user-default.svg'
+
 //==================================================================
 export function sortArrayOfObjects (a, b) {
     if (a.last_nom < b.last_nom)
@@ -46,4 +49,27 @@ export function openNotification (msg = "Ukendt fejl", des = "Noget gik helt gal
 
 export function getTimestamp () {
     return (+ new Date() + "")
+}
+
+
+//==================================================================
+
+export function getImage (images, matchWidth = 200, type = "user") {
+
+    if ( images.length === 0) {
+        if (type == "user") {  return userDefault }
+        if (type == "album") { return albumDefault }
+    }
+
+    for (let i = (images.length - 1); i >= 0; i--) {
+
+        if ( images[i].width >= matchWidth ) {
+            return images[i].url
+        }
+
+        if ( i == 0 ) {
+            return images[i].url
+        }
+
+    }
 }

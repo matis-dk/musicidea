@@ -10,6 +10,7 @@ import * as playerActions from '../store/actions/action_playback'
 import { connect } from 'react-redux'
 
 import CompArtist from '../components/ui/compArtist'
+import CompAlbumCover from '../components/ui/compAlbumCover'
 
 import { Link } from 'react-router-dom'
 
@@ -59,6 +60,10 @@ class Explore extends Component {
        this.props.searchQuery(e, types)
     }, 300)
 
+    componentDidMount () {
+        this.nameInput.focus();
+    }
+
 
     render() {
 
@@ -73,6 +78,7 @@ class Explore extends Component {
                             <div className="es-search">
                                 <Icon className="es-search-icon" type="search" />
                                 <input
+                                    ref={(input) => { this.nameInput = input; }}
                                     value={this.state.value}
                                     className="es-search-field"
                                     type="text"
@@ -103,30 +109,19 @@ class Explore extends Component {
                                     <hr/>
                                     <ul className="profile-list">
                                         {
-                                            result.artists.items.slice(0, 12).map((artist) => ( <CompArtist artist={artist} key={artist.id} /> ))
+                                            result.artists.items.slice(0, 12).map((artist) => (
+                                                <CompArtist artist={artist} key={artist.id} />
+                                            ))
                                         }
                                     </ul>
                                 </div> : null
                             }
                             {
                                 result.albums && this.state.album ?
-                                <div className="er-wrapper">
-                                    <h2 className="profile-header">Albums</h2>
-                                    <hr/>
-                                    <ul className="profile-playlist-list">
-                                        {
-                                            result.albums.items.slice(0, 12).map((item) => (
-                                                <li className="profile-playlist-item"
-                                                    style={{ backgroundImage: `url(${ item.images.length > 0 ? item.images[0].url : null })` }}
-                                                    key={item.id}>
-                                                    <Link to={"/playlist/" + "null" + "/album/" + item.id} className="profile-playlist-link">
-                                                        <h3 className="profile-item-header">{item.name}</h3>
-                                                    </Link>
-                                                </li> )
-                                            )
-                                        }
-                                    </ul>
-                                </div> : null
+                                <CompAlbumCover
+                                    albumCover={result.albums.items}
+                                    header="Albums"
+                                    type="/album/" /> : null
                             }
                             {
                                 result.tracks && this.state.track ?

@@ -2,12 +2,15 @@ import React from 'react';
 
 import { Button, Radio, Icon } from 'antd';
 
+import { getImage } from '../../utility/utility'
+
+//==================================================================
 
 const PlaylistDescription = ({ playlist, actions, device_id }) => {
 
     return (
         <div className="wrapper-playlist">
-            <img className="playlist-image" src={playlist.images[0].url} alt=""/>
+            <img className="playlist-image" src={ getImage(playlist.images, 300, "album") } alt=""/>
             <div className="playlist-des">
                 <h1 className="playlist-name">{ playlist.name }</h1>
                 <div className="playlist-tags-container">
