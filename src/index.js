@@ -33,6 +33,7 @@
     import reducer_user from './js/store/reducers/reducer_user';
     import reducer_content from './js/store/reducers/reducer_content';
     import reducer_playback from './js/store/reducers/reducer_playback';
+    import reducer_explore from './js/store/reducers/reducer_explore';
 
 
 //==================================================================
@@ -42,7 +43,8 @@
             spotify: reducer_spotifyOAuth,
             user: reducer_user,
             content: reducer_content,
-            playback: reducer_playback
+            playback: reducer_playback,
+            explore: reducer_explore
     });
 
     const middleware = applyMiddleware(createLogger(), ReduxThunk);

@@ -48,8 +48,8 @@
 
 
         .es-filter{
-            border-bottom: 1px solid rgba($c-t-1, 0.25);
-            border-top: 1px solid rgba($c-t-1, 0.25);
+            border-bottom: .13rem solid rgba($c-b-4, 0.85);
+            border-top: .13rem solid rgba($c-b-4, 0.85);
 
             .ant-checkbox-inner {
                 //background-color: red;
@@ -74,6 +74,6 @@
     }
 
         .er-wrapper {
-            border: 1px solid tomato;
-            flex: 0 0 50%;
+            flex: 0 0 100%;
+            margin-bottom: 2rem;
         }
