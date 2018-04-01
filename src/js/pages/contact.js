@@ -12,7 +12,7 @@ class Profile extends React.Component {
 
         return (
             <div className="container">
-                <div className="container-item" id="about">
+                <div className="container-item" id="contact">
                     <div className="container-about">
                         <div className="about-musicidea">
                             <h2 className="profile-header">Contact</h2>

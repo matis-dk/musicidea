@@ -1,0 +1,139 @@
+
+.ani-default-enter {
+    opacity: 0;
+}
+
+.ani-default-enter.ani-default-enter-active {
+    opacity: 1;
+    transition: all 0.3s linear 0.25s;
+}
+
+.ani-default-exit {
+    opacity: 1.0;
+}
+.ani-default-exit.ani-default-exit-active {
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    transition: all 0.35s linear;
+}
+
+//==================================================================
+
+
+.ani-pop-enter {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.ani-pop-enter.ani-pop-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s linear 0.2s;
+}
+
+.ani-pop-exit {
+    opacity: 1.0;
+    transform: translateZ(0) rotateX(0deg);
+}
+.ani-pop-exit.ani-pop-exit-active {
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    transform: translateZ(-100px) rotateX(-10deg);
+    transition: all 0.35s linear;
+}
+
+//==================================================================
+
+
+.ani-explore-enter {
+
+    .es-search-field {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    .es-search-icon {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+}
+
+.ani-explore-enter.ani-explore-enter-active {
+
+    .es-search-field {
+        opacity: 1;
+        transform: translateY(0px);
+        transition-duration: 0.3s;
+        transition-delay: 0.4s;
+    }
+
+    .es-search-icon {
+        opacity: 1;
+        transform: translateX(0px);
+        transition: 0.3s;
+        transition-delay: 0.2s;
+    }
+}
+
+
+.ani-explore-exit {
+    opacity: 1.0;
+    overflow: hidden;
+}
+
+.ani-explore-exit.ani-explore-exit-active {
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    transition: all 0.35s linear;
+    overflow: hidden;
+}
+
+//==================================================================
+
+
+.ani-profile-enter {
+    .profile-playlist-list {
+        opacity: 0;
+        transform: translateX(-60px) translateZ(-40px) rotateY(-6deg);
+    }
+
+    .profile-list-item {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+.ani-profile-enter.ani-profile-enter-active {
+    .profile-playlist-list {
+        opacity: 1;
+        transform: translateX(0px) translateZ(0px) rotateY(0deg);
+        transform-origin: right center;
+        transition: 0.4s;
+    }
+
+    .profile-list-item {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+
+.ani-profile-exit {
+
+}
+
+.ani-profile-exit.ani-profile-exit-active {
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    transition: all 0.35s linear;
+    overflow: hidden;
+}

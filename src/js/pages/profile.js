@@ -9,9 +9,15 @@ import * as actionUsers from '../store/actions/action_user'
 import CompArtist from '../components/ui/compArtist'
 import CompAlbumCover from '../components/ui/compAlbumCover'
 
+import { Transition } from 'react-transition-group';
+
 let userCurrently = null;
 
 class Profile extends React.Component {
+
+    onEnter () {
+        console.log("Hello")
+    }
 
     render () {
 
@@ -27,31 +33,29 @@ class Profile extends React.Component {
         }
 
 
-        return (
-            <div className="container">
-                <div className="container-item" id="profile">
-                    <div className="profile-playlists">
-                        <CompAlbumCover
-                            albumCover={this.props.store.user.userPlaylists}
-                            header="Your playlists"
-                            type="/playlist/" />
-                    </div>
-                    <div className="profile-top-artists">
-                        <h2 className="profile-header">Your top artists</h2>
-                        <hr/>
-                        <ul className="profile-list">
-                            {
-                                this.props.store.user.userTopArtists
-                                    .slice(0, 12)
-                                    .map((artist) => (
-                                        <CompArtist artist={artist} key={artist.id} />
-                                    ))
-                            }
-                        </ul>
-                    </div>
+        return (<div className="container">
+            <div className="container-item" id="profile">
+                <div className="profile-playlists">
+                    <CompAlbumCover
+                        albumCover={this.props.store.user.userPlaylists}
+                        header="Your playlists"
+                        type="/playlist/" />
+                </div>
+                <div className="profile-top-artists">
+                    <h2 className="profile-header">Your top artists</h2>
+                    <hr/>
+                    <ul className="profile-list">
+                        {
+                            this.props.store.user.userTopArtists
+                                .slice(0, 12)
+                                .map((artist, index) => (
+                                    <CompArtist artist={artist} key={artist.id}  />
+                                ))
+                        }
+                    </ul>
                 </div>
             </div>
-        )
+        </div>)
     }
 }
 

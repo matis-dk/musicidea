@@ -6,6 +6,8 @@ import { getImage } from '../../utility/utility'
 //==================================================================
 
 const CompArtist  = ( { artist } ) => {
+
+
     return (
             <li className="profile-list-item" >
                 <Link to={"/artist/" + artist.id}>

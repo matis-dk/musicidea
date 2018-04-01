@@ -5,4 +5,7 @@ html {
 #main {
     min-height: 100vh;
     background-color: $c-b-3;
+    overflow-x: hidden;
+    perspective: 1000px;
+    width: 100%;
 }

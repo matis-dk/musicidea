@@ -15,13 +15,9 @@ FUNCTIONALITY:
     - Different options on artist page section (save album, add song, etc.)
 
 
-PAGE
-    - Explore page + link from genre with settings
-
 
 TASKS:
     - Code splitting
-    - Image size sorting
     - Redirect non-supported browsers
 
     - Stress test site
@@ -37,8 +33,6 @@ TASKS:
 
 BUGGY IMPLEMENTATIONS:
     - Repeat mode synchronization
-    - Delete song from queue            (try another alternative?)
-
 
 STRETCH GOALS:
     - Animated icons / styling

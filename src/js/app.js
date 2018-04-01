@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
 import  { Route, Switch } from 'react-router-dom'
 
 import Home from './pages/home'
@@ -22,25 +24,42 @@ class App extends React.Component {
 
     render () {
 
+        let CSSTransitionKey = this.props.location.pathname.split('/')[1];
+
+        //string.split("/")[3] == "album"
+
+        const transitionMap = {
+            "none": { classNames: 'ani-none', timeout: { enter: 0, exit: 0 }  },
+            explore: { classNames: 'ani-explore', timeout: { enter: 500, exit: 500 } },
+            about: { classNames: 'ani-pop', timeout: { enter: 500, exit: 500 } },
+            contact: { classNames: 'ani-pop', timeout: { enter: 500, exit: 500 } },
+            profile: { classNames: 'ani-profile', timeout: { enter: 400, exit: 350 } }
+        };
+
         // Rendering routes if token is valid
         if ( this.props.store.spotify.loginAllowed ) {
             return (
                 <main id="main">
-                    <Header store={this.props.store} />
-                    <Switch>
-                        <Route path='/profile' component={Profile}/>
+                    <TransitionGroup style={{overflow: "hidden"}}>
+                            <Header store={this.props.store} />
+                            <CSSTransition timeout={500} classNames="ani-default" key={CSSTransitionKey} { ...transitionMap[CSSTransitionKey] } >
+                                <Switch location={this.props.location}>
+                                    <Route exact path='/' component={Home}/>
 
-                        <Route exact path='/' component={Home}/>
-                        <Route path='/explore' component={Explore}/>
-                        <Route path='/contact' component={Contact}/>
-                        <Route path='/about' component={About}/>
+                                    <Route path='/profile' component={Profile}/>
 
-                        <Route path='/playlist/:owner/:type/:id' component={Playlist}/>
-                        <Route path='/artist/:id' component={Artist}/>
+                                    <Route path='/explore' component={Explore}/>
+                                    <Route path='/contact' component={Contact}/>
+                                    <Route path='/about' component={About}/>
 
-                        <Route path='/' component={Home}/>
-                    </Switch>
-                    <Player />
+                                    <Route path='/playlist/:owner/:type/:id' component={Playlist}/>
+                                    <Route path='/artist/:id' component={Artist}/>
+
+                                    <Route path='/' component={Home}/>
+                                </Switch>
+                            </CSSTransition>
+                            <Player />
+                    </TransitionGroup>
                 </main>
             )
         } else {
@@ -50,6 +69,10 @@ class App extends React.Component {
 }
 
 
+
 //==================================================================
 
 export default connect( store => {return {store: store }} ) (App)
+
+
+//==================================================================
