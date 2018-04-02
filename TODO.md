@@ -4,8 +4,6 @@ FUNCTIONALITY:
     - Current track selector
     - Next / Prev track (still need QUEUE song selector)
 
-    - Search button
-
     - Playback current track / what about queue
 
     - Jump to playlist

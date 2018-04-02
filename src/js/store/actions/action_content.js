@@ -7,6 +7,14 @@ export function getArtistData(id = "", method, type = "",  msg = "Sorry, vi arbe
     return dispatch => {
         spotifyWeb.init[method](id, params)
             .then(res => {
+
+                if ( method == "getPlaylist" ) {
+                    res.tracks.items = res.tracks.items.map((item) => {
+                        return { ...item, ...item.track  }
+                    })
+                }
+
+
                 dispatch({
                     type,
                     payload: {
@@ -14,6 +22,8 @@ export function getArtistData(id = "", method, type = "",  msg = "Sorry, vi arbe
                         id
                     }
                 })
+
+
             })
             .catch (err => openNotification("Fejl", msg))
     }

@@ -57,7 +57,7 @@ class Artist extends React.Component {
 
         if (artists.hasOwnProperty(artistID) == false) {
 
-            if (artists.hasOwnProperty(artistID) !== artistCurrently) {
+            if ( artistID !== artistCurrently) {
                 artistCurrently = artistID;
                 this.startFetching (artistID);
             }
@@ -71,10 +71,11 @@ class Artist extends React.Component {
                     <div className="artist-content">
                         <div className="artist-backdrop-container">
                             {   artists[artistID].hasOwnProperty("id") ?
-                                <div className="artist-backdrop" style={{backgroundImage: `url(${  getImage(artists[artistID].images, 500, "user" ) })`}}>
+                                <div className="artist-backdrop" >
+                                    <img className="artist-img" src={getImage(artists[artistID].images, 500, "user" )} alt="" />
                                     <div className="artist-img-overlay"></div>
                                     <h1 className="artist-h1">{artists[artistID].name}</h1>
-                                </div> : <div>1</div>
+                                </div> : null
                             }
                             {
                                 artists[artistID].hasOwnProperty("topTracks") ?
@@ -85,7 +86,7 @@ class Artist extends React.Component {
                                         options={{nr: true, song:true, time: true}}
                                         actions={ { playerPlay: this.props.playerPlay, playerAddTrackToQueue: this.props.playerAddTrackToQueue } }
                                         device_id={this.props.store.spotify.device_id} />
-                                </div> : <div>2</div>
+                                </div> : null
                             }
                         </div>
                         <div className="artist-albums">

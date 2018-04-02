@@ -26,7 +26,10 @@ class App extends React.Component {
 
         let CSSTransitionKey = this.props.location.pathname.split('/')[1];
 
-        //string.split("/")[3] == "album"
+        if ( CSSTransitionKey == "artist" ) {
+            CSSTransitionKey = this.props.location.pathname.split("/")[2]
+            console.log(CSSTransitionKey)
+        }
 
         const transitionMap = {
             "none": { classNames: 'ani-none', timeout: { enter: 0, exit: 0 }  },
@@ -42,7 +45,7 @@ class App extends React.Component {
                 <main id="main">
                     <TransitionGroup style={{overflow: "hidden"}}>
                             <Header store={this.props.store} />
-                            <CSSTransition timeout={500} classNames="ani-default" key={CSSTransitionKey} { ...transitionMap[CSSTransitionKey] } >
+                            <CSSTransition timeout={600} classNames="ani-default" key={CSSTransitionKey} { ...transitionMap[CSSTransitionKey] } >
                                 <Switch location={this.props.location}>
                                     <Route exact path='/' component={Home}/>
 

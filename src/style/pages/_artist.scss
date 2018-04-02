@@ -20,6 +20,8 @@
         > .artist-backdrop {
             flex: 1.6;
             max-width: 780px;
+            width: 100%;
+            height: 31.25rem;
         }
 
         > .artist-toptracks {
@@ -29,27 +31,17 @@
     }
             .artist-backdrop {
                 background-color: $c-t-1;
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;
-                width: 100%;
-                height: 31.25rem;
 
                 display: flex;
-                align-items: flex-end;
+                align-items: center;
                 position: relative;
                 @include shadow1;
+                overflow: hidden;
             }
 
-                .artist-h1 {
-                    line-height: 3.13rem;
-                    font-size: 5rem;
-                    margin-left: 1.88rem;
-                    color: rgb(32, 32, 32);
-                    text-transform: uppercase;
-                    z-index: 1;
-                    position: relative;
-                    user-select: none;
+                .artist-img {
+                    object-fit: cover;
+                    width: 100%;
                 }
 
                 .artist-img-overlay {
@@ -59,22 +51,36 @@
                     background: linear-gradient(to left,rgba($c-t-1, 0.9),  rgba($c-t-2, 0.9));
                     top: 0px;
                     left: 0px;
-                    mix-blend-mode:  exclusion;
+                    mix-blend-mode: exclusion;
                 }
 
-            .artist-album-header {
-                margin-top: 4.38rem;
-            }
-
-            .artists-related {
-                display: flex;
-                flex-wrap: wrap;
-
-                > * {
-                    width: 30%;
+                .artist-h1 {
+                    line-height: 3.13rem;
+                    font-size: 5rem;
+                    margin-left: 1.88rem;
+                    color: rgb(32, 32, 32);
+                    text-transform: uppercase;
+                    z-index: 1;
+                    position: absolute;
+                    user-select: none;
+                    bottom: 0px;
                 }
 
-            }
+
+
+                .artist-album-header {
+                    margin-top: 4.38rem;
+                }
+
+                    .artists-related {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        > * {
+                            width: 30%;
+                        }
+
+                }
 
             .artist-album-list {
                 display: flex;
@@ -128,3 +134,18 @@
             mix-blend-mode: overlay;
             filter: blur(.63rem);
         }
+
+//==================================================================
+// Animation
+
+@keyframes slideUpNow {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
