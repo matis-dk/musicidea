@@ -18,8 +18,6 @@ function reducer_playback (state = stateInit, action) {
                 search_query: action.payload
             }
             return state;
-        default:
-            return state;
     }
 
     return state;

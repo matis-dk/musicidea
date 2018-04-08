@@ -1,12 +1,8 @@
 #playlist {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
 
     > * {
+        margin: 0px auto  3.13rem;
         max-width: 87.5rem;
         width: 100%;
-        flex-grow: 1;
-        margin-bottom: 3.13rem;
     }
 }

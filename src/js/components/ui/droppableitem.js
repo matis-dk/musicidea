@@ -33,11 +33,12 @@ class Droppableitem extends Component {
         this.props.playerRemoveTrackFromQueue (id, this.props.store.playback.queue)
   }
 
-  playerPlay (uri) {
-      this.props.playerPlay(this.props.store.spotify.device_id, uri)
+  playerPlay (uri, currentContext, currentTrack) {
+      this.props.playerPlay(this.props.store.spotify.device_id, uri, currentContext, currentTrack)
   }
 
   render() {
+
     return (
 
           <DragDropContext onDragEnd={(result) => this.onDragEnd(result)}>
@@ -49,7 +50,8 @@ class Droppableitem extends Component {
                             <DraggableComp
                                 items={this.props.store.playback.queue}
                                 playerRemoveTrackFromQueue={this.playerRemoveTrackFromQueue.bind(this)}
-                                playerPlay={ this.playerPlay.bind(this) }/>
+                                playerPlay={ this.playerPlay.bind(this) }
+                                currentTrack={ this.props.store.playback.currentTrack } />
                         </div>
                     )
                 }

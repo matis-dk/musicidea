@@ -5,6 +5,13 @@
             //border-bottom: 1px solid rgba($c-g-1, 0.1);
 
         }
+            .item-current {
+                background-color: rgba($c-t-1, 0.5);
+
+                .item-draggable-track-name {
+                    color: $c-w-5 !important;
+                }
+            }
 
             .item-draggable-inner {
                 padding: 0.7rem 1.6rem;

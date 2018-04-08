@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Switch, Icon, Slider, Button, Modal } from 'antd';
+import { Switch, Icon, Slider, Button, Modal, Input  } from 'antd';
 import DroppableItem from './droppableitem'
 
 import * as actionPlayer from '../../store/actions/action_playback'
@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 
 import * as spotifyWeb from '../../data/spotifyWeb';
 
-import { openNotification } from '../../utility/utility'
+import { openNotification, utilGetUrisFromTrack } from '../../utility/utility'
 
 import PlayerBar from './playerBar'
 
@@ -20,7 +20,10 @@ class Player extends React.Component {
     state = {
         volumeValueTemp: this.props.store.playback.volume,
         volumeHide: true,
-        menuActive: false
+        menuActive: false,
+        menuSaveLoading: false,
+        menuSaveVisible: false,
+        menuSaveNameValue: ""
     }
 
     handleVolume (volume) {
@@ -52,12 +55,14 @@ class Player extends React.Component {
                 openNotification("Mangler spilleliste", "Vi vil super gerne spille noget, men du skal først lige tilføje det til spillelisten")
                 return;
             }
-            // SONG SELECTION IN QUEUE? FIX LATER
-            this.props.playerPlay(this.props.store.spotify.device_id, playback.queue[0].track.uri)
+            // If songs is added to the queue, but there isnt any state yet
+            this.props.playerPlay(this.props.store.spotify.device_id, playback.queue[0].track.uri, "queue", playback.queue[0].timestamp)
+
             return;
             //==================================================================
         }
-        this.props.playerPlay(this.props.store.spotify.device_id, playback.current_state.track_window.current_track.uri)
+
+        this.props.playerResume(this.props.store.spotify.device_id)
     }
 
     handlePlayerMenu() {
@@ -68,6 +73,19 @@ class Player extends React.Component {
             ...newState,
             menuActive: !newState.menuActive
         })
+    }
+
+    handleOk = () => {
+      this.props.playerSaveQueue(
+          this.props.store.user.userId, 
+          this.state.menuSaveNameValue,
+          utilGetUrisFromTrack(this.props.store.playback.queue))
+
+      this.setState({ menuSaveVisible: false });
+    }
+
+    handleCancel = () => {
+      this.setState({ menuSaveVisible: false });
     }
 
     render () {
@@ -100,7 +118,11 @@ class Player extends React.Component {
                 </div>
                 <div className="player-item player-control">
                     <div className="player-navigation">
-                        <span className="player-nav" onClick={ () => { this.props.playerPrevTrack(store.spotify.device_id) } } >
+                        <span className="player-nav" onClick={ () => {
+                            this.props.playerSkip(
+                                "skipToPrevious",
+                                store.spotify.device_id,
+                                store.playback ) } } >
                             <Icon type="step-backward" />
                         </span>
                         <span
@@ -110,7 +132,11 @@ class Player extends React.Component {
                                 this.handlePlay() }} >
                             <Icon type={playback.playing ? "pause-circle-o" : "play-circle-o" }/>
                         </span>
-                        <span className="player-nav" onClick={ () => { this.props.playerNextTrack(store.spotify.device_id) } } >
+                        <span className="player-nav" onClick={ () => {
+                            this.props.playerSkip(
+                                "skipToNext",
+                                store.spotify.device_id,
+                                store.playback ) } } >
                             <Icon type="step-forward" />
                         </span>
                     </div>
@@ -146,8 +172,26 @@ class Player extends React.Component {
                     </div>
                     <div className="player-settings-tools">
                         <Icon className="player-icon player-icon-danger" type="delete" onClick={ () => { this.props.playerDeleteQueue() }} />
-                        <Icon className="player-icon player-icon-primary" type="save" />
+                        <Icon className="player-icon player-icon-primary" type="save" onClick={ () => { this.setState({ menuSaveVisible: true }) }} />
                     </div>
+                </div>
+                <div>
+                    <Modal
+                        visible={this.state.menuSaveVisible}
+                        title="Gem spilleliste i Spotify"
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                        footer={[
+                            <Button key="back" onClick={this.handleCancel}>Annulere</Button>,
+                            <Button key="submit" type="primary" loading={this.state.menuSaveLoading} onClick={this.handleOk}> Gem </Button>,
+                        ]}
+                    >
+                      <p>Angiv title på spillelisten</p>
+                      <br/>
+                      <Input placeholder="Spilleliste" value={this.state.menuSaveNameValue} onChange={(e) => {
+                          this.setState({menuSaveNameValue: e.target.value})
+                      }} />
+                    </Modal>
                 </div>
             </div>
         )

@@ -1,6 +1,6 @@
 import * as spotifyWeb from '../../data/spotifyWeb';
 
-import { openNotification, getTimestamp } from '../../utility/utility'
+import { openNotification, getTimestamp, handleSkipping } from '../../utility/utility'
 
 //==================================================================
 
@@ -15,23 +15,35 @@ export function updatePlaybackState (state) {
 // PLAYBACK
 //==================================================================
 
-export function playerPlayContext (deviceID, context_uri, offset = 0) {
+export function playerPlayContext (deviceID, context_uri, offset = 0, currentContext = false) {
         spotifyWeb.init.play( {
             "context_uri": context_uri,
             "device_id": deviceID,
             "offset": {"position": offset}
         } )
 
-        return { type: "PLAYBACK_PLAYING" }
+        return {
+            type: "PLAYBACK_PLAYING",
+            payload: {
+                currentContext: currentContext,
+                currentTrack: ""
+            }
+        }
 }
 
-export function playerPlay ( deviceID, uri ) {
+export function playerPlay ( deviceID, uri, currentContext = false, currentTrack = "" ) {
         spotifyWeb.init.play( {
             "uris": [uri],
             "device_id": deviceID
         })
 
-        return { type: "PLAYBACK_PLAYING" }
+        return {
+            type: "PLAYBACK_PLAYING",
+            payload: {
+                currentContext: currentContext,
+                currentTrack: currentTrack
+            }
+        }
 }
 
 export function playerResume ( deviceID ) {  // NOBODY USING IT ?
@@ -59,21 +71,26 @@ export function playerSetPosition (position, device_id) {
     }
 }
 
-export function playerNextTrack (deviceID) {
-    spotifyWeb.init.skipToNext({
-        "device_id": deviceID
-    })
 
-    return  { type: "PLAYBACK_NEXT_TRACK" }
+export function playerSkip (method, deviceID, playback) {
+
+    let { currentContext, queue } = playback;
+
+    if ( currentContext == "queue" ) {
+        let i = handleSkipping(playback, method)
+
+        return playerPlay (deviceID, queue[i].uri, currentContext, queue[i].timestamp);
+    }
+
+    if ( currentContext == "playlist" ) {
+        spotifyWeb.init[method]({
+            "device_id": deviceID
+        })
+        return  { type: "PLAYBACK_NEXT_TRACK" };
+    }
 }
 
-export function playerPrevTrack (deviceID) {
-    spotifyWeb.init.skipToPrevious({
-        "device_id": deviceID
-    })
 
-    return  { type: "PLAYBACK_PREV_TRACK" }
-}
 
 //==================================================================
 // QUEUE
@@ -130,6 +147,33 @@ export function playerDeleteQueue () {
     return {
         type: "PLAYBACK_DELETE_QUEUE"
     }
+}
+
+export function playerSaveQueue (userId, queueName, tracks) {
+
+        function handleError() {
+             openNotification("Fejl", "Vi kunne ikke gemme din spilleliste", "frown");
+        }
+
+        return (dispatch) => {
+
+            spotifyWeb.init.createPlaylist( userId, { "name": queueName } ).then(res => {
+
+                spotifyWeb.init.addTracksToPlaylist(userId, res.id, tracks).then(res => {
+
+                    spotifyWeb.init.getUserPlaylists().then(res => {
+                        openNotification("Spilleliste gemt", "Din spilleliste er nu gemt i Spotify", "smile")
+
+                        dispatch({
+                            type: "ADD_USER_PLAYLISTS",
+                            payload: res.items
+                        })
+
+                    }).catch((err) => handleError() )
+                }).catch((err) => handleError() )
+            }).catch((err) => handleError() )
+
+        }
 }
 
 

@@ -4,7 +4,9 @@ let stateInit = {
     queue: [],
     repeat: false,
     shuffle: false,
-    volume: 30
+    volume: 30,
+    currentContext: false,
+    currentTrack: ""
 }
 
 
@@ -22,7 +24,9 @@ function reducer_playback (state = stateInit, action) {
         case "PLAYBACK_PLAYING":
             state = {
                 ...state,
-                playing: true
+                playing: true,
+                currentContext: action.payload.currentContext,
+                currentTrack: action.payload.currentTrack
             }
             return state;
         case "PLAYBACK_PAUSE":
@@ -97,8 +101,6 @@ function reducer_playback (state = stateInit, action) {
                 ...state,
                 volume: action.payload
             }
-            return state;
-        default:
             return state;
     }
 

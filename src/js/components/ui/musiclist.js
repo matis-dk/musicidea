@@ -22,12 +22,12 @@ const Musiclist = ( {playlist, options, actions, device_id, playlistUri} ) => {
         options = {}
     }
 
-    function handlePlayContext(index) {
-        actions.playerPlayContext(device_id, playlistUri, index)
+    function handlePlayContext(index, currentContext) {
+        actions.playerPlayContext(device_id, playlistUri, index, currentContext)
     }
 
     function handlePlayTrack (uri) {
-        actions.playerPlay(device_id, uri)
+        actions.playerPlay(device_id, uri, false)
     }
 
     return (
@@ -50,7 +50,7 @@ const Musiclist = ( {playlist, options, actions, device_id, playlistUri} ) => {
                             return (
                                 <tr key={item.id || item.track.id } className="musiclist-tr" data-current="false">
                                     {options.nr ?
-                                        <td className="musiclist-td m-nr-wrap" onClick={() => { actions.playerPlayContext ? handlePlayContext(index) : handlePlayTrack(item.uri) }} >
+                                        <td className="musiclist-td m-nr-wrap" onClick={() => { actions.playerPlayContext ? handlePlayContext(index, "playlist") : handlePlayTrack(item.uri) }} >
                                             <span className="m-nr"> { utility.convertMusicNr(index) } </span>
                                             <Icon className="musiclist-buttons" type="play-circle-o" />
                                         </td> : null }

@@ -36,20 +36,13 @@ function reducer_user (state = stateInit, action) {
         case "ADD_USER_TOP_ARTISTS":
             state = {
                 ...state,
-                userTopArtists: [...state.userTopArtists],
                 userTopArtists: action.payload
             }
             return state;
         case "ADD_USER_PLAYLISTS":
             state = {
                 ...state,
-                userPlaylists: [...state.userPlaylists],
                 userPlaylists: action.payload
-            }
-            return state;
-        default:
-            state = {
-                ...state
             }
             return state;
     }

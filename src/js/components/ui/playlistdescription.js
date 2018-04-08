@@ -23,7 +23,7 @@ const PlaylistDescription = ({ playlist, actions, device_id }) => {
                     <Button type="primary"
                         icon="play-circle-o"
                         size="default"
-                        onClick={ () => { actions.playerPlayContext(device_id, playlist.uri, 0) } }
+                        onClick={ () => { actions.playerPlayContext(device_id, playlist.uri, 0, "playlist") } }
                         >
                         Play album
                     </Button>

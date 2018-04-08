@@ -5,13 +5,17 @@ import albumDefault from '../../img/album-default.svg'
 import userDefault from '../../img/user-default.svg'
 
 //==================================================================
-export function sortArrayOfObjects (a, b) {
-    if (a.last_nom < b.last_nom)
-      return -1;
-    if (a.last_nom > b.last_nom)
-      return 1;
-    return 0;
+export function sortArrayOfObjects (arrayItems, arrayKey) {
+    return arrayItems.sort(sortCallback)
+
+    function sortCallback (a, b) {
+            if (a[arrayKey] < b[arrayKey]) { return 1; }
+            if (a[arrayKey] > b[arrayKey]) { return -1; }
+            return 0;
+    }
+
 }
+
 
 //==================================================================
 
@@ -72,4 +76,51 @@ export function getImage (images, matchWidth = 200, type = "user") {
         }
 
     }
+}
+
+//==================================================================
+
+
+export function handleSkipping (playback, method) {
+
+    let { queue, currentTrack, shuffle, repeat } = playback;
+    let i = findTrackInQueue(queue, currentTrack)
+
+    if (shuffle) {
+        return randomIntFromInterval(0, queue.length)
+    }
+
+    if (repeat) {
+        return i;
+    }
+
+    if (method == "skipToNext") {
+        return (i == (queue.length - 1)) ? 0 : i + 1;
+    }
+
+    if (method == "skipToPrevious") {
+        return (i == 0 ) ? 0 : i - 1;
+    }
+
+}
+
+function randomIntFromInterval(min,max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+
+function findTrackInQueue (queue, currentTrack) {
+    for ( let i = 0; i < queue.length; i++ ) {
+        if (queue[i].timestamp == currentTrack) {
+            return i;
+        }
+    }
+
+    return 0;
+}
+
+//==================================================================
+
+export function utilGetUrisFromTrack (queue) {
+    return queue.map((item) => item.uri)
 }

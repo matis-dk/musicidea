@@ -47,11 +47,9 @@ export function getMyTopArtists () {
         spotifyWeb.init.getMyTopArtists()
             .then(res => {
 
-                //console.log(sortArrayOfObjects)
-
                 dispatch({
                     type: "ADD_USER_TOP_ARTISTS",
-                    payload: res.items
+                    payload: sortArrayOfObjects(res.items, "popularity")
                 })
             })
             .catch (err => {

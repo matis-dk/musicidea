@@ -14,7 +14,7 @@ const getItemStyle = (isDragging, draggableStyle) => {
     };
 }
 
-export default ( { items, playerRemoveTrackFromQueue, playerPlay } ) => {
+export default ( { items, playerRemoveTrackFromQueue, playerPlay, currentTrack } ) => {
 
     return items.map((item, index) => (
         <Draggable key={item.timestamp} draggableId={item.timestamp} index={index} >
@@ -23,14 +23,14 @@ export default ( { items, playerRemoveTrackFromQueue, playerPlay } ) => {
               <div className="item-draggable">
                 {provided.placeholder}
                 <div
-                  className="item-draggable-inner"
+                  className={(currentTrack == item.timestamp) ? "item-draggable-inner item-current" : "item-draggable-inner"}
                   ref={provided.innerRef}  {...provided.draggableProps} {...provided.dragHandleProps}
                   style={getItemStyle( snapshot.isDragging, provided.draggableProps.style )}
                 >
                     <div className="item-draggable-track-name">{ item.name }</div>
                     <div className="item-draggable-track-settings">
                         <Icon className="player-icon-danger" type="close-circle-o" onClick={() => { playerRemoveTrackFromQueue(item.timestamp) }} />
-                        <Icon className="player-icon-primary" type="play-circle-o" onClick={() => { playerPlay(item.uri) }} />
+                        <Icon className="player-icon-primary" type="play-circle-o" onClick={() => { playerPlay(item.uri, "queue", item.timestamp) }} />
                     </div>
                 </div>
               </div>
