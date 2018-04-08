@@ -11,7 +11,12 @@ import CompAlbumCover from '../components/ui/compAlbumCover'
 
 import { Transition } from 'react-transition-group';
 
+//==================================================================
+
 let userCurrently = null;
+
+let optionsAlbumCover      = {  delete: true, play: true };
+
 
 class Profile extends React.Component {
 
@@ -39,7 +44,8 @@ class Profile extends React.Component {
                     <CompAlbumCover
                         albumCover={this.props.store.user.userPlaylists}
                         header="Your playlists"
-                        type="/playlist/" />
+                        type="/playlist/"
+                        options={optionsAlbumCover} />
                 </div>
                 <div className="profile-top-artists">
                     <h2 className="profile-header">Your top artists</h2>

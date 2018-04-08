@@ -18,8 +18,8 @@ import Musiclist from '../components/ui/musiclist';
 
 //==================================================================
 
-let options       = {nr: true, song:true, artist:true, time:true, settings:true};
-
+let optionsMusiclist       = { nr: true, song:true, artist:true, time:true, settings:true };
+let optionsAlbumCover      = { like: true, play: true };
 
 class Explore extends Component {
 
@@ -121,7 +121,8 @@ class Explore extends Component {
                                 <CompAlbumCover
                                     albumCover={result.albums.items}
                                     header="Albums"
-                                    type="/album/" /> : null
+                                    type="/album/"
+                                    options={optionsAlbumCover} /> : null
                             }
                             {
                                 result.tracks && this.state.track ?
@@ -130,7 +131,7 @@ class Explore extends Component {
                                     <hr/>
                                         <Musiclist
                                             playlist={result.tracks.items}
-                                            options={options}
+                                            options={optionsMusiclist}
                                             actions={ { playerPlay: this.props.playerPlay, playerAddTrackToQueue: this.props.playerAddTrackToQueue } }
                                             device_id={this.props.store.spotify.device_id}
                                             playlistUri="null"  />

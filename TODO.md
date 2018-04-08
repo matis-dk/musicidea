@@ -1,6 +1,5 @@
 
 FUNCTIONALITY:
-    - Jump to playlist
 
     - Different options on artist page section (save album, add song, etc.)
 
@@ -28,3 +27,5 @@ STRETCH GOALS:
 //==================================================================
 
 NOW:
+
+    - Bug playback time reset 

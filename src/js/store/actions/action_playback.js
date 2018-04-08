@@ -176,6 +176,25 @@ export function playerSaveQueue (userId, queueName, tracks) {
         }
 }
 
+export function playerDeletePlaylist (ownerId, playlistId) {
+
+    return (dispatch) => {
+
+        spotifyWeb.init.unfollowPlaylist( ownerId, playlistId ).then((res) => {
+            spotifyWeb.init.getUserPlaylists().then((res) => {
+                    openNotification("Spilleliste slettet", "Din spilleliste er nu slettet fra Spotify", "smile")
+
+                    dispatch({
+                        type: "ADD_USER_PLAYLISTS",
+                        payload: res.items
+                    })
+
+                })
+            })
+
+    }
+}
+
 
 //==================================================================
 // SETTINGS

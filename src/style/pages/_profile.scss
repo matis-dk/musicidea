@@ -46,6 +46,10 @@
             &::before {
                 opacity: 1;
             }
+
+            .profile-playlist-options {
+                opacity: 1;
+            }
         }
 
         .profile-playlist-item::before {
@@ -74,6 +78,33 @@
                     padding: .94rem;
                 }
 
+
+            .profile-playlist-options {
+                position: absolute;
+                right: 0rem;
+                top: 0rem;
+                z-index: 1;
+                width: 100%;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                opacity: 0;
+                transition: 0.3s;
+            }
+
+                .ppo-icons {
+                    font-size: 1.2rem;
+                    padding: 0.7rem;
+                    position: relative;
+                    z-index: 3;
+                    background-color: rgba($c-b-5, 0.5);
+                    color: $c-w-5;
+                    cursor: pointer;
+                }
+
+                .ppo-icons:hover {
+                    background-color: lighten(rgba($c-b-5, 0.5), 10%)
+                }
     //==================================================================
     // ARTISTS
     .profile-top-artists {
