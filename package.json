@@ -48,7 +48,7 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "less-vars-to-js": "^1.2.1",
-    "node-sass": "^4.7.2",
+    "node-sass": "^4.9.0",
     "postcss-cssnext": "^3.0.2",
     "postcss-loader": "^2.0.9",
     "react-hot-loader": "^4.0.0",

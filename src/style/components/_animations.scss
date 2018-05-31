@@ -22,15 +22,12 @@
 //==================================================================
 
 
-.ani-pop-enter {
+.ani-pop-enter-active {
     opacity: 0;
-    transform: translateY(30px);
-}
-
-.ani-pop-enter.ani-pop-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: all 0.3s linear 0.2s;
+    animation-name: aniPop;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.2s;
 }
 
 .ani-pop-exit {
@@ -46,10 +43,30 @@
     transition: all 0.35s linear;
 }
 
+@keyframes aniPop {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 //==================================================================
 
 
 .ani-explore-enter {
+
+    .explore-result {
+        opacity: 0;
+        animation-name: aniExplore;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.2s;
+    }
 
     .es-search-field {
         opacity: 0;
@@ -77,6 +94,20 @@
         transform: translateX(0px);
         transition: 0.3s;
         transition-delay: 0.2s;
+    }
+}
+
+@keyframes aniExplore {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        background-color: red !important;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        background-color: white !important;
     }
 }
 

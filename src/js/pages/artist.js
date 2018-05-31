@@ -18,7 +18,7 @@ let artistCurrently = null;
 
 class Artist extends React.Component {
 
-    startFetching (artistID) {
+    startFetching(artistID) {
         this.props.getArtistData(
             artistID,
             "getArtistAlbums",
@@ -37,29 +37,29 @@ class Artist extends React.Component {
             artistID,
             "getArtistRelatedArtists",
             "GET_ARTIST_RELATED_ARTISTS",
-            "Vi kunne finde relaterede kunstnere"
+            "Vi kunne ikke finde relaterede kunstnere"
         );
 
         this.props.getArtistData(
             artistID,
             "getArtistTopTracks",
             "GET_ARTIST_TOP_TRACKS",
-            "Vi kunne hente kunstnerens top tracks",
+            "Vi kunne ikke hente kunstnerens top tracks",
             "US"
         );
 
     }
 
-    render () {
+    render() {
 
-        let artists         = this.props.store.content.artists;
-        let artistID        = this.props.match.params.id;
+        let artists = this.props.store.content.artists;
+        let artistID = this.props.match.params.id;
 
         if (artists.hasOwnProperty(artistID) == false) {
 
-            if ( artistID !== artistCurrently) {
+            if (artistID !== artistCurrently) {
                 artistCurrently = artistID;
-                this.startFetching (artistID);
+                this.startFetching(artistID);
             }
 
             return null;
@@ -70,23 +70,23 @@ class Artist extends React.Component {
                 <div className="container-item" id="artist">
                     <div className="artist-content">
                         <div className="artist-backdrop-container">
-                            {   artists[artistID].hasOwnProperty("id") ?
+                            {artists[artistID].hasOwnProperty("id") ?
                                 <div className="artist-backdrop" >
-                                    <img className="artist-img" src={getImage(artists[artistID].images, 500, "user" )} alt="" />
+                                    <img className="artist-img" src={getImage(artists[artistID].images, 500, "user")} alt="" />
                                     <div className="artist-img-overlay"></div>
                                     <h1 className="artist-h1">{artists[artistID].name}</h1>
                                 </div> : null
                             }
                             {
                                 artists[artistID].hasOwnProperty("topTracks") ?
-                                <div className="artist-toptracks">
-                                    <h2 className="artist-toptracks-header">Top tracks</h2>
-                                    <Musiclist
-                                        playlist={artists[artistID].topTracks}
-                                        options={{nr: true, song:true, time: true}}
-                                        actions={ { playerPlay: this.props.playerPlay, playerAddTrackToQueue: this.props.playerAddTrackToQueue } }
-                                        device_id={this.props.store.spotify.device_id} />
-                                </div> : null
+                                    <div className="artist-toptracks">
+                                        <h2 className="artist-toptracks-header">Top tracks</h2>
+                                        <Musiclist
+                                            playlist={artists[artistID].topTracks}
+                                            options={{ nr: true, song: true, time: true }}
+                                            actions={{ playerPlay: this.props.playerPlay, playerAddTrackToQueue: this.props.playerAddTrackToQueue }}
+                                            device_id={this.props.store.spotify.device_id} />
+                                    </div> : null
                             }
                         </div>
                         <div className="artist-albums">
@@ -108,4 +108,4 @@ class Artist extends React.Component {
     <div className="artist-img-overlay"></div>
 </div> */
 
-export default connect(store => {return {store: store }}, { ...actionContent, ...actionPlayer }) (Artist)
+export default connect(store => { return { store: store } }, { ...actionContent, ...actionPlayer })(Artist)

@@ -20,10 +20,6 @@ let optionsAlbumCover      = {  delete: true, play: true };
 
 class Profile extends React.Component {
 
-    onEnter () {
-        console.log("Hello")
-    }
-
     render () {
 
         if (this.props.store.user.userId !== userCurrently) {
