@@ -1,3 +1,7 @@
 # Musicidea
 
-Let's take it to the next level!
+![alt text](https://github.com/matis-dk/musicidea/blob/master/case.png)
+
+## About
+
+Text
