@@ -3,7 +3,7 @@
 ![alt text](https://github.com/matis-dk/musicidea/blob/master/case.png)
 
 ## Spotify as a webplayer
-Musicidea is a functional online webplayer using Spotify as it's main audiosource. Actions such as playing songs, change your playlist, skip or repeating tracks is all getting synchronized with the native app. The following make it a really pleasant experice and super fun to use as a alternative. 
+Musicidea is a functional online webplayer using Spotify as it's main audiosource. Actions such as playing songs, change your playlist, skip or repeating tracks is all getting synchronized with the native app. The following make it a really pleasant experience and super fun to use as an alternative. 
 
  ### Specifications
 - React, Redux
